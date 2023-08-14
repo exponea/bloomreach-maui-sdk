@@ -1,11 +1,14 @@
 ﻿
-namespace ExponeaSDK
+using System.Text.Json;
+
+namespace ExponeaSDK.Platforms.iOS
 {
-	internal partial class MethodChannelConsumerIOS : IMethodChannelConsumerPlatformSpecific
-	{
+    internal class MethodChannelConsumerIos : IMethodChannelConsumerPlatformSpecific
+    {
         string IMethodChannelConsumerPlatformSpecific.InvokeMethod(string method, object? data)
         {
-            return "iOS with " + method;
+            var methodParams = JsonSerializer.Serialize(data);
+            return "result.Data + \"|\" + result.Error;";
         }
     }
 }

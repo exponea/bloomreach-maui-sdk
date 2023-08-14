@@ -1,6 +1,5 @@
 ﻿
 using System.Text.Json;
-using Microsoft.Maui.ApplicationModel;
 
 namespace ExponeaSDK.Platforms.Android
 {

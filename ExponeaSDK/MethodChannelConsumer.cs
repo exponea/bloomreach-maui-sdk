@@ -5,13 +5,13 @@ namespace ExponeaSDK
     {
         internal string InvokeMethod(string method, object? data)
         {
-            IMethodChannelConsumerPlatformSpecific channelInternal;
+            IMethodChannelConsumerPlatformSpecific? channelInternal = null;
 #if ANDROID
             channelInternal = new Platforms.Android.MethodChannelConsumerAndroid();
-#else
-            channelInternal = null;
+#elif IOS
+            channelInternal = new Platforms.iOS.MethodChannelConsumerIos();
 #endif
-            return channelInternal?.InvokeMethod(method, data);
+            return channelInternal?.InvokeMethod(method, data) ?? "NO_PLATFORM";
         }
     }
     internal interface IMethodChannelConsumerPlatformSpecific
