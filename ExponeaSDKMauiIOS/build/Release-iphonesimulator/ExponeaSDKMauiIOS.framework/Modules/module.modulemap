@@ -1,0 +1,4 @@
+framework module ExponeaSDKMauiIOS {
+  header "ExponeaSDKMauiIOS-Swift.h"
+  requires objc
+}

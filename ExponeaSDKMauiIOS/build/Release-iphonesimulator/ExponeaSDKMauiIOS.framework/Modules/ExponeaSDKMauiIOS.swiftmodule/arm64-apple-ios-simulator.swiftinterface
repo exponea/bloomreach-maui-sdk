@@ -1,0 +1,43 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-module-flags: -target arm64-apple-ios16.4-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ExponeaSDKMauiIOS
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import ExponeaSDK
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+@_inheritsConvenienceInitializers @objc(ExponeaMauiVersion) public class ExponeaMauiVersion : ObjectiveC.NSObject, ExponeaSDK.ExponeaVersionProvider {
+  @objc required override dynamic public init()
+  public func getVersion() -> Swift.String
+  @objc deinit
+}
+@objc(AuthorizationProviderType) public protocol AuthorizationProviderType {
+  @objc init()
+  @objc func getAuthorizationToken() -> Swift.String?
+}
+@_inheritsConvenienceInitializers @objc(MauiAuthorizationProvider) public class MauiAuthorizationProvider : ObjectiveC.NSObject, ExponeaSDKMauiIOS.AuthorizationProviderType {
+  @objc required override dynamic public init()
+  @objc public func getAuthorizationToken() -> Swift.String?
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(ExponeaSDK) public class ExponeaSDK : ObjectiveC.NSObject {
+  @objc public func invokeMethod(method: Swift.String?, params: Swift.String?) -> ExponeaSDKMauiIOS.MethodResult
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(MethodResult) public class MethodResult : ObjectiveC.NSObject {
+  @objc final public let success: Swift.Bool
+  @objc final public let data: Swift.String
+  @objc final public let error: Swift.String
+  public static func success(_ data: Swift.String?) -> ExponeaSDKMauiIOS.MethodResult
+  public static func failure(_ message: Swift.String) -> ExponeaSDKMauiIOS.MethodResult
+  @objc deinit
+}
+public enum ExponeaError : Foundation.LocalizedError {
+  case unsupportedMethod(Swift.String)
+  case common(Swift.String)
+  public var errorDescription: Swift.String? {
+    get
+  }
+}

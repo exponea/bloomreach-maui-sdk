@@ -5,7 +5,6 @@
 //  Created by Adam Mihalik on 14/08/2023.
 //
 
-import Foundation
 import ExponeaSDK
 
 // This protocol is used queried using reflection by native iOS SDK to see if it's run by Maui SDK
