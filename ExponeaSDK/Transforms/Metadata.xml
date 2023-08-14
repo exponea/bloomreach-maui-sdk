@@ -1,0 +1,17 @@
+﻿<metadata>
+   
+    <attr path="/api/package[@name='com.exponea.sdk.models']/class[@name='CampaignData.CREATOR']/method[@name='createFromParcel']" name="managedReturn">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models']/class[@name='CampaignData.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models']/class[@name='NotificationData.CREATOR']/method[@name='createFromParcel']" name="managedReturn">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models']/class[@name='NotificationData.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models']/class[@name='CustomerRecommendationDeserializer']/method[@name='deserialize']" name="managedReturn">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.exponea.sdk']/class[@name='Exponea']/method[@name='trackEvent' and count(parameter)=3 and parameter[1][@type='com.exponea.sdk.models.PropertiesList'] and parameter[2][@type='java.lang.Double'] and parameter[3][@type='java.lang.String']]/parameter[2]" name="managedType">double</attr>
+    <attr path="/api/package[@name='com.exponea.sdk']/class[@name='Exponea']/method[@name='trackClickedPush' and count(parameter)=3 and parameter[1][@type='com.exponea.sdk.models.NotificationData'] and parameter[2][@type='com.exponea.sdk.models.NotificationAction'] and parameter[3][@type='java.lang.Double']]/parameter[3]" name="managedType">double</attr>
+    <attr path="/api/package[@name='com.exponea.sdk']" name="managedName">ExponeaSdk</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models']" name="managedName">ExponeaSdk.Models</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.services']" name="managedName">ExponeaSdk.Services</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.style']" name="managedName">ExponeaSdk.Style</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models.eventfilter']" name="managedName">ExponeaSdk.Models.EventFilter</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models.eventfilter']/class[@name='EventFilterOperatorSerializer']/method[@name='serialize' and count(parameter)=3 and parameter[1][@type='com.exponea.sdk.models.eventfilter.EventFilterOperator'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonSerializationContext']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.exponea.sdk.models.eventfilter']/class[@name='EventFilterOperatorDeserializer']/method[@name='deserialize' and count(parameter)=3 and parameter[1][@type='com.google.gson.JsonElement'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonDeserializationContext']]" name="managedReturn">Java.Lang.Object</attr>
+</metadata>
