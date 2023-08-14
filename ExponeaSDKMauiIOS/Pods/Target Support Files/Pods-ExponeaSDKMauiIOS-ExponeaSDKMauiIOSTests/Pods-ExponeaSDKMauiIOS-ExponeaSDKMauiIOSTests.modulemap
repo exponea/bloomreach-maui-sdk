@@ -1,0 +1,6 @@
+framework module Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests {
+  umbrella header "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

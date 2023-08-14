@@ -1,0 +1,6 @@
+framework module ExponeaSDK_Notifications {
+  umbrella header "ExponeaSDK-Notifications-umbrella.h"
+
+  export *
+  module * { export * }
+}
