@@ -1,5 +1,9 @@
-using ExponeaSDKMauiIOS;
+using System;
+using AVFoundation;
 using Foundation;
+using ObjCRuntime;
+using UIKit;
+using UserNotifications;
 
 namespace ExponeaSdk
 {
@@ -18,7 +22,6 @@ namespace ExponeaSdk
 		// @required -(NSString * _Nullable)getAuthorizationToken __attribute__((warn_unused_result("")));
 		[Abstract]
 		[NullAllowed, Export ("getAuthorizationToken")]
-		[Verify (MethodToProperty)]
 		string AuthorizationToken { get; }
 	}
 
@@ -35,12 +38,12 @@ namespace ExponeaSdk
 		MethodResult InvokeMethodWithMethod ([NullAllowed] string method, [NullAllowed] string @params);
 	}
 
-	// @interface MauiAuthorizationProvider <AuthorizationProviderType>
-	interface MauiAuthorizationProvider : IAuthorizationProviderType
+	// @interface XamarinAuthorizationProvider : NSObject
+	[BaseType(typeof(NSObject))]
+	interface MauiAuthorizationProvider
 	{
 		// -(NSString * _Nullable)getAuthorizationToken __attribute__((warn_unused_result("")));
-		[NullAllowed, Export ("getAuthorizationToken")]
-		[Verify (MethodToProperty)]
+		[NullAllowed, Export("getAuthorizationToken")]
 		string AuthorizationToken { get; }
 	}
 

@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios16.1</TargetFrameworks>
-		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
 		<RootNamespace>ExampleApp</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
@@ -21,6 +20,9 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<AotAssemblies>true</AotAssemblies>
+		<OutputType>Exe</OutputType>
+		<RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
@@ -29,6 +31,7 @@
 	  <CodesignKey>iPhone Developer</CodesignKey>
 	  <MtouchInterpreter>-all</MtouchInterpreter>
 	  <MtouchArch>ARMv7</MtouchArch>
+	  <MtouchLink>None</MtouchLink>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	  <WarningLevel>4</WarningLevel>
@@ -41,6 +44,9 @@
 	  <CreatePackage>false</CreatePackage>
 	  <MtouchInterpreter>-all</MtouchInterpreter>
 	  <MtouchArch>ARMv7</MtouchArch>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -75,5 +81,23 @@
 	  <Compile Update="Platforms\Android\MainApplication.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
 	  </Compile>
+	</ItemGroup>
+
+	<!-- Android -->
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) != true">
+		<Compile Remove="**\Android\**\*.cs" />
+		<None Include="**\Android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+	</ItemGroup>
+
+	<!-- Both iOS and Mac Catalyst -->
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true">
+		<Compile Remove="**\MaciOS\**\*.cs" />
+		<None Include="**\MaciOS\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+	</ItemGroup>
+
+	<!-- iOS -->
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) != true">
+		<Compile Remove="**\iOS\**\*.cs" />
+		<None Include="**\iOS\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
 </Project>

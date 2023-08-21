@@ -25,6 +25,7 @@
 
 #pragma clang diagnostic ignored "-Wauto-import"
 #if defined(__OBJC__)
+#include <Foundation/Foundation.h>
 #endif
 #if defined(__cplusplus)
 #include <cstdint>
@@ -38,6 +39,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <string.h>
 #endif
 #if defined(__cplusplus)
 #if __has_include(<ptrauth.h>)
@@ -258,6 +260,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import ObjectiveC;
 #endif
 
 #endif

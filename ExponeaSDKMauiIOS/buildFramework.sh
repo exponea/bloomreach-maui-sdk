@@ -74,10 +74,9 @@ for i in `find $SWIFT_BUILD_RELATIVE_PATH -name "*.framework" -type d -mindepth 
   combine_to_fat_debug "$(basename $i .framework)"
 done
 
-echo "Generating binding api definition and structs"
-#echo "$(grep -v "#include <Foundation/Foundation.h>" $SWIFT_OUTPUT_HEADER_FILE)" > "$SWIFT_OUTPUT_HEADER_FILE"
-#echo "$(grep -v "#include <string.h>" $SWIFT_OUTPUT_HEADER_FILE)" > "$SWIFT_OUTPUT_HEADER_FILE"
-#echo "$(grep -v "@import ObjectiveC;" $SWIFT_OUTPUT_HEADER_FILE)" > "$SWIFT_OUTPUT_HEADER_FILE"
-sharpie bind --sdk=iphoneos --output="$SWIFT_OUTPUT_PATH/MauiApiDef" --namespace="ExponeaSdk" --scope="$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/" "$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/$SWIFT_PROJECT_NAME-Swift.h"
+# Some invalid definitions are produced, i.e. IAuthorizationProviderType so we need to update ApiDefinition manually
+# uncomment only occasionally
+#echo "Generating binding api definition and structs"
+#sharpie bind --sdk=iphoneos --output="$SWIFT_OUTPUT_PATH/MauiApiDef" --namespace="ExponeaSdk" --scope="$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/" "$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/$SWIFT_PROJECT_NAME-Swift.h"
 
 echo "Done!"

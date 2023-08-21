@@ -14,11 +14,11 @@
 		</data>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/Pods_ExponeaSDKMauiIOS</key>
 		<data>
-		zRd0MsWtxfldaaiaGNc80Iu3Mu0=
+		1S+PFHPMMEGs62F15kjevK10Lw4=
 		</data>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeDirectory</key>
 		<data>
-		v8CDPZKAut4xuygyOxCT//hlTws=
+		6AjDWGA2FFa4q7y9AIp4kGd7BUo=
 		</data>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		Nra0/CsPYsaV77gj4JJkZNDK0Q8=
+		twqTsrUhwB9tvLUFusYe4tNo6Og=
 		</data>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -117,14 +117,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pkTbNU/6dW7DMxigQKNGwaPXo9OWjHHpjvIG04obvto=
+			d9N5dafN24eApV9WZ8ZamQI2OWIn/a2k9k+arjZsync=
 			</data>
 		</dict>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeDirectory</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UxTJYUmilkbUasnnPOTESeSKTCFZCKxNWYk69kE4HBk=
+			1iG73gUKOL3QXMfVEa6CcV7pBgmMFEms/IZ1LG2Yq8w=
 			</data>
 		</dict>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeRequirements</key>
@@ -138,7 +138,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+LDWLEaqnKXW9IWp1ly6NkPwDs0448p7DxmXXMKmSsU=
+			aLPhA7LKS+3piHLz1zeqWV3Oj8PoL+TI5pEy3tbaYwY=
 			</data>
 		</dict>
 		<key>Frameworks/Pods_ExponeaSDKMauiIOS.framework/_CodeSignature/CodeResources</key>
