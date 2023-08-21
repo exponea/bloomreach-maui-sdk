@@ -10,59 +10,59 @@
 		</data>
 		<key>Headers/ExponeaSDK_Notifications-Swift.h</key>
 		<data>
-		13x9CjKEGzQqQen4ycn1PxeUmOk=
+		KnbfddZEcZp9jZ8r7DzXBWxO5qY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FqNqF+HDfdJaIZx0tDOP0thHi4Y=
+		ycstsurYpKEjyPEzaF+AV2D4www=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		N8URg+JJEBoj9AiXV9ZBMWaJSqo=
+		Gsr/D1OEGqLaVtqihX3qGGU9zz4=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		5FytpEbqzb4eqEoZUyjQHf5YIKI=
+		EkCa/vUr9lqjFCIauzQpUGKD3k0=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		+6i2+1BlCtcti1YnwZ+L6HxJ/C0=
+		h6FmKCc4LLnoNM/80VNLWFyA9GQ=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		mZ3tqqTsCf4lLY4R1cuaBt4gDvk=
+		0PGgnGezF4M4FiWZ2fJ5sJ4GRIQ=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		OADcxglTk1AWHNxA2H8IkXN69Z0=
+		i+E4vJDYSgwq8M3YkzFro9HzZAk=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		mZ3tqqTsCf4lLY4R1cuaBt4gDvk=
+		0PGgnGezF4M4FiWZ2fJ5sJ4GRIQ=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Tlx0/YcLGuz5TJHnTnhQeGO/6G8=
+		NaUHjmUw+6BV9hR1w8fHBcO925I=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		+6i2+1BlCtcti1YnwZ+L6HxJ/C0=
+		h6FmKCc4LLnoNM/80VNLWFyA9GQ=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		KbA17saGw+KvUPWUpAUNofGoum0=
+		riUJwWtfyep0jp+0eB/8jQy7t5M=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		mKAgq2NE+Knye+3ghNI34Wx/5e0=
+		k7N4CJXPiMivm0RQAGKkwuwUH0A=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		KbA17saGw+KvUPWUpAUNofGoum0=
+		riUJwWtfyep0jp+0eB/8jQy7t5M=
 		</data>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		kK1q3cobMEFiSLel9U6e1AZTbuo=
+		OM0W6hguDu4ozepEWH2ZzKuTwQs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -82,91 +82,91 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vrB0QetfxQuHoLcfPmBcXx5olotO7zSixjjcRz3txNI=
+			QIzAY/TXrdpggth/icAElzzcEE4cqpwBvBR2by3LxVI=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9S+nxbltplGueLn5p0wA6qcupdjwFstrwS+KPwImI+c=
+			+PRb+d7Ei7uyu9rwN9UasD93S/irobGhYICsgiGpVUg=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6f1p8bEBdtABVaekoczm9lUpiX8pOBG1REBwqf3PNOM=
+			gaRX1W6q/7ndm4DbEd7wUwAzuwi5xAin0kfL+Melvko=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aIYc45HsnbyiQb6AB4oI3FNyEaTz2ZqxHh7x/7ly2W8=
+			Ac1Yxmdxr2Zd/9bX61Y0BjW4TetqN0MpWrapjV3aU80=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0/Ore3dHY5sdmf6IORVR1uzwxsZCPxhtQOxF5HZ5PVc=
+			6AT8TzYe2ci0qISJj+wKbhh5dQtHKX6oqgtCHwxW7ls=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CErN4TErpVm2VkuW6OmwascgKRHafW57rKXMa4BY/tY=
+			uMHzCvSovoQjmR2wViGM7KNeEFUUxV6HtNpbObRELnc=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0/Ore3dHY5sdmf6IORVR1uzwxsZCPxhtQOxF5HZ5PVc=
+			6AT8TzYe2ci0qISJj+wKbhh5dQtHKX6oqgtCHwxW7ls=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			c8rqjYPn1zqdvpoXfL7AemPyfcSFZfctLW7+dRTJvRY=
+			981HgMuVxe2K0afUk+wAkoCygC2dfkXkGUCV49qx6nc=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aIYc45HsnbyiQb6AB4oI3FNyEaTz2ZqxHh7x/7ly2W8=
+			Ac1Yxmdxr2Zd/9bX61Y0BjW4TetqN0MpWrapjV3aU80=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KQ1q2S6ndlvddVHdXYgmUajqP4Ht3W/SHFI/dW3sXjc=
+			vp3L2/kE2GIpuHC7QGX3lNTbPEBJlz0EGsph7Q5KX/8=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3iRBUwZ7IMh56IHC6badI6LLsghMfmKQgtscNg7320k=
+			qwE0gjzAh4W7yjxhmafM+kCQj26Pp21YAf9K7nX9LVg=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KQ1q2S6ndlvddVHdXYgmUajqP4Ht3W/SHFI/dW3sXjc=
+			vp3L2/kE2GIpuHC7QGX3lNTbPEBJlz0EGsph7Q5KX/8=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK_Notifications.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4xC6jMhhdjAybheNA8iRMGfZQiprAiMctXlQ8BbsDDk=
+			t2LBMaBmLExNGZw9MeJeePM4Ge/xm4oJzxBWSdQ9tmY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

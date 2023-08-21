@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name ExponeaSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AppTrackingTransparency
@@ -76,9 +76,9 @@ public struct AppInboxResponse : Swift.Codable {
   public let success: Swift.Bool
   public let messages: [ExponeaSDK.MessageItem]?
   public let syncToken: Swift.String?
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public init(success: Swift.Bool, messages: [ExponeaSDK.MessageItem]?, syncToken: Swift.String?)
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public class AppInboxStyle {
   public init(appInboxButton: ExponeaSDK.ButtonStyle? = nil, detailView: ExponeaSDK.DetailViewStyle? = nil, listView: ExponeaSDK.ListScreenStyle? = nil)
@@ -106,9 +106,9 @@ public enum Authorization : Swift.Equatable, Swift.Codable {
   case none
   case token(Swift.String)
   case bearer(token: Swift.String)
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public init(from string: Swift.String?)
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   public func encode() -> Swift.String?
   public static func == (a: ExponeaSDK.Authorization, b: ExponeaSDK.Authorization) -> Swift.Bool
 }
@@ -147,8 +147,8 @@ public struct CampaignData {
   }
 }
 extension ExponeaSDK.CampaignData : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 extension ExponeaSDK.CampaignData : Swift.Equatable {
   public static func == (lhs: ExponeaSDK.CampaignData, rhs: ExponeaSDK.CampaignData) -> Swift.Bool
@@ -172,7 +172,7 @@ public struct Configuration : Swift.Codable, Swift.Equatable {
     get
   }
   public var inAppContentBlocksPlaceholders: [Swift.String]?
-  public var defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]?
+  public var defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]?
   public var sessionTimeout: Swift.Double
   public var automaticSessionTracking: Swift.Bool
   public var automaticPushNotificationTracking: Swift.Bool {
@@ -194,14 +194,14 @@ public struct Configuration : Swift.Codable, Swift.Equatable {
     get
   }
   public var advancedAuthEnabled: Swift.Bool
-  public var customAuthProvider: (any ExponeaSDK.AuthorizationProviderType)? {
+  public var customAuthProvider: ExponeaSDK.AuthorizationProviderType? {
     get
   }
-  public init(projectToken: Swift.String?, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]]? = nil, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil) throws
-  public init(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]]?, authorization: ExponeaSDK.Authorization = .none, baseUrl: Swift.String, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]? = nil, sessionTimeout: Swift.Double, automaticSessionTracking: Swift.Bool = true, automaticPushNotificationTracking: Swift.Bool, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency, appGroup: Swift.String?, flushEventMaxRetries: Swift.Int, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?) throws
+  public init(projectToken: Swift.String?, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]]? = nil, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil) throws
+  public init(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]]?, authorization: ExponeaSDK.Authorization = .none, baseUrl: Swift.String, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]? = nil, sessionTimeout: Swift.Double, automaticSessionTracking: Swift.Bool = true, automaticPushNotificationTracking: Swift.Bool, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency, appGroup: Swift.String?, flushEventMaxRetries: Swift.Int, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?) throws
   public init(plistName: Swift.String) throws
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   public static func == (lhs: ExponeaSDK.Configuration, rhs: ExponeaSDK.Configuration) -> Swift.Bool
 }
 extension ExponeaSDK.Configuration {
@@ -237,8 +237,8 @@ public struct Consent : Swift.Codable {
   public let legitimateInterest: Swift.Bool
   public let sources: ExponeaSDK.ConsentSources
   public let translations: [Swift.String : [Swift.String : Swift.String?]]
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct ConsentSources : Swift.Codable {
   public let isCreatedFromCRM: Swift.Bool
@@ -247,14 +247,14 @@ public struct ConsentSources : Swift.Codable {
   public let privateAPI: Swift.Bool
   public let publicAPI: Swift.Bool
   public let isTrackedFromScenario: Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct ConsentsResponse : Swift.Codable {
   public let consents: [ExponeaSDK.Consent]
   public let success: Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum Constants {
   public enum Repository {
@@ -346,17 +346,17 @@ extension Swift.Array where Element == ExponeaSDK.DataType {
   public var latestTimestamp: Swift.Double? {
     get
   }
-  public var properties: [Swift.String : (any ExponeaSDK.JSONConvertible)?] {
+  public var properties: [Swift.String : ExponeaSDK.JSONConvertible?] {
     get
   }
-  public func addProperties(_ properties: [Swift.String : any ExponeaSDK.JSONConvertible]?) -> [ExponeaSDK.DataType]
+  public func addProperties(_ properties: [Swift.String : ExponeaSDK.JSONConvertible]?) -> [ExponeaSDK.DataType]
   public var customerIds: [Swift.String : Swift.String] {
     get
   }
 }
 extension ExponeaSDK.DataType : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public struct DateFilter : Swift.Codable, Swift.Equatable {
   public let enabled: Swift.Bool
@@ -364,8 +364,8 @@ public struct DateFilter : Swift.Codable, Swift.Equatable {
   public let endDate: Foundation.Date?
   public init(enabled: Swift.Bool, startDate: Foundation.Date?, endDate: Foundation.Date?)
   public static func == (a: ExponeaSDK.DateFilter, b: ExponeaSDK.DateFilter) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 open class DefaultAppInboxProvider : ExponeaSDK.AppInboxProvider {
   final public let APPINBOX_BUTTON_ICON_DATA: Swift.String
@@ -389,7 +389,7 @@ public struct EventFilterEvent {
 public enum EventFilterError : Foundation.LocalizedError {
   case encodingError(message: Swift.String)
   case decodingError(message: Swift.String)
-  case incorrectOperandCount(filterOperator: any ExponeaSDK.EventFilterOperator.Type, count: Swift.Int)
+  case incorrectOperandCount(filterOperator: ExponeaSDK.EventFilterOperator.Type, count: Swift.Int)
   public var errorDescription: Swift.String? {
     get
   }
@@ -398,15 +398,15 @@ public struct EventFilter : Swift.Codable, Swift.Equatable {
   public let eventType: Swift.String
   public init(eventType: Swift.String, filter: [ExponeaSDK.EventPropertyFilter])
   public static func == (a: ExponeaSDK.EventFilter, b: ExponeaSDK.EventFilter) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct EventPropertyFilter : Swift.Equatable {
   public static func == (lhs: ExponeaSDK.EventPropertyFilter, rhs: ExponeaSDK.EventPropertyFilter) -> Swift.Bool
 }
 extension ExponeaSDK.EventPropertyFilter : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public protocol EventFilterAttribute : Swift.Decodable, Swift.Encodable {
   var type: Swift.String { get }
@@ -416,12 +416,12 @@ public protocol EventFilterAttribute : Swift.Decodable, Swift.Encodable {
 public protocol EventFilterOperator : Swift.Encodable {
   static var name: Swift.String { get }
   static var operandCount: Swift.Int { get }
-  static func passes(event: ExponeaSDK.EventFilterEvent, attribute: any ExponeaSDK.EventFilterAttribute, operands: [ExponeaSDK.EventFilterOperand]) -> Swift.Bool
+  static func passes(event: ExponeaSDK.EventFilterEvent, attribute: ExponeaSDK.EventFilterAttribute, operands: [ExponeaSDK.EventFilterOperand]) -> Swift.Bool
 }
 public struct EventFilterOperand : Swift.Codable, Swift.Equatable {
   public static func == (a: ExponeaSDK.EventFilterOperand, b: ExponeaSDK.EventFilterOperand) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum EventType : Swift.String, Swift.Codable {
   case install
@@ -459,11 +459,11 @@ extension ExponeaSDK.Exponea {
     public init(projectToken: Swift.String, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String? = nil, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]]? = nil)
   }
   public struct AutomaticPushNotificationTracking {
-    public static func enabled(appGroup: Swift.String, delegate: (any ExponeaSDK.PushNotificationManagerDelegate)? = nil, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency = .onTokenChange) -> ExponeaSDK.Exponea.AutomaticPushNotificationTracking
+    public static func enabled(appGroup: Swift.String, delegate: ExponeaSDK.PushNotificationManagerDelegate? = nil, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency = .onTokenChange) -> ExponeaSDK.Exponea.AutomaticPushNotificationTracking
     public static let disabled: ExponeaSDK.Exponea.AutomaticPushNotificationTracking
   }
   public struct PushNotificationTracking {
-    public static func enabled(appGroup: Swift.String, delegate: (any ExponeaSDK.PushNotificationManagerDelegate)? = nil, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency = .onTokenChange) -> ExponeaSDK.Exponea.PushNotificationTracking
+    public static func enabled(appGroup: Swift.String, delegate: ExponeaSDK.PushNotificationManagerDelegate? = nil, requirePushAuthorization: Swift.Bool = true, tokenTrackFrequency: ExponeaSDK.TokenTrackFrequency = .onTokenChange) -> ExponeaSDK.Exponea.PushNotificationTracking
     public static let disabled: ExponeaSDK.Exponea.PushNotificationTracking
   }
   public struct AutomaticSessionTracking {
@@ -477,8 +477,8 @@ extension ExponeaSDK.Exponea {
 }
 extension ExponeaSDK.ExponeaInternal {
   @available(*, deprecated, message: "Automatic push notification tracking is deprecated. Find more information in the documentation. https://github.com/exponea/exponea-ios-sdk/blob/develop/Documentation/PUSH.md")
-  public func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, automaticPushNotificationTracking: ExponeaSDK.Exponea.AutomaticPushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking = .enabled(), defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, flushingSetup: ExponeaSDK.Exponea.FlushingSetup = Exponea.FlushingSetup.default, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
-  public func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking = .enabled(), defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, flushingSetup: ExponeaSDK.Exponea.FlushingSetup = Exponea.FlushingSetup.default, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
+  public func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, automaticPushNotificationTracking: ExponeaSDK.Exponea.AutomaticPushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking = .enabled(), defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, flushingSetup: ExponeaSDK.Exponea.FlushingSetup = Exponea.FlushingSetup.default, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
+  public func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking = .enabled(), defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, flushingSetup: ExponeaSDK.Exponea.FlushingSetup = Exponea.FlushingSetup.default, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
   public func setAutomaticSessionTracking(automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking)
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class ExponeaAppDelegate : ObjectiveC.NSObject, UserNotifications.UNUserNotificationCenterDelegate, UIKit.UIApplicationDelegate {
@@ -517,17 +517,17 @@ extension ExponeaSDK.Exponea {
   public var customerCookie: Swift.String? {
     get
   }
-  public var inAppContentBlocksManager: (any ExponeaSDK.InAppContentBlocksManagerType)?
+  public var inAppContentBlocksManager: ExponeaSDK.InAppContentBlocksManagerType?
   public var flushingMode: ExponeaSDK.FlushingMode {
     get
     set
   }
-  public var pushNotificationsDelegate: (any ExponeaSDK.PushNotificationManagerDelegate)? {
+  public var pushNotificationsDelegate: ExponeaSDK.PushNotificationManagerDelegate? {
     get
     set
   }
-  public var inAppMessagesDelegate: any ExponeaSDK.InAppMessageActionDelegate
-  public var defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? {
+  public var inAppMessagesDelegate: ExponeaSDK.InAppMessageActionDelegate
+  public var defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? {
     get
     set
   }
@@ -536,7 +536,7 @@ extension ExponeaSDK.Exponea {
     set
   }
   public var checkPushSetup: Swift.Bool
-  public var appInboxProvider: any ExponeaSDK.AppInboxProvider
+  public var appInboxProvider: ExponeaSDK.AppInboxProvider
   @objc deinit
 }
 extension ExponeaSDK.ExponeaInternal {
@@ -544,12 +544,12 @@ extension ExponeaSDK.ExponeaInternal {
     get
   }
   @available(*, deprecated)
-  public func configure(projectToken: Swift.String, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String? = nil, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
+  public func configure(projectToken: Swift.String, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String? = nil, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
   public func configure(plistName: Swift.String)
   public func configure(with configuration: ExponeaSDK.Configuration)
   public func onInitSucceeded(callback completion: @escaping (() -> Swift.Void)) -> Self
   @available(*, deprecated)
-  public func configure(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]], authorization: ExponeaSDK.Authorization, baseUrl: Swift.String? = nil, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
+  public func configure(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]], authorization: ExponeaSDK.Authorization, baseUrl: Swift.String? = nil, appGroup: Swift.String? = nil, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? = nil, inAppContentBlocksPlaceholders: [Swift.String]? = nil, allowDefaultCustomerProperties: Swift.Bool? = nil, advancedAuthEnabled: Swift.Bool? = nil)
 }
 extension ExponeaSDK.ExponeaInternal {
   public func getAppInboxButton() -> UIKit.UIButton
@@ -563,9 +563,9 @@ extension ExponeaSDK.ExponeaInternal {
   public func fetchAppInboxItem(_ messageId: Swift.String, completion: @escaping (ExponeaSDK.Result<ExponeaSDK.MessageItem>) -> Swift.Void)
 }
 extension ExponeaSDK.ExponeaInternal {
-  public func trackEvent(properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?, eventType: Swift.String?)
-  public func trackPayment(properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
-  public func identifyCustomer(customerIds: [Swift.String : Swift.String]?, properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
+  public func trackEvent(properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?, eventType: Swift.String?)
+  public func trackPayment(properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
+  public func identifyCustomer(customerIds: [Swift.String : Swift.String]?, properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
   public func trackPushToken(_ token: Foundation.Data)
   public func trackPushToken(_ token: Swift.String?)
   public func trackPushOpened(with userInfo: [Swift.AnyHashable : Any])
@@ -606,9 +606,9 @@ public struct ExponeaNotificationAction : Swift.Codable {
   public var isTrackingForced: Swift.Bool {
     get
   }
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public static func createNotificationAction(type: ExponeaSDK.ExponeaNotificationActionType, title: Swift.String, index: Swift.Int) -> UserNotifications.UNNotificationAction
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public enum ExponeaNotificationActionType : Swift.String, Swift.Codable {
   case openApp
@@ -627,30 +627,30 @@ public struct ExponeaProject : Swift.Equatable, Swift.Codable {
   public let projectToken: Swift.String
   public let authorization: ExponeaSDK.Authorization
   public init(baseUrl: Swift.String = Constants.Repository.baseUrl, projectToken: Swift.String, authorization: ExponeaSDK.Authorization)
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public static func == (a: ExponeaSDK.ExponeaProject, b: ExponeaSDK.ExponeaProject) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public protocol ExponeaType : AnyObject {
   var isConfigured: Swift.Bool { get }
   var configuration: ExponeaSDK.Configuration? { get }
   var customerCookie: Swift.String? { get }
   var flushingMode: ExponeaSDK.FlushingMode { get set }
-  var pushNotificationsDelegate: (any ExponeaSDK.PushNotificationManagerDelegate)? { get set }
-  var inAppMessagesDelegate: any ExponeaSDK.InAppMessageActionDelegate { get set }
-  var appInboxProvider: any ExponeaSDK.AppInboxProvider { get set }
-  var inAppContentBlocksManager: (any ExponeaSDK.InAppContentBlocksManagerType)? { get }
+  var pushNotificationsDelegate: ExponeaSDK.PushNotificationManagerDelegate? { get set }
+  var inAppMessagesDelegate: ExponeaSDK.InAppMessageActionDelegate { get set }
+  var appInboxProvider: ExponeaSDK.AppInboxProvider { get set }
+  var inAppContentBlocksManager: ExponeaSDK.InAppContentBlocksManagerType? { get }
   var safeModeEnabled: Swift.Bool { get set }
   var checkPushSetup: Swift.Bool { get set }
-  var defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]? { get set }
-  func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, flushingSetup: ExponeaSDK.Exponea.FlushingSetup, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
-  func configure(projectToken: Swift.String, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String?, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
-  func configure(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]], authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String?, defaultProperties: [Swift.String : any ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
+  var defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]? { get set }
+  func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, flushingSetup: ExponeaSDK.Exponea.FlushingSetup, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
+  func configure(projectToken: Swift.String, authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String?, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
+  func configure(projectToken: Swift.String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]], authorization: ExponeaSDK.Authorization, baseUrl: Swift.String?, appGroup: Swift.String?, defaultProperties: [Swift.String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [Swift.String]?, allowDefaultCustomerProperties: Swift.Bool?, advancedAuthEnabled: Swift.Bool?)
   func configure(plistName: Swift.String)
-  func trackEvent(properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?, eventType: Swift.String?)
+  func trackEvent(properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?, eventType: Swift.String?)
   func trackCampaignClick(url: Foundation.URL, timestamp: Swift.Double?)
-  func trackPayment(properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
-  func identifyCustomer(customerIds: [Swift.String : Swift.String]?, properties: [Swift.String : any ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
+  func trackPayment(properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
+  func identifyCustomer(customerIds: [Swift.String : Swift.String]?, properties: [Swift.String : ExponeaSDK.JSONConvertible], timestamp: Swift.Double?)
   func flushData()
   func flushData(completion: ((ExponeaSDK.FlushResult) -> Swift.Void)?)
   func trackPushToken(_ token: Foundation.Data)
@@ -698,7 +698,7 @@ public enum FlushResult {
   case success(Swift.Int)
   case flushAlreadyInProgress
   case noInternetConnection
-  case error(any Swift.Error)
+  case error(Swift.Error)
 }
 public enum FlushingMode {
   case manual
@@ -711,8 +711,8 @@ public struct GdprTracking {
   public static func readTrackingConsentFlag(_ source: Any?) -> Swift.Bool
 }
 public struct GitHubReleaseResponse : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public class HtmlNormalizer {
   public init(_ originalHtml: Swift.String)
@@ -774,8 +774,8 @@ public enum InAppContentBlockContentType : Swift.String, Swift.Codable, Swift.Ha
 @propertyWrapper public struct CodableIgnored<T> : Swift.Codable {
   public var wrappedValue: T?
   public init(wrappedValue: T?)
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 extension Swift.KeyedDecodingContainer {
   public func decode<T>(_ type: ExponeaSDK.CodableIgnored<T>.Type, forKey key: Swift.KeyedDecodingContainer<K>.Key) throws -> ExponeaSDK.CodableIgnored<T>
@@ -784,13 +784,13 @@ extension Swift.KeyedEncodingContainer {
   public mutating func encode<T>(_ value: ExponeaSDK.CodableIgnored<T>, forKey key: Swift.KeyedEncodingContainer<K>.Key) throws
 }
 public struct InAppContentBlocksDataResponse : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct InAppContentBlockResponse : Swift.Codable {
   public struct DateFilter : Swift.Codable {
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
   }
   public let id: Swift.String
   public let name: Swift.String
@@ -840,9 +840,9 @@ public struct InAppContentBlockResponse : Swift.Codable {
     set
     _modify
   }
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public init(id: Swift.String, name: Swift.String, dateFilter: ExponeaSDK.InAppContentBlockResponse.DateFilter, frequency: ExponeaSDK.InAppContentBlocksFrequency, placeholders: [Swift.String], tags: Swift.Set<Swift.Int>, loadPriority: Swift.Int, content: ExponeaSDK.Content?, personalized: ExponeaSDK.PersonalizedInAppContentBlockResponse?)
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public enum InAppContentBlocksFrequency : Swift.String {
   case always
@@ -857,8 +857,8 @@ public enum InAppContentBlocksFrequency : Swift.String {
 }
 public struct InAppContentBlocksDisplayStatus : Swift.Codable, Swift.Equatable {
   public static func == (a: ExponeaSDK.InAppContentBlocksDisplayStatus, b: ExponeaSDK.InAppContentBlocksDisplayStatus) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public protocol InAppContentBlocksDataProviderType {
   func loadPersonalizedInAppContentBlocks<Data>(data: Data.Type, customerIds: [Swift.String : Swift.String], inAppContentBlocksIds: [Swift.String], completion: @escaping ExponeaSDK.TypeBlock<ExponeaSDK.ResponseData<Data>>) where Data : Swift.Decodable, Data : Swift.Encodable
@@ -922,15 +922,15 @@ public struct InAppMessage : Swift.Codable, Swift.Equatable {
   public var consentCategoryTracking: Swift.String?
   public init(id: Swift.String, name: Swift.String, rawMessageType: Swift.String?, rawFrequency: Swift.String, payload: ExponeaSDK.InAppMessagePayload? = nil, variantId: Swift.Int, variantName: Swift.String, trigger: ExponeaSDK.EventFilter, dateFilter: ExponeaSDK.DateFilter, priority: Swift.Int? = nil, delayMS: Swift.Int? = nil, timeoutMS: Swift.Int? = nil, payloadHtml: Swift.String?, isHtml: Swift.Bool?, hasTrackingConsent: Swift.Bool?, consentCategoryTracking: Swift.String?)
   public static func == (a: ExponeaSDK.InAppMessage, b: ExponeaSDK.InAppMessage) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct InAppMessageTrigger : Swift.Codable, Swift.Equatable {
   public let type: Swift.String?
   public let eventType: Swift.String?
   public static func == (a: ExponeaSDK.InAppMessageTrigger, b: ExponeaSDK.InAppMessageTrigger) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum InAppMessageFrequency : Swift.String {
   case always
@@ -974,8 +974,8 @@ public struct InAppMessagePayload : Swift.Codable, Swift.Equatable {
   public let textPosition: Swift.String?
   public let textOverImage: Swift.Bool?
   public static func == (a: ExponeaSDK.InAppMessagePayload, b: ExponeaSDK.InAppMessagePayload) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct InAppMessagePayloadButton : Swift.Codable, Swift.Equatable {
   public let buttonText: Swift.String?
@@ -987,8 +987,8 @@ public struct InAppMessagePayloadButton : Swift.Codable, Swift.Equatable {
   public let buttonTextColor: Swift.String?
   public let buttonBackgroundColor: Swift.String?
   public static func == (a: ExponeaSDK.InAppMessagePayloadButton, b: ExponeaSDK.InAppMessagePayloadButton) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum InAppMessageButtonType : Swift.String {
   case cancel
@@ -1008,8 +1008,8 @@ public protocol InAppMessageActionDelegate : AnyObject {
 public struct InAppMessageButton : Swift.Codable {
   public let text: Swift.String?
   public let url: Swift.String?
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 @_hasMissingDesignatedInitializers public class DefaultInAppDelegate : ExponeaSDK.InAppMessageActionDelegate {
   final public let overrideDefaultBehavior: Swift.Bool
@@ -1060,12 +1060,12 @@ extension Foundation.NSNull : ExponeaSDK.JSONConvertible {
     get
   }
 }
-extension Swift.Dictionary : ExponeaSDK.JSONConvertible where Key == Swift.String, Value == any ExponeaSDK.JSONConvertible {
+extension Swift.Dictionary : ExponeaSDK.JSONConvertible where Key == Swift.String, Value == ExponeaSDK.JSONConvertible {
   public var jsonValue: ExponeaSDK.JSONValue {
     get
   }
 }
-extension Swift.Array : ExponeaSDK.JSONConvertible where Element == any ExponeaSDK.JSONConvertible {
+extension Swift.Array : ExponeaSDK.JSONConvertible where Element == ExponeaSDK.JSONConvertible {
   public var jsonValue: ExponeaSDK.JSONValue {
     get
   }
@@ -1085,13 +1085,13 @@ extension ExponeaSDK.JSONValue {
   public var rawValue: Any {
     get
   }
-  public var jsonConvertible: any ExponeaSDK.JSONConvertible {
+  public var jsonConvertible: ExponeaSDK.JSONConvertible {
     get
   }
 }
 extension ExponeaSDK.JSONValue : Swift.Codable, Swift.Equatable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   public static func == (left: ExponeaSDK.JSONValue, right: ExponeaSDK.JSONValue) -> Swift.Bool
 }
 extension ExponeaSDK.JSONValue {
@@ -1148,8 +1148,8 @@ public struct MessageItem : Swift.Codable, Swift.Equatable {
   }
   public static func == (lhs: ExponeaSDK.MessageItem, rhs: ExponeaSDK.MessageItem) -> Swift.Bool
   public init(id: Swift.String, type: Swift.String, read: Swift.Bool, rawReceivedTime: Swift.Double?, rawContent: [Swift.String : ExponeaSDK.JSONValue]?, customerIds: [Swift.String : Swift.String] = [:])
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public struct MessageItemAction : Swift.Codable, Swift.Equatable {
   public let action: Swift.String?
@@ -1160,8 +1160,8 @@ public struct MessageItemAction : Swift.Codable, Swift.Equatable {
     get
   }
   public static func == (a: ExponeaSDK.MessageItemAction, b: ExponeaSDK.MessageItemAction) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public enum MessageItemActionType : Swift.String {
   case app
@@ -1205,21 +1205,21 @@ public struct MessageItemContent {
 public struct ErrorResponse : Swift.Codable {
   public let error: Swift.String
   public let success: Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct MultipleErrorResponse : Swift.Codable {
   public let errors: [ExponeaSDK.ErrorContent]
   public let success: Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct ErrorContent : Swift.Codable {
   public let code: Swift.Int
   public let description: Swift.String
   public let message: Swift.String
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct NotificationData : Swift.Codable {
   public let attributes: [Swift.String : ExponeaSDK.JSONValue]
@@ -1232,11 +1232,11 @@ public struct NotificationData : Swift.Codable {
   public var hasTrackingConsent: Swift.Bool
   public var considerConsent: Swift.Bool
   public init(attributes: [Swift.String : ExponeaSDK.JSONValue] = [String: JSONValue](), campaignData: ExponeaSDK.CampaignData = CampaignData(), timestamp: Swift.Double = Date().timeIntervalSince1970, consentCategoryTracking: Swift.String? = nil, hasTrackingConsent: Swift.Bool? = nil, considerConsent: Swift.Bool = true)
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public static func deserialize(attributes: [Swift.String : Any], campaignData: [Swift.String : Any], consentCategoryTracking: Swift.String? = nil, hasTrackingConsent: Swift.Bool? = nil, considerConsent: Swift.Bool = true) -> ExponeaSDK.NotificationData?
   public static func deserialize(from data: Foundation.Data) -> ExponeaSDK.NotificationData?
   public func serialize() -> Foundation.Data?
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 extension ExponeaSDK.NotificationData {
   public var properties: [Swift.String : ExponeaSDK.JSONValue] {
@@ -1259,12 +1259,12 @@ public enum InAppContentBlocksStatus : Swift.String, Swift.Codable {
   }
 }
 public struct Content : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct PersonalizedInAppContentBlockResponseData : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct PersonalizedInAppContentBlockResponse : Swift.Codable {
   public let id: Swift.String
@@ -1285,8 +1285,8 @@ public struct PersonalizedInAppContentBlockResponse : Swift.Codable {
     set
     _modify
   }
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public class ProgressBarStyle {
   public init(visible: Swift.Bool? = nil, progressColor: Swift.String? = nil, backgroundColor: Swift.String? = nil)
@@ -1303,10 +1303,10 @@ extension ExponeaSDK.PushNotificationManagerDelegate {
 public struct Recommendation<T> : Swift.Codable, Swift.Equatable where T : ExponeaSDK.RecommendationUserData {
   public let systemData: ExponeaSDK.RecommendationSystemData
   public let userData: T
-  public init(from decoder: any Swift.Decoder) throws
+  public init(from decoder: Swift.Decoder) throws
   public init(systemData: ExponeaSDK.RecommendationSystemData, userData: T)
   public static func == (a: ExponeaSDK.Recommendation<T>, b: ExponeaSDK.Recommendation<T>) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 public struct RecommendationSystemData : Swift.Codable, Swift.Equatable {
   public let engineName: Swift.String
@@ -1315,15 +1315,15 @@ public struct RecommendationSystemData : Swift.Codable, Swift.Equatable {
   public let recommendationVariantId: Swift.String?
   public init(engineName: Swift.String, itemId: Swift.String, recommendationId: Swift.String, recommendationVariantId: Swift.String?)
   public static func == (a: ExponeaSDK.RecommendationSystemData, b: ExponeaSDK.RecommendationSystemData) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public protocol RecommendationUserData : Swift.Decodable, Swift.Encodable, Swift.Equatable {
 }
 public struct EmptyRecommendationData : ExponeaSDK.RecommendationUserData {
   public static func == (a: ExponeaSDK.EmptyRecommendationData, b: ExponeaSDK.EmptyRecommendationData) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct RecommendationOptions : ExponeaSDK.RequestParametersType {
   public init(id: Swift.String, fillWithRandom: Swift.Bool, size: Swift.Int = 10, items: [Swift.String : Swift.String]? = nil, noTrack: Swift.Bool = false, catalogAttributesWhitelist: [Swift.String]? = nil)
@@ -1334,18 +1334,18 @@ public struct RecommendationOptions : ExponeaSDK.RequestParametersType {
 public struct WrappedRecommendationResponse<T> : Swift.Codable where T : ExponeaSDK.RecommendationUserData {
   public let success: Swift.Bool
   public let results: [ExponeaSDK.RecommendationResponse<T>]
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct RecommendationResponse<T> : Swift.Codable where T : ExponeaSDK.RecommendationUserData {
   public let success: Swift.Bool
   public let error: Swift.String?
   public let value: [ExponeaSDK.Recommendation<T>]?
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public protocol ErrorInitialisable : Swift.Error {
-  static func create(from error: any Swift.Error) -> Self
+  static func create(from error: Swift.Error) -> Self
 }
 public enum RepositoryError : Foundation.LocalizedError, ExponeaSDK.ErrorInitialisable {
   case notAuthorized(ExponeaSDK.ErrorResponse?)
@@ -1354,11 +1354,11 @@ public enum RepositoryError : Foundation.LocalizedError, ExponeaSDK.ErrorInitial
   case urlNotFound(ExponeaSDK.MultipleErrorResponse?)
   case invalidResponse(Foundation.URLResponse?)
   case connectionError
-  case unknown(any Swift.Error)
+  case unknown(Swift.Error)
   public var errorDescription: Swift.String? {
     get
   }
-  public static func create(from error: any Swift.Error) -> ExponeaSDK.RepositoryError
+  public static func create(from error: Swift.Error) -> ExponeaSDK.RepositoryError
 }
 public struct RequestFactory {
   public init(exponeaProject: ExponeaSDK.ExponeaProject, route: ExponeaSDK.Routes)
@@ -1367,12 +1367,12 @@ public struct RequestFactory {
   }
 }
 extension ExponeaSDK.RequestFactory {
-  public func prepareRequest(parameters: (any ExponeaSDK.RequestParametersType)? = nil, customerIds: [Swift.String : Swift.String]? = nil) -> Foundation.URLRequest
-  public typealias CompletionHandler = ((Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void)
+  public func prepareRequest(parameters: ExponeaSDK.RequestParametersType? = nil, customerIds: [Swift.String : Swift.String]? = nil) -> Foundation.URLRequest
+  public typealias CompletionHandler = ((Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void)
   public func handler<T>(with completion: @escaping ((ExponeaSDK.EmptyResult<T>) -> Swift.Void)) -> ExponeaSDK.RequestFactory.CompletionHandler where T : ExponeaSDK.ErrorInitialisable
   public func handler<T>(with completion: @escaping ((ExponeaSDK.Result<T>) -> Swift.Void)) -> ExponeaSDK.RequestFactory.CompletionHandler where T : Swift.Decodable
   public func mockHandler<T>(response: Foundation.Data, model: T.Type, with completion: @escaping ((ExponeaSDK.Result<T>) -> Swift.Void)) where T : Swift.Decodable
-  public func process(_ response: Foundation.URLResponse?, data: Foundation.Data?, error: (any Swift.Error)?, resultAction: @escaping ((ExponeaSDK.Result<Foundation.Data>) -> Swift.Void))
+  public func process(_ response: Foundation.URLResponse?, data: Foundation.Data?, error: Swift.Error?, resultAction: @escaping ((ExponeaSDK.Result<Foundation.Data>) -> Swift.Void))
 }
 public protocol RequestParametersType {
   var parameters: [Swift.String : ExponeaSDK.JSONValue] { get }
@@ -1385,11 +1385,11 @@ extension ExponeaSDK.RequestParametersType {
 }
 public enum Result<T> {
   case success(T)
-  case failure(any Swift.Error)
+  case failure(Swift.Error)
   public var value: T? {
     get
   }
-  public var error: (any Swift.Error)? {
+  public var error: Swift.Error? {
     get
   }
 }
@@ -1440,7 +1440,7 @@ final public class ServerRepository {
   @objc deinit
 }
 extension ExponeaSDK.ServerRepository : ExponeaSDK.TrackingRepository {
-  final public func trackObject(_ trackingObject: any ExponeaSDK.TrackingObject, completion: @escaping ((ExponeaSDK.EmptyResult<ExponeaSDK.RepositoryError>) -> Swift.Void))
+  final public func trackObject(_ trackingObject: ExponeaSDK.TrackingObject, completion: @escaping ((ExponeaSDK.EmptyResult<ExponeaSDK.RepositoryError>) -> Swift.Void))
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class StaticInAppContentBlocksView : UIKit.UIView, WebKit.WKNavigationDelegate {
   @_Concurrency.MainActor(unsafe) final public var refresh: ExponeaSDK.EmptyBlock?
@@ -1524,7 +1524,7 @@ extension ExponeaSDK.TrackingParameters : ExponeaSDK.RequestParametersType {
   }
 }
 public protocol TrackingRepository {
-  func trackObject(_ object: any ExponeaSDK.TrackingObject, completion: @escaping ((ExponeaSDK.EmptyResult<ExponeaSDK.RepositoryError>) -> Swift.Void))
+  func trackObject(_ object: ExponeaSDK.TrackingObject, completion: @escaping ((ExponeaSDK.EmptyResult<ExponeaSDK.RepositoryError>) -> Swift.Void))
 }
 public typealias TypeBlock<T> = (T) -> Swift.Void
 extension UIKit.UIImage {
@@ -1544,7 +1544,7 @@ extension Foundation.URLRequest {
   }
 }
 extension Foundation.URLResponse {
-  public func description(with data: Foundation.Data?, error: (any Swift.Error)?) -> Swift.String
+  public func description(with data: Foundation.Data?, error: Swift.Error?) -> Swift.String
 }
 public struct UsedInAppContentBlocks : Swift.Hashable {
   public var tag: Swift.Int

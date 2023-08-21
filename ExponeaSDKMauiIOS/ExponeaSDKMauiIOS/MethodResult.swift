@@ -29,4 +29,8 @@ public class MethodResult : NSObject {
     public static func failure(_ message: String) -> MethodResult {
         return MethodResult(success: false, data: "", error: message)
     }
+    
+    public static func unsupportedMethod(_ method: String) -> MethodResult {
+        return .failure("Method \(method) is currently unsupported")
+    }
 }

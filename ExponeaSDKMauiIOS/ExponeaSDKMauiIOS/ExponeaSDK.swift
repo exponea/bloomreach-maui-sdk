@@ -44,7 +44,7 @@ public class ExponeaSDK : NSObject {
             case "configureWithResult":
                 return invokeInit2(params)
             default:
-                throw ExponeaError.unsupportedMethod(method ?? "nil")
+                return MethodResult.unsupportedMethod(method ?? "nil")
             }
         } catch let error {
             return MethodResult.failure("Method \(method ?? "nil") failed: \(error)")

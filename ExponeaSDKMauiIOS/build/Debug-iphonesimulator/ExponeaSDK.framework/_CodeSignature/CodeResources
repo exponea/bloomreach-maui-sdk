@@ -6,23 +6,23 @@
 	<dict>
 		<key>DatabaseModel.momd/DatabaseModel v2.mom</key>
 		<data>
-		Y/8ua/QEsVoKmbT3NbvUFQo9yTw=
+		VefSltXm3Q6Z1OOqlfrN6OMKKss=
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel v3.mom</key>
 		<data>
-		oaAHhcQRdHlpdltgLC7goo/1C28=
+		cd+8rNq6T7pZUDmaJ4GnJIiN6Ic=
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel v4.mom</key>
 		<data>
-		lvhsjwguw3HbRRrxbB9nxilCzWY=
+		TSM6nKd41kSGoiWlGClHe5pCFI0=
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel v5.mom</key>
 		<data>
-		LeMQyo125N1u7QhDMvk/pVLThAU=
+		5WVh2cIgpALCjmxz+Q3vC4tj9UA=
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel v6.mom</key>
 		<data>
-		zMMW8aos6WuNx4M3bIjmlVqN8b4=
+		Ab8YsIYpkP/qq/wf+pcXQTzkitU=
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel v6.omo</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>DatabaseModel.momd/DatabaseModel.mom</key>
 		<data>
-		CkKeOCEb0TeJjmEjcKqkBGLpzzg=
+		qKWbgXoLp+myBbJzcvyAism3DwY=
 		</data>
 		<key>DatabaseModel.momd/VersionInfo.plist</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/ExponeaSDK-Swift.h</key>
 		<data>
-		Projrspgv02tdEGMrAOzSMmfEZQ=
+		/Nx5IHlhzRqs5np3LIOlIS5nN9o=
 		</data>
 		<key>Headers/ExponeaSDK-umbrella.h</key>
 		<data>
@@ -50,55 +50,55 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+2MjmvCjLFpcUAbmCym7fBlu96k=
+		KIPh6LIO/FH+b5JDPC1ZokFVn2A=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		fIP+zDhLVLb7+3aXu3mCtqAJ66E=
+		yxZOpu9oTj+EXqEGIwtnM3qFW08=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		dKBXWPe4RSuijpxhLXuh550Ajsk=
+		V0/C7xjZZ14ul+5Fguxi1UZWPjc=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		rTjKuoKWTMobGYiYD9umtBUANfg=
+		arW5Cq+koHp6N9FKN3YZ2yzbnD8=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		g8yxAnLdaGBz1gOdcX/INbeocv4=
+		nqA1jQVItkEjIGkQ+wH4nnhg2mM=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		ZUNGXgjIsYjxoKIAPLxMW40eC8M=
+		8EiKVgTkSP6VKLWSbv6R5JhZ1XY=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		g8yxAnLdaGBz1gOdcX/INbeocv4=
+		nqA1jQVItkEjIGkQ+wH4nnhg2mM=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Xeg38HwIwFP8h29ycJ/r+k6OrQI=
+		jHKJbQD9vB2JUBF000JAxuLOQak=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		rTjKuoKWTMobGYiYD9umtBUANfg=
+		arW5Cq+koHp6N9FKN3YZ2yzbnD8=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		dZKfnu9ExMud4HBOQ9FLzdj2nMA=
+		sq5tJlYnLUI6GFu6vAOsr/0999U=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		eXD5O6Pdx3JI5sWecbm2NTYwf/E=
+		AaE46Orj3PBR6C8k98CSpAFRU7E=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		dZKfnu9ExMud4HBOQ9FLzdj2nMA=
+		sq5tJlYnLUI6GFu6vAOsr/0999U=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		EBlRSEdenfpufBZts109/AFMvc4=
+		iFs2sQ8+NIHElIYq2y5k+bDz3m0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -111,35 +111,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MDLPvsM5dyiLLgL6U0Dp50b3CJCyKRHl4VOLS9hwZeg=
+			9xslHTG5S6BlLtlK4X3BGdRIZbyoTysLJy3Ns2llgwQ=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/DatabaseModel v3.mom</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zDfKL2Qi8kAHn+cCShZNY/xhXaMwkyHqaZbJO6Kjj4M=
+			Eg10Js1uYbDfE6+Y3cTSkPrV2rixre/9h9iXGVHtMxo=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/DatabaseModel v4.mom</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YpSLCe3tjkiWSVPw1/uK4aWbhlYdCzYBnEK/c6jOtOw=
+			TDpTKXFAj0Gi6IxmKsaMsAXzFbXr9iNeQZXIVX1Yg2c=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/DatabaseModel v5.mom</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Llgkc/r6AcKo9IcWerNLbsmAnJVjOKmKxzIgOEV4O10=
+			7GdkeqvmyREbGqQhK3MSlrq2O2D3KhPzXWShiEFTqic=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/DatabaseModel v6.mom</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			q4gImOzs+xihSTBPeSG/s9kr+QK88NB5KeCwcmoS7aY=
+			z7CUezkOsARSmFJVr7Nm1N5rdAKl/vpp81EfUHJgqCs=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/DatabaseModel v6.omo</key>
@@ -153,7 +153,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ULOHjA6Z6NZd4vtiLNLxLMRJVyLYSEZuTOauPyiu10E=
+			veFXqyioh0fWtESTKX4lQNAh7xFB0+/3qi6hxcpcIF8=
 			</data>
 		</dict>
 		<key>DatabaseModel.momd/VersionInfo.plist</key>
@@ -167,7 +167,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YdHxr5arlZ7cfPJRMmrJRx3/vA26bEMFSsfBAuuXrLg=
+			EuxYdprQbalJ2Wh5Tp6qdd+5IbHIFkTZkG391FkjBnw=
 			</data>
 		</dict>
 		<key>Headers/ExponeaSDK-umbrella.h</key>
@@ -188,84 +188,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			n0u2VJQHmBhvry2uE6CZKY1Wix/4Oua6Ny/tjBz0p6w=
+			ehDmm8ElwvMjLXC+6Hn/6aOxn6Q1Cwp6RNDb/SFaypc=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aiS6iCvKtHLcO4RPUde0HIn5EJurAbuwmwJ3ckkHBCM=
+			29q/29G2f5nr8GY3ehmpseMxVgERr8QGW2CDmEfrFIQ=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IJi0tO4BWuzphOfQwPHEHvQAUMjTekmVEdhhq/6hHK4=
+			btbSm400+jo2U0yAfuIOUNKqqq0AUByP2FtyTklFKek=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RTE8/WlVzFeafqk2z4adrMGHtygKV6dQKKqYqyFuI0w=
+			qn2bBvQa3h6LCeAO9BU6PVXihQzllMpDIjFiTEIIE5g=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VX86NRa5bFB/3e9wxGMEz0J/YIzflwCJoWczZN3fLGQ=
+			hHkK6dkGFTOVSEuLoQE7QvIbHvLpbmeabMHoLA+78kI=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RTE8/WlVzFeafqk2z4adrMGHtygKV6dQKKqYqyFuI0w=
+			qn2bBvQa3h6LCeAO9BU6PVXihQzllMpDIjFiTEIIE5g=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FBD7iAcMg2XhKOvZAyR0b9ytylRVyHVCsPxkGDYo99s=
+			831zy1NCK7uCx66FB0HPF0XYL/nAE83P9C3waWa2M7A=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IJi0tO4BWuzphOfQwPHEHvQAUMjTekmVEdhhq/6hHK4=
+			btbSm400+jo2U0yAfuIOUNKqqq0AUByP2FtyTklFKek=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			346zrQc2XY+uTVIhHT9L9NGp7DX19rkadO73PdyZgQg=
+			aJEyBtnpswj1K08ryMJlHwrRM0y+m2ESgiCa5eDVOwY=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EDPQErpvSTj8WrebMIWQH7JnZHAUqvY54AwfaigS4yw=
+			1yGsaLezB7hQEyIpUMSM2KB08fp+pRGZLhOr8GEhrJc=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			346zrQc2XY+uTVIhHT9L9NGp7DX19rkadO73PdyZgQg=
+			aJEyBtnpswj1K08ryMJlHwrRM0y+m2ESgiCa5eDVOwY=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ne5aXvs0jfcAS6HnsfINKL1tQNxgclKygOhcBsbqebw=
+			b5IE2Budzwin4NUwqDL6bKzx9n2hh3o2AWlULUYCY9Q=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

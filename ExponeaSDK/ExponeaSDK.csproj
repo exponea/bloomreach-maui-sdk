@@ -13,6 +13,9 @@
 		<AotAssemblies>true</AotAssemblies>
 		
 		<UseInterpreter>true</UseInterpreter>
+		<OutputType>Library</OutputType>
+		<AssemblyName>ExponeaSdk</AssemblyName>
+		<PackOnBuild>true</PackOnBuild>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
@@ -83,7 +86,7 @@
 	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
 		<Reference Include="System" />
 		<Reference Include="Xamarin.iOS" />
-		<ObjcBindingApiDefinition Include="..\ExponeaSDKMauiIOS\frameworks\MauiApiDef\ApiDefinitions.cs" />
+		<ObjcBindingApiDefinition Include="..\ExponeaSDKMauiIOS\MauiApiDef\ApiDefinitions.cs" />
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\ExponeaSDKMauiIOS.framework">
 			<Kind>Framework</Kind>
 		</NativeReference>

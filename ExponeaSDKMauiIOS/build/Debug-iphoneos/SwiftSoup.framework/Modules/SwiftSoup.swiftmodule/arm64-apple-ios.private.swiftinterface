@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name SwiftSoup
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
@@ -432,7 +432,7 @@ open class Elements : Foundation.NSCopying {
   open func size() -> Swift.Int
   open func last() -> SwiftSoup.Element?
   @discardableResult
-  open func traverse(_ nodeVisitor: any SwiftSoup.NodeVisitor) throws -> SwiftSoup.Elements
+  open func traverse(_ nodeVisitor: SwiftSoup.NodeVisitor) throws -> SwiftSoup.Elements
   open func forms() -> Swift.Array<SwiftSoup.FormElement>
   open func add(_ e: SwiftSoup.Element)
   open func add(_ index: Swift.Int, _ element: SwiftSoup.Element)
@@ -788,7 +788,7 @@ open class Node : Swift.Equatable, Swift.Hashable {
   open func previousSibling() -> SwiftSoup.Node?
   public func setSiblingIndex(_ siblingIndex: Swift.Int)
   @discardableResult
-  open func traverse(_ nodeVisitor: any SwiftSoup.NodeVisitor) throws -> SwiftSoup.Node
+  open func traverse(_ nodeVisitor: SwiftSoup.NodeVisitor) throws -> SwiftSoup.Node
   open func outerHtml() throws -> Swift.String
   public func outerHtml(_ accum: SwiftSoup.StringBuilder) throws
   open func html(_ appendable: SwiftSoup.StringBuilder) throws -> SwiftSoup.StringBuilder

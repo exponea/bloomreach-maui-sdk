@@ -11,7 +11,6 @@
 		550917142A8A57D100ACED6C /* Pods_ExponeaSDKMauiIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7243BC0872C273635683BD6 /* Pods_ExponeaSDKMauiIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917162A8A57FA00ACED6C /* ExponeaSDK.swift */; };
 		550917192A8A589600ACED6C /* MethodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917182A8A589600ACED6C /* MethodResult.swift */; };
-		5509171B2A8A596900ACED6C /* ExponeaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509171A2A8A596900ACED6C /* ExponeaError.swift */; };
 		7F417BDFD795FEA740260CE9 /* ExponeaSDKMauiIOSTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = 7F417D36BC03174159305655 /* ExponeaSDKMauiIOSTests.swift */; };
 		7F417ECFF422ACA87385C7C5 /* ExponeaSDKMauiIOS.h in Resources */ = {isa = PBXBuildFile; fileRef = 7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */; };
 		89C2B3C398A5FEA011240FFA /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B08F8ADDA0AA7FDFC7AC9 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */; };
@@ -46,7 +45,6 @@
 		50802E7D0B373DAEDE7CF8D0 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		550917162A8A57FA00ACED6C /* ExponeaSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDK.swift; sourceTree = "<group>"; };
 		550917182A8A589600ACED6C /* MethodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodResult.swift; sourceTree = "<group>"; };
-		5509171A2A8A596900ACED6C /* ExponeaError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaError.swift; sourceTree = "<group>"; };
 		7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */ = {isa = PBXFileReference; lastKnownFileType = file.h; path = ExponeaSDKMauiIOS.h; sourceTree = "<group>"; };
 		7F417D36BC03174159305655 /* ExponeaSDKMauiIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDKMauiIOSTests.swift; sourceTree = "<group>"; };
 		7FFFEEC76A372BFF38B838A9 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 				7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */,
 				550917162A8A57FA00ACED6C /* ExponeaSDK.swift */,
 				550917182A8A589600ACED6C /* MethodResult.swift */,
-				5509171A2A8A596900ACED6C /* ExponeaError.swift */,
 			);
 			path = ExponeaSDKMauiIOS;
 			sourceTree = "<group>";
@@ -309,7 +306,6 @@
 			files = (
 				550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */,
 				550917192A8A589600ACED6C /* MethodResult.swift in Sources */,
-				5509171B2A8A596900ACED6C /* ExponeaError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

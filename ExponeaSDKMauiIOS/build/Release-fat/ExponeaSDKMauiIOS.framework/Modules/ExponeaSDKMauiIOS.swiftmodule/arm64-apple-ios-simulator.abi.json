@@ -734,6 +734,35 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "unsupportedMethod",
+            "printedName": "unsupportedMethod(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResult",
+                "printedName": "ExponeaSDKMauiIOS.MethodResult",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResult"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ExponeaSDKMauiIOS12MethodResultC011unsupportedD0yACSSFZ",
+            "mangledName": "$s17ExponeaSDKMauiIOS12MethodResultC011unsupportedD0yACSSFZ",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -825,395 +854,17 @@
             "mangledName": "$ss28CustomDebugStringConvertibleP"
           }
         ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "ExponeaSDKMauiIOS",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "ExponeaError",
-        "printedName": "ExponeaError",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "unsupportedMethod",
-            "printedName": "unsupportedMethod",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(ExponeaSDKMauiIOS.ExponeaError.Type) -> (Swift.String) -> ExponeaSDKMauiIOS.ExponeaError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.String) -> ExponeaSDKMauiIOS.ExponeaError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ExponeaError",
-                        "printedName": "ExponeaSDKMauiIOS.ExponeaError",
-                        "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "ExponeaSDKMauiIOS.ExponeaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ExponeaError",
-                        "printedName": "ExponeaSDKMauiIOS.ExponeaError",
-                        "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO17unsupportedMethodyACSScACmF",
-            "mangledName": "$s17ExponeaSDKMauiIOS0A5ErrorO17unsupportedMethodyACSScACmF",
-            "moduleName": "ExponeaSDKMauiIOS"
-          },
-          {
-            "kind": "Var",
-            "name": "common",
-            "printedName": "common",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(ExponeaSDKMauiIOS.ExponeaError.Type) -> (Swift.String) -> ExponeaSDKMauiIOS.ExponeaError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.String) -> ExponeaSDKMauiIOS.ExponeaError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ExponeaError",
-                        "printedName": "ExponeaSDKMauiIOS.ExponeaError",
-                        "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "ExponeaSDKMauiIOS.ExponeaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ExponeaError",
-                        "printedName": "ExponeaSDKMauiIOS.ExponeaError",
-                        "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO6commonyACSScACmF",
-            "mangledName": "$s17ExponeaSDKMauiIOS0A5ErrorO6commonyACSScACmF",
-            "moduleName": "ExponeaSDKMauiIOS"
-          },
-          {
-            "kind": "Var",
-            "name": "errorDescription",
-            "printedName": "errorDescription",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO16errorDescriptionSSSgvp",
-            "mangledName": "$s17ExponeaSDKMauiIOS0A5ErrorO16errorDescriptionSSSgvp",
-            "moduleName": "ExponeaSDKMauiIOS",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO16errorDescriptionSSSgvg",
-                "mangledName": "$s17ExponeaSDKMauiIOS0A5ErrorO16errorDescriptionSSSgvg",
-                "moduleName": "ExponeaSDKMauiIOS",
-                "accessorKind": "get"
-              }
-            ]
-          }
-        ],
-        "declKind": "Enum",
-        "usr": "s:17ExponeaSDKMauiIOS0A5ErrorO",
-        "mangledName": "$s17ExponeaSDKMauiIOS0A5ErrorO",
-        "moduleName": "ExponeaSDKMauiIOS",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "LocalizedError",
-            "printedName": "LocalizedError",
-            "usr": "s:10Foundation14LocalizedErrorP",
-            "mangledName": "$s10Foundation14LocalizedErrorP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Error",
-            "printedName": "Error",
-            "usr": "s:s5ErrorP",
-            "mangledName": "$ss5ErrorP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          }
-        ]
       }
     ],
     "json_format_version": 8
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 451,
-      "length": 7,
-      "value": "\"1.0.0\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 816,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1032,
-      "length": 11,
-      "value": "\"greetings\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1096,
-      "length": 21,
-      "value": "\"configureWithResult\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1246,
-      "length": 5,
-      "value": "\"nil\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1335,
-      "length": 44,
-      "value": "\"Method \""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1355,
-      "length": 5,
-      "value": "\"nil\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1361,
-      "length": 6,
-      "value": "\" failed: \""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1378,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "Array",
-      "offset": 1707,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1792,
-      "length": 51,
-      "value": "\"Unable to init SDK with empty configuration input\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1934,
-      "length": 14,
-      "value": "\"projectToken\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2017,
-      "length": 14,
-      "value": "\"projectToken\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2047,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2081,
-      "length": 9,
-      "value": "\"baseUrl\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2160,
-      "length": 43,
-      "value": "\"Unable to build configuration from params\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2296,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 2393,
-      "length": 16,
-      "value": "\"Hello from iOS\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
-      "kind": "BooleanLiteral",
-      "offset": 549,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
-      "kind": "StringLiteral",
-      "offset": 569,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
-      "kind": "StringLiteral",
-      "offset": 580,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
-      "kind": "BooleanLiteral",
-      "offset": 700,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
-      "kind": "StringLiteral",
-      "offset": 713,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
       "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
       "kind": "StringLiteral",
       "offset": 150,
       "length": 12,
       "value": "\"ExponeaSDKMauiIOS.MethodResult\""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaError.swift",
-      "kind": "StringLiteral",
-      "offset": 354,
-      "length": 43,
-      "value": "\"Method \""
-    },
-    {
-      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/ExponeaError.swift",
-      "kind": "StringLiteral",
-      "offset": 371,
-      "length": 2,
-      "value": "\" is currently unsupported\""
     }
   ]
 }

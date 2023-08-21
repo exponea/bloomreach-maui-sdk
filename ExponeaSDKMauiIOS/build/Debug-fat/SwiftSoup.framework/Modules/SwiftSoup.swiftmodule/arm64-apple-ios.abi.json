@@ -51518,7 +51518,7 @@
       "kind": "IntegerLiteral",
       "offset": 413,
       "length": 2,
-      "value": "-1"
+      "value": "1"
     },
     {
       "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/Pods\/SwiftSoup\/Sources\/Entities.swift",
@@ -52225,7 +52225,7 @@
       "kind": "IntegerLiteral",
       "offset": 1318,
       "length": 2,
-      "value": "-1"
+      "value": "1"
     },
     {
       "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/Pods\/SwiftSoup\/Sources\/QueryParser.swift",
