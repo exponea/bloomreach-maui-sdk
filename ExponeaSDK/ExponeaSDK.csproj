@@ -21,6 +21,8 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	  <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <NoBindingEmbedding>false</NoBindingEmbedding>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	  <WarningLevel>4</WarningLevel>
@@ -86,21 +88,38 @@
 	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
 		<Reference Include="System" />
 		<Reference Include="Xamarin.iOS" />
+
 		<ObjcBindingApiDefinition Include="..\ExponeaSDKMauiIOS\MauiApiDef\ApiDefinitions.cs" />
+
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\ExponeaSDKMauiIOS.framework">
 			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
 		</NativeReference>
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\ExponeaSDK.framework">
 			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
 		</NativeReference>
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\ExponeaSDK_Notifications.framework">
 			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
 		</NativeReference>
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\Pods_ExponeaSDKMauiIOS.framework">
 			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
 		</NativeReference>
 		<NativeReference Include="..\ExponeaSDKMauiIOS\frameworks\SwiftSoup.framework">
 			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
 		</NativeReference>
 	</ItemGroup>
 </Project>

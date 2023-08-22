@@ -379,6 +379,59 @@
         "printedName": "ExponeaSDK",
         "children": [
           {
+            "kind": "Var",
+            "name": "instance",
+            "printedName": "instance",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ExponeaSDK",
+                "printedName": "ExponeaSDKMauiIOS.ExponeaSDK",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK(cpy)instance",
+            "mangledName": "$s17ExponeaSDKMauiIOS0A3SDKC8instanceACvpZ",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExponeaSDK",
+                    "printedName": "ExponeaSDKMauiIOS.ExponeaSDK",
+                    "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK(cm)instance",
+                "mangledName": "$s17ExponeaSDKMauiIOS0A3SDKC8instanceACvgZ",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "invokeMethod",
             "printedName": "invokeMethod(method:params:)",
@@ -720,9 +773,14 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:17ExponeaSDKMauiIOS12MethodResultC7success4data5errorACSb_S2Stcfc",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResult(im)initWithSuccess:data:error:",
             "mangledName": "$s17ExponeaSDKMauiIOS12MethodResultC7success4data5errorACSb_S2Stcfc",
             "moduleName": "ExponeaSDKMauiIOS",
+            "objc_name": "initWithSuccess:data:error:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
             "init_kind": "Designated"
           },
           {
@@ -858,7 +916,6 @@
           "ObjC"
         ],
         "superclassUsr": "c:objc(cs)NSObject",
-        "hasMissingDesignatedInitializers": true,
         "superclassNames": [
           "ObjectiveC.NSObject"
         ],

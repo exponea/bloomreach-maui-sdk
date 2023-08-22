@@ -269,6 +269,8 @@ SWIFT_CLASS_NAMED("ExponeaMauiVersion")
 
 SWIFT_CLASS_NAMED("ExponeaSDK")
 @interface ExponeaSDK : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) ExponeaSDK * _Nonnull instance;)
++ (ExponeaSDK * _Nonnull)instance SWIFT_WARN_UNUSED_RESULT;
 - (MethodResult * _Nonnull)invokeMethodWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -286,6 +288,7 @@ SWIFT_CLASS_NAMED("MethodResult")
 @property (nonatomic, readonly) BOOL success;
 @property (nonatomic, readonly, copy) NSString * _Nonnull data;
 @property (nonatomic, readonly, copy) NSString * _Nonnull error;
+- (nonnull instancetype)initWithSuccess:(BOOL)success data:(NSString * _Nonnull)data error:(NSString * _Nonnull)error OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -569,6 +572,8 @@ SWIFT_CLASS_NAMED("ExponeaMauiVersion")
 
 SWIFT_CLASS_NAMED("ExponeaSDK")
 @interface ExponeaSDK : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) ExponeaSDK * _Nonnull instance;)
++ (ExponeaSDK * _Nonnull)instance SWIFT_WARN_UNUSED_RESULT;
 - (MethodResult * _Nonnull)invokeMethodWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -586,6 +591,7 @@ SWIFT_CLASS_NAMED("MethodResult")
 @property (nonatomic, readonly) BOOL success;
 @property (nonatomic, readonly, copy) NSString * _Nonnull data;
 @property (nonatomic, readonly, copy) NSString * _Nonnull error;
+- (nonnull instancetype)initWithSuccess:(BOOL)success data:(NSString * _Nonnull)data error:(NSString * _Nonnull)error OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

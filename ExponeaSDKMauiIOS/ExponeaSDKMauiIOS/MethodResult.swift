@@ -16,7 +16,12 @@ public class MethodResult : NSObject {
     @objc
     public let error: String
     
-    init(success: Bool, data: String, error: String) {
+    @objc
+    public init(
+        success: Bool,
+        data: String,
+        error: String
+    ) {
         self.success = success
         self.data = data
         self.error = error

@@ -35,6 +35,10 @@ public class MauiAuthorizationProvider : NSObject, AuthorizationProviderType {
 
 @objc(ExponeaSDK)
 public class ExponeaSDK : NSObject {
+
+    @objc
+    public static let instance = ExponeaSDK()
+
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {
         do {
@@ -50,7 +54,7 @@ public class ExponeaSDK : NSObject {
             return MethodResult.failure("Method \(method ?? "nil") failed: \(error)")
         }
     }
-    
+
     private func invokeInit2(_ confParams: String?) -> MethodResult {
         guard let confParams = confParams,
               let confParamsData = confParams.data(using: .utf8),
@@ -70,7 +74,7 @@ public class ExponeaSDK : NSObject {
         Exponea.shared.configure(with: conf)
         return MethodResult.success("")
     }
-    
+
     private func sayHello() -> MethodResult {
         return MethodResult.success("Hello from iOS")
     }
