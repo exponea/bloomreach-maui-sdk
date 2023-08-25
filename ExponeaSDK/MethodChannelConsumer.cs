@@ -17,5 +17,7 @@ namespace ExponeaSDK
     internal interface IMethodChannelConsumerPlatformSpecific
     {
         internal string InvokeMethod(string method, object? data);
+        internal void InvokeMethodAsync(string method, object? data, Action<string> action);
+        internal View InvokeUIMethod(string method, object? data);
     }
 }

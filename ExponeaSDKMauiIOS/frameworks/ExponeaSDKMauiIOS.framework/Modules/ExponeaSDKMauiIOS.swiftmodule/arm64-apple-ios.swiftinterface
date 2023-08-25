@@ -5,6 +5,7 @@
 import ExponeaSDK
 import Foundation
 import Swift
+import UIKit
 import _Concurrency
 import _StringProcessing
 @_inheritsConvenienceInitializers @objc(ExponeaMauiVersion) public class ExponeaMauiVersion : ObjectiveC.NSObject, ExponeaSDK.ExponeaVersionProvider {
@@ -24,6 +25,8 @@ import _StringProcessing
 @_inheritsConvenienceInitializers @objc(ExponeaSDK) public class ExponeaSDK : ObjectiveC.NSObject {
   @objc public static let instance: ExponeaSDKMauiIOS.ExponeaSDK
   @objc public func invokeMethod(method: Swift.String?, params: Swift.String?) -> ExponeaSDKMauiIOS.MethodResult
+  @objc public func invokeMethodAsync(method: Swift.String?, params: Swift.String?, done: @escaping (ExponeaSDKMauiIOS.MethodResult) -> ())
+  @objc public func invokeMethodForUI(method: Swift.String?, params: Swift.String?) -> ExponeaSDKMauiIOS.MethodResultForUI
   @objc override dynamic public init()
   @objc deinit
 }
@@ -35,5 +38,15 @@ import _StringProcessing
   public static func success(_ data: Swift.String?) -> ExponeaSDKMauiIOS.MethodResult
   public static func failure(_ message: Swift.String) -> ExponeaSDKMauiIOS.MethodResult
   public static func unsupportedMethod(_ method: Swift.String) -> ExponeaSDKMauiIOS.MethodResult
+  @objc deinit
+}
+@objc(MethodResultForUI) public class MethodResultForUI : ObjectiveC.NSObject {
+  @objc final public let success: Swift.Bool
+  @objc final public let data: UIKit.UIView?
+  @objc final public let error: Swift.String
+  @objc public init(success: Swift.Bool, data: UIKit.UIView?, error: Swift.String)
+  public static func success(_ data: UIKit.UIView) -> ExponeaSDKMauiIOS.MethodResultForUI
+  public static func failure(_ message: Swift.String) -> ExponeaSDKMauiIOS.MethodResultForUI
+  public static func unsupportedMethod(_ method: Swift.String) -> ExponeaSDKMauiIOS.MethodResultForUI
   @objc deinit
 }

@@ -77,6 +77,6 @@ done
 # Some invalid definitions are produced, i.e. IAuthorizationProviderType so we need to update ApiDefinition manually
 # uncomment only occasionally
 #echo "Generating binding api definition and structs"
-#sharpie bind --sdk=iphoneos --output="./MauiApiDef" --namespace="ExponeaSdk" --scope="$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/" "$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/$SWIFT_PROJECT_NAME-Swift.h"
+sharpie bind --sdk=iphoneos --output="./frameworks" --namespace="ExponeaSdk" --scope="$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/" "$SWIFT_OUTPUT_PATH/$SWIFT_PROJECT_NAME.framework/Headers/$SWIFT_PROJECT_NAME-Swift.h"
 
 echo "Done!"

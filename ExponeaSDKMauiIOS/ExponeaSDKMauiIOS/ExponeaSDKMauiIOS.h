@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+// #import <Foundation/Foundation.h>
 
 //! Project version number for ExponeaSDKMauiIOS.
 FOUNDATION_EXPORT double ExponeaSDKMauiIOSVersionNumber;

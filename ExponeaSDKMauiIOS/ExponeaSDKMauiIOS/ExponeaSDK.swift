@@ -54,6 +54,72 @@ public class ExponeaSDK : NSObject {
             return MethodResult.failure("Method \(method ?? "nil") failed: \(error)")
         }
     }
+    
+    @objc
+    public func invokeMethodAsync(
+        method: String?,
+        params: String?,
+        done: @escaping (MethodResult)->()
+    ) {
+        switch method {
+        case "fetchAppInbox":
+            Exponea.shared.fetchAppInbox { messages in
+                guard let messagesJson = try? JSONSerialization.data(withJSONObject: messages),
+                      let messagesString = String(data: messagesJson, encoding: .utf8) else {
+                    done(MethodResult.failure("Unable to serialize AppInbox messages"))
+                    return
+                }
+                done(MethodResult.success(messagesString))
+            }
+        case "setInAppMessageDelegate":
+            guard let params = params,
+                  let paramsData = params.data(using: .utf8),
+                  let delegateSetup = try? JSONSerialization.jsonObject(
+                    with: paramsData,
+                    options: []
+                  ) as? [String: Bool?] else {
+                done(MethodResult.failure("Unable to register InAppMessage delegate for given input"))
+                return
+            }
+            let overrideDefaultBehavior = (delegateSetup["overrideDefaultBehavior"] ?? false) ?? false
+            let trackActions = (delegateSetup["trackActions"] ?? true) ?? true
+            Exponea.shared.inAppMessagesDelegate = MauiInAppDelegate(
+                overrideDefaultBehavior: overrideDefaultBehavior,
+                trackActions: trackActions,
+                handler: { message, button, interaction in
+                    var result = [
+                        "message": message,
+                        "interaction": interaction
+                    ]
+                    if let button = button {
+                        result["button"] = button
+                    }
+                    guard let resultJson = try? JSONSerialization.data(withJSONObject: result),
+                          let resultString = String(data: resultJson, encoding: .utf8) else {
+                        done(MethodResult.failure("Unable to serialize InApp action data"))
+                        return
+                    }
+                    done(MethodResult.success(resultString))
+                }
+            )
+        default:
+            return done(MethodResult.unsupportedMethod(method ?? "nil"))
+        }
+    }
+    
+    @objc
+    public func invokeMethodForUI(method: String?, params: String?) -> MethodResultForUI {
+        do {
+            switch method {
+            case "getAppInboxButton":
+                return MethodResultForUI.success(Exponea.shared.getAppInboxButton())
+            default:
+                return MethodResultForUI.unsupportedMethod(method ?? "nil")
+            }
+        } catch let error {
+            return MethodResultForUI.failure("Method \(method ?? "nil") failed: \(error)")
+        }
+    }
 
     private func invokeInit2(_ confParams: String?) -> MethodResult {
         guard let confParams = confParams,
@@ -77,5 +143,26 @@ public class ExponeaSDK : NSObject {
 
     private func sayHello() -> MethodResult {
         return MethodResult.success("Hello from iOS")
+    }
+}
+
+class MauiInAppDelegate: InAppMessageActionDelegate {
+    
+    public let overrideDefaultBehavior: Bool
+    public let trackActions: Bool
+    private let handler: (InAppMessage, InAppMessageButton?, Bool) -> ()
+    
+    init(
+        overrideDefaultBehavior: Bool,
+        trackActions: Bool,
+        handler: @escaping (InAppMessage, InAppMessageButton?, Bool) -> ()
+    ) {
+        self.overrideDefaultBehavior = overrideDefaultBehavior
+        self.trackActions = trackActions
+        self.handler = handler
+    }
+    
+    public func inAppMessageAction(with message: InAppMessage, button: InAppMessageButton?, interaction: Bool) {
+        handler(message, button, interaction)
     }
 }

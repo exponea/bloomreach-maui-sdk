@@ -15,6 +15,16 @@ namespace ExponeaSDK.Platforms.Android
             var result = NativeSdk.InvokeMethod(method, methodParams);
             return result.Data + "|" + result.Error;
         }
+
+        void IMethodChannelConsumerPlatformSpecific.InvokeMethodAsync(string method, object? data, Action<string> action)
+        {
+            throw new NotImplementedException();
+        }
+
+        View IMethodChannelConsumerPlatformSpecific.InvokeUIMethod(string method, object? data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

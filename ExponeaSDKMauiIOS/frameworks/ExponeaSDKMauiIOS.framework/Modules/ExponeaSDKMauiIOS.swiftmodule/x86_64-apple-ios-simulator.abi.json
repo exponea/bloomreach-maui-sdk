@@ -484,6 +484,127 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "invokeMethodAsync",
+            "printedName": "invokeMethodAsync(method:params:done:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ExponeaSDKMauiIOS.MethodResult) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MethodResult",
+                    "printedName": "ExponeaSDKMauiIOS.MethodResult",
+                    "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResult"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK(im)invokeMethodAsyncWithMethod:params:done:",
+            "mangledName": "$s17ExponeaSDKMauiIOS0A3SDKC17invokeMethodAsync6method6params4doneySSSg_AHyAA0F6ResultCctF",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "isOpen": true,
+            "objc_name": "invokeMethodAsyncWithMethod:params:done:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "invokeMethodForUI",
+            "printedName": "invokeMethodForUI(method:params:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)ExponeaSDK(im)invokeMethodForUIWithMethod:params:",
+            "mangledName": "$s17ExponeaSDKMauiIOS0A3SDKC17invokeMethodForUI6method6paramsAA0f6ResultgH0CSSSg_AItF",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "isOpen": true,
+            "objc_name": "invokeMethodForUIWithMethod:params:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -578,6 +699,314 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "MauiInAppDelegate",
+        "printedName": "MauiInAppDelegate",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "overrideDefaultBehavior",
+            "printedName": "overrideDefaultBehavior",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehaviorSbvp",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehaviorSbvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehaviorSbvg",
+                "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehaviorSbvg",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "trackActions",
+            "printedName": "trackActions",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC12trackActionsSbvp",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC12trackActionsSbvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 1,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC12trackActionsSbvg",
+                "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC12trackActionsSbvg",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "handler",
+            "printedName": "handler",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ExponeaSDK.InAppMessage, ExponeaSDK.InAppMessageButton?, Swift.Bool) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(ExponeaSDK.InAppMessage, ExponeaSDK.InAppMessageButton?, Swift.Bool)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "InAppMessage",
+                        "printedName": "ExponeaSDK.InAppMessage",
+                        "usr": "s:10ExponeaSDK12InAppMessageV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "ExponeaSDK.InAppMessageButton?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "InAppMessageButton",
+                            "printedName": "ExponeaSDK.InAppMessageButton",
+                            "usr": "s:10ExponeaSDK18InAppMessageButtonV"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC7handler33_21DE3A0925E9862B9D0B02488BC1462ELLyy0A3SDK0eF7MessageV_AF0efQ6ButtonVSgSbtcvp",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC7handler33_21DE3A0925E9862B9D0B02488BC1462ELLyy0A3SDK0eF7MessageV_AF0efQ6ButtonVSgSbtcvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 2,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(overrideDefaultBehavior:trackActions:handler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MauiInAppDelegate",
+                "printedName": "ExponeaSDKMauiIOS.MauiInAppDelegate",
+                "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ExponeaSDK.InAppMessage, ExponeaSDK.InAppMessageButton?, Swift.Bool) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(ExponeaSDK.InAppMessage, ExponeaSDK.InAppMessageButton?, Swift.Bool)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "InAppMessage",
+                        "printedName": "ExponeaSDK.InAppMessage",
+                        "usr": "s:10ExponeaSDK12InAppMessageV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "ExponeaSDK.InAppMessageButton?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "InAppMessageButton",
+                            "printedName": "ExponeaSDK.InAppMessageButton",
+                            "usr": "s:10ExponeaSDK18InAppMessageButtonV"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehavior12trackActions7handlerACSb_Sby0A3SDK0eF7MessageV_AG0efO6ButtonVSgSbtctcfc",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC23overrideDefaultBehavior12trackActions7handlerACSb_Sby0A3SDK0eF7MessageV_AG0efO6ButtonVSgSbtctcfc",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "inAppMessageAction",
+            "printedName": "inAppMessageAction(with:button:interaction:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "InAppMessage",
+                "printedName": "ExponeaSDK.InAppMessage",
+                "usr": "s:10ExponeaSDK12InAppMessageV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "ExponeaSDK.InAppMessageButton?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "InAppMessageButton",
+                    "printedName": "ExponeaSDK.InAppMessageButton",
+                    "usr": "s:10ExponeaSDK18InAppMessageButtonV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC02inF13MessageAction4with6button11interactiony0A3SDK0efI0V_AH0efI6ButtonVSgSbtF",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC02inF13MessageAction4with6button11interactiony0A3SDK0efI0V_AH0efI6ButtonVSgSbtF",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:17ExponeaSDKMauiIOS17MauiInAppDelegateC",
+        "mangledName": "$s17ExponeaSDKMauiIOS17MauiInAppDelegateC",
+        "moduleName": "ExponeaSDKMauiIOS",
+        "isOpen": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "InAppMessageActionDelegate",
+            "printedName": "InAppMessageActionDelegate",
+            "usr": "s:10ExponeaSDK26InAppMessageActionDelegateP",
+            "mangledName": "$s10ExponeaSDK26InAppMessageActionDelegateP"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -586,6 +1015,13 @@
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "ExponeaSDKMauiIOS"
       },
       {
         "kind": "TypeDecl",
@@ -970,6 +1406,406 @@
             "mangledName": "$ss28CustomDebugStringConvertibleP"
           }
         ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MethodResultForUI",
+        "printedName": "MethodResultForUI",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "success",
+            "printedName": "success",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(py)success",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC7successSbvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(im)success",
+                "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC7successSbvg",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "data",
+            "printedName": "data",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIView",
+                    "printedName": "UIKit.UIView",
+                    "usr": "c:objc(cs)UIView"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(py)data",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC4dataSo6UIViewCSgvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "UIKit.UIView?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIView",
+                        "printedName": "UIKit.UIView",
+                        "usr": "c:objc(cs)UIView"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(im)data",
+                "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC4dataSo6UIViewCSgvg",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "error",
+            "printedName": "error",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(py)error",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC5errorSSvp",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(im)error",
+                "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC5errorSSvg",
+                "moduleName": "ExponeaSDKMauiIOS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(success:data:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIView",
+                    "printedName": "UIKit.UIView",
+                    "usr": "c:objc(cs)UIView"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(im)initWithSuccess:data:error:",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC7success4data5errorACSb_So6UIViewCSgSStcfc",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "objc_name": "initWithSuccess:data:error:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "success",
+            "printedName": "success(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIView",
+                "printedName": "UIKit.UIView",
+                "usr": "c:objc(cs)UIView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ExponeaSDKMauiIOS17MethodResultForUIC7successyACSo6UIViewCFZ",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC7successyACSo6UIViewCFZ",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "failure",
+            "printedName": "failure(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ExponeaSDKMauiIOS17MethodResultForUIC7failureyACSSFZ",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC7failureyACSSFZ",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unsupportedMethod",
+            "printedName": "unsupportedMethod(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ExponeaSDKMauiIOS17MethodResultForUIC011unsupportedD0yACSSFZ",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC011unsupportedD0yACSSFZ",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MethodResultForUI",
+                "printedName": "ExponeaSDKMauiIOS.MethodResultForUI",
+                "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI(im)init",
+            "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUICACycfc",
+            "moduleName": "ExponeaSDKMauiIOS",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@ExponeaSDKMauiIOS@objc(cs)MethodResultForUI",
+        "mangledName": "$s17ExponeaSDKMauiIOS17MethodResultForUIC",
+        "moduleName": "ExponeaSDKMauiIOS",
+        "isOpen": true,
+        "objc_name": "MethodResultForUI",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
       }
     ],
     "json_format_version": 8
@@ -978,9 +1814,16 @@
     {
       "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
       "kind": "StringLiteral",
-      "offset": 150,
+      "offset": 163,
       "length": 12,
       "value": "\"ExponeaSDKMauiIOS.MethodResult\""
+    },
+    {
+      "filePath": "\/Users\/adammihalik\/exponea\/maui-sdk\/ExponeaSDKMauiIOS\/ExponeaSDKMauiIOS\/MethodResult.swift",
+      "kind": "StringLiteral",
+      "offset": 997,
+      "length": 17,
+      "value": "\"ExponeaSDKMauiIOS.MethodResultForUI\""
     }
   ]
 }
