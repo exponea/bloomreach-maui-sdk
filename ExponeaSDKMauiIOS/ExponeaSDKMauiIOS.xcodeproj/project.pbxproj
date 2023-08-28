@@ -3,21 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		312E76D02AA330D700ECC118 /* ExponeaAsyncMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E76CF2AA330D700ECC118 /* ExponeaAsyncMethodType.swift */; };
+		312E76D22AA3312D00ECC118 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E76D12AA3312D00ECC118 /* Typealiases.swift */; };
+		312E76D42AA334E100ECC118 /* Array+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E76D32AA334E100ECC118 /* Array+JSON.swift */; };
+		312E76D62AA35C0F00ECC118 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E76D52AA35C0F00ECC118 /* Recommendation.swift */; };
+		313DA6E42A9C9C2900B49508 /* Optional+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6E32A9C9C2900B49508 /* Optional+String.swift */; };
+		313DA6E72A9C9C4E00B49508 /* ExponeaMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6E62A9C9C4E00B49508 /* ExponeaMethodType.swift */; };
+		313DA6EA2A9C9C6300B49508 /* ExponeaInvokable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6E92A9C9C6300B49508 /* ExponeaInvokable.swift */; };
+		313DA6EC2A9CA5FD00B49508 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6EB2A9CA5FD00B49508 /* String.swift */; };
+		313DA6EE2A9CA69300B49508 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6ED2A9CA69300B49508 /* Bool.swift */; };
+		313DA6F02A9CA70A00B49508 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6EF2A9CA70A00B49508 /* Double.swift */; };
+		313DA6F22A9CC47D00B49508 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F12A9CC47D00B49508 /* Configuration.swift */; };
+		313DA6F42A9CC86A00B49508 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F32A9CC86A00B49508 /* Customer.swift */; };
+		313DA6F62A9CD32700B49508 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F52A9CD32700B49508 /* Int.swift */; };
+		315601AF2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */; };
+		315601B62A9F316900CD8F22 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 315601B52A9F316900CD8F22 /* Nimble */; };
+		315601B82A9F316900CD8F22 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 315601B72A9F316900CD8F22 /* Quick */; };
 		550917132A8A57D100ACED6C /* Pods_ExponeaSDKMauiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7243BC0872C273635683BD6 /* Pods_ExponeaSDKMauiIOS.framework */; };
 		550917142A8A57D100ACED6C /* Pods_ExponeaSDKMauiIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7243BC0872C273635683BD6 /* Pods_ExponeaSDKMauiIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917162A8A57FA00ACED6C /* ExponeaSDK.swift */; };
 		550917192A8A589600ACED6C /* MethodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917182A8A589600ACED6C /* MethodResult.swift */; };
-		7F417BDFD795FEA740260CE9 /* ExponeaSDKMauiIOSTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = 7F417D36BC03174159305655 /* ExponeaSDKMauiIOSTests.swift */; };
 		7F417ECFF422ACA87385C7C5 /* ExponeaSDKMauiIOS.h in Resources */ = {isa = PBXBuildFile; fileRef = 7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */; };
-		89C2B3C398A5FEA011240FFA /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B08F8ADDA0AA7FDFC7AC9 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7F4172E559AC8A16CE636475 /* PBXContainerItemProxy */ = {
+		315601B02A9F315900CD8F22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F41786F04E986D36BE53209 /* Project object */;
 			proxyType = 1;
@@ -42,11 +56,25 @@
 
 /* Begin PBXFileReference section */
 		072B08F8ADDA0AA7FDFC7AC9 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		312E76CF2AA330D700ECC118 /* ExponeaAsyncMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaAsyncMethodType.swift; sourceTree = "<group>"; };
+		312E76D12AA3312D00ECC118 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		312E76D32AA334E100ECC118 /* Array+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+JSON.swift"; sourceTree = "<group>"; };
+		312E76D52AA35C0F00ECC118 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		313DA6E32A9C9C2900B49508 /* Optional+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+String.swift"; sourceTree = "<group>"; };
+		313DA6E62A9C9C4E00B49508 /* ExponeaMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaMethodType.swift; sourceTree = "<group>"; };
+		313DA6E92A9C9C6300B49508 /* ExponeaInvokable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaInvokable.swift; sourceTree = "<group>"; };
+		313DA6EB2A9CA5FD00B49508 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		313DA6ED2A9CA69300B49508 /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		313DA6EF2A9CA70A00B49508 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		313DA6F12A9CC47D00B49508 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		313DA6F32A9CC86A00B49508 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		313DA6F52A9CD32700B49508 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExponeaSDKMauiIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDKMauiIOSTests.swift; sourceTree = "<group>"; };
 		50802E7D0B373DAEDE7CF8D0 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		550917162A8A57FA00ACED6C /* ExponeaSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDK.swift; sourceTree = "<group>"; };
 		550917182A8A589600ACED6C /* MethodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodResult.swift; sourceTree = "<group>"; };
 		7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */ = {isa = PBXFileReference; lastKnownFileType = file.h; path = ExponeaSDKMauiIOS.h; sourceTree = "<group>"; };
-		7F417D36BC03174159305655 /* ExponeaSDKMauiIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDKMauiIOSTests.swift; sourceTree = "<group>"; };
 		7FFFEEC76A372BFF38B838A9 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FE8DE01E475FA739E5087DA /* Pods-ExponeaSDKMauiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS/Pods-ExponeaSDKMauiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E7243BC0872C273635683BD6 /* Pods_ExponeaSDKMauiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExponeaSDKMauiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,11 +82,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7F41792A10676691C5A1F7A5 /* Frameworks */ = {
+		315601A92A9F315900CD8F22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89C2B3C398A5FEA011240FFA /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */,
+				315601B82A9F316900CD8F22 /* Quick in Frameworks */,
+				315601B62A9F316900CD8F22 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +113,62 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		313DA6E12A9C9C1B00B49508 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				313DA6E82A9C9C5B00B49508 /* Protocol */,
+				313DA6E52A9C9C4600B49508 /* Model */,
+				313DA6E22A9C9C1E00B49508 /* Extensions */,
+				312E76D12AA3312D00ECC118 /* Typealiases.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		313DA6E22A9C9C1E00B49508 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				313DA6E32A9C9C2900B49508 /* Optional+String.swift */,
+				313DA6EB2A9CA5FD00B49508 /* String.swift */,
+				313DA6ED2A9CA69300B49508 /* Bool.swift */,
+				313DA6EF2A9CA70A00B49508 /* Double.swift */,
+				313DA6F52A9CD32700B49508 /* Int.swift */,
+				312E76D32AA334E100ECC118 /* Array+JSON.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		313DA6E52A9C9C4600B49508 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				313DA6E62A9C9C4E00B49508 /* ExponeaMethodType.swift */,
+				313DA6F12A9CC47D00B49508 /* Configuration.swift */,
+				313DA6F32A9CC86A00B49508 /* Customer.swift */,
+				312E76CF2AA330D700ECC118 /* ExponeaAsyncMethodType.swift */,
+				312E76D52AA35C0F00ECC118 /* Recommendation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		313DA6E82A9C9C5B00B49508 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				313DA6E92A9C9C6300B49508 /* ExponeaInvokable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		315601AD2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */,
+			);
+			path = ExponeaSDKMauiIOSTests;
+			sourceTree = "<group>";
+		};
 		7F41740311FAA8BC52F1841C /* ExponeaSDKMauiIOS */ = {
 			isa = PBXGroup;
 			children = (
+				313DA6E12A9C9C1B00B49508 /* Sources */,
 				7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */,
 				550917162A8A57FA00ACED6C /* ExponeaSDK.swift */,
 				550917182A8A589600ACED6C /* MethodResult.swift */,
@@ -97,25 +179,18 @@
 		7F417479199F939F660629AF = {
 			isa = PBXGroup;
 			children = (
+				315601AD2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */,
 				7F417D112C3A4C0D5DC2DBCD /* Products */,
 				7F41740311FAA8BC52F1841C /* ExponeaSDKMauiIOS */,
-				7F417BBAC53CAB0B9A7BE65D /* ExponeaSDKMauiIOSTests */,
 				19F4AF353E07DB42218CF79D /* Pods */,
 				E2521824A4AD2B08946A26FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		7F417BBAC53CAB0B9A7BE65D /* ExponeaSDKMauiIOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				7F417D36BC03174159305655 /* ExponeaSDKMauiIOSTests.swift */,
-			);
-			path = ExponeaSDKMauiIOSTests;
-			sourceTree = "<group>";
-		};
 		7F417D112C3A4C0D5DC2DBCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +217,28 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		315601AB2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 315601B22A9F315A00CD8F22 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */;
+			buildPhases = (
+				315601A82A9F315900CD8F22 /* Sources */,
+				315601A92A9F315900CD8F22 /* Frameworks */,
+				315601AA2A9F315900CD8F22 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				315601B12A9F315900CD8F22 /* PBXTargetDependency */,
+			);
+			name = ExponeaSDKMauiIOSTests;
+			packageProductDependencies = (
+				315601B52A9F316900CD8F22 /* Nimble */,
+				315601B72A9F316900CD8F22 /* Quick */,
+			);
+			productName = ExponeaSDKMauiIOSTests;
+			productReference = 315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7F417226E66D5529EC26EB51 /* ExponeaSDKMauiIOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F417EF55465076FE0805D40 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOS" */;
@@ -158,27 +255,10 @@
 			dependencies = (
 			);
 			name = ExponeaSDKMauiIOS;
+			packageProductDependencies = (
+			);
 			productName = ExponeaSDKMauiIOS;
 			productType = "com.apple.product-type.framework";
-		};
-		7F417A64C74043A0D54D4B84 /* ExponeaSDKMauiIOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F41703AA39D1FEAEC703599 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */;
-			buildPhases = (
-				0073D7806EDB3968AF6C4EAC /* [CP] Check Pods Manifest.lock */,
-				7F41756150418820BBD5B6A3 /* Sources */,
-				7F41792A10676691C5A1F7A5 /* Frameworks */,
-				7F4173D4CDCB6290CA0EB230 /* Resources */,
-				390A3BA9F7B1352CCEA90940 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7F417FF767DF7D100FD75B37 /* PBXTargetDependency */,
-			);
-			name = ExponeaSDKMauiIOSTests;
-			productName = ExponeaSDKMauiIOSTests;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -186,7 +266,11 @@
 		7F41786F04E986D36BE53209 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1430;
 				TargetAttributes = {
+					315601AB2A9F315900CD8F22 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					7F417226E66D5529EC26EB51 = {
 						LastSwiftMigration = 1430;
 					};
@@ -201,22 +285,25 @@
 				en,
 			);
 			mainGroup = 7F417479199F939F660629AF;
+			packageReferences = (
+				315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */,
+				315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */,
+			);
 			productRefGroup = 7F417D112C3A4C0D5DC2DBCD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				7F417226E66D5529EC26EB51 /* ExponeaSDKMauiIOS */,
-				7F417A64C74043A0D54D4B84 /* ExponeaSDKMauiIOSTests */,
+				315601AB2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7F4173D4CDCB6290CA0EB230 /* Resources */ = {
+		315601AA2A9F315900CD8F22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F417BDFD795FEA740260CE9 /* ExponeaSDKMauiIOSTests.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,50 +318,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0073D7806EDB3968AF6C4EAC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		390A3BA9F7B1352CCEA90940 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ExponeaSDK/ExponeaSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/ExponeaSDK-Notifications/ExponeaSDK_Notifications.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK_Notifications.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		86573B02099CCE11D72B2B6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,43 +343,74 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		315601A82A9F315900CD8F22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				315601AF2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7F4171E7C84DA8E5587536F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				312E76D62AA35C0F00ECC118 /* Recommendation.swift in Sources */,
+				313DA6EC2A9CA5FD00B49508 /* String.swift in Sources */,
+				313DA6F42A9CC86A00B49508 /* Customer.swift in Sources */,
 				550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */,
+				312E76D42AA334E100ECC118 /* Array+JSON.swift in Sources */,
+				313DA6F02A9CA70A00B49508 /* Double.swift in Sources */,
+				313DA6F22A9CC47D00B49508 /* Configuration.swift in Sources */,
+				313DA6E72A9C9C4E00B49508 /* ExponeaMethodType.swift in Sources */,
+				313DA6E42A9C9C2900B49508 /* Optional+String.swift in Sources */,
+				313DA6F62A9CD32700B49508 /* Int.swift in Sources */,
+				312E76D22AA3312D00ECC118 /* Typealiases.swift in Sources */,
+				312E76D02AA330D700ECC118 /* ExponeaAsyncMethodType.swift in Sources */,
+				313DA6EA2A9C9C6300B49508 /* ExponeaInvokable.swift in Sources */,
 				550917192A8A589600ACED6C /* MethodResult.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F41756150418820BBD5B6A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				313DA6EE2A9CA69300B49508 /* Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7F417FF767DF7D100FD75B37 /* PBXTargetDependency */ = {
+		315601B12A9F315900CD8F22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7F417226E66D5529EC26EB51 /* ExponeaSDKMauiIOS */;
-			targetProxy = 7F4172E559AC8A16CE636475 /* PBXContainerItemProxy */;
+			targetProxy = 315601B02A9F315900CD8F22 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		7F4171527B15812AAF18C200 /* Release */ = {
+		315601B32A9F315A00CD8F22 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FFFEEC76A372BFF38B838A9 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UVDCL7YSZS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exponea.maui.ios.ExponeaSDKMauiIOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exponea.maui.ios.ExponeaSDKMauiIOSTest.ExponeaSDKMauiIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		315601B42A9F315A00CD8F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UVDCL7YSZS;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exponea.maui.ios.ExponeaSDKMauiIOSTest.ExponeaSDKMauiIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -394,7 +468,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -480,7 +555,11 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
@@ -509,7 +588,11 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
@@ -522,31 +605,14 @@
 			};
 			name = Release;
 		};
-		7F417B7BC45908D237F5C8D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50802E7D0B373DAEDE7CF8D0 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exponea.maui.ios.ExponeaSDKMauiIOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7F41703AA39D1FEAEC703599 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */ = {
+		315601B22A9F315A00CD8F22 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7F417B7BC45908D237F5C8D5 /* Debug */,
-				7F4171527B15812AAF18C200 /* Release */,
+				315601B32A9F315A00CD8F22 /* Debug */,
+				315601B42A9F315A00CD8F22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -570,6 +636,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		315601B52A9F316900CD8F22 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		315601B72A9F316900CD8F22 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7F41786F04E986D36BE53209 /* Project object */;
 }

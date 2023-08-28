@@ -2,36 +2,43 @@
 //  ExponeaSDKMauiIOSTests.swift
 //  ExponeaSDKMauiIOSTests
 //
-//  Created by Adam Mihalik on 14/08/2023.
-//
+//  Created by Ankmara on 30.08.2023.
 //
 
-import XCTest
+import Foundation
+import Quick
+import Nimble
+
 @testable import ExponeaSDKMauiIOS
 
-final class ExponeaSDKMauiIOSTests: XCTestCase {
+class ExponeaSDKMauiIOSTests: QuickSpec {
+    override class func spec() {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        it("assert bool") {
+            let data: [String: Any] = ["isOk": true]
+            let isOk: Bool = .assertValueFromDict(data: data, key: "isOk")
+            expect(isOk).to(beTrue())
+        }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        it("parse archived json") {
+            let data: [String: Any] = [
+                :
+            ]
+        }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        it("identifyCustomer") {
+            let data: [String: Any] = [
+                "customerIds": ["id": "idvalue"],
+                "properties": ["isGold": "yes"],
+                "timestamp": 100
+            ]
+            ExponeaSDK.instance.identifyCustomer(data: data)
+            let customernfo = ExponeaSDK.instance.getDefaultProperties()
+            print(customernfo.data)
+        }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        it("getDefaultProperties") {
+
         }
     }
-
 }
