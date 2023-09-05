@@ -10,7 +10,6 @@ extension Int {
         if let value = data[key] as? Int {
             return value
         } else {
-            assertionFailure("Nil value")
             return 0
         }
     }

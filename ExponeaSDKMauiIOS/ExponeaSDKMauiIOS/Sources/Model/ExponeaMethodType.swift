@@ -31,14 +31,26 @@ public enum ExponeaMethodType {
     case setFlushMode(data: [String: Any])
     case setLogLevel(data: [String: Any])
     case setSafeMode(data: [String: Any])
+    case trackPaymentEvent(data: [String: Any])
+    case trackEvent(data: [String: Any])
+    case trackSessionEnd
+    case trackSessionStart
     case unsupported
-    
+
     init(method: String?, params: String?) {
         guard let methodName = method else {
             self = .unsupported
             return
         }
         switch methodName.lowercased() {
+        case "trackpaymentevent":
+            self = .trackPaymentEvent(data: params.json)
+        case "trackevent":
+            self = .trackEvent(data: params.json)
+        case "tracksessionend":
+            self = .trackSessionEnd
+        case "tracksessionstart":
+            self = .trackSessionStart
         case "anonymize":
             self = .anonymize
         case "configure":

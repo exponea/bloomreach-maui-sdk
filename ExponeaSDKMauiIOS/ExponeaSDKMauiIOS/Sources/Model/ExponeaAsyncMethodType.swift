@@ -2,7 +2,7 @@
 //  ExponeaAsyncMethodType.swift
 //  ExponeaSDKMauiIOS
 //
-//  Created by Michal Severín on 02.09.2023.
+//  Created by Ankmara on 02.09.2023.
 //
 
 import ExponeaSDK

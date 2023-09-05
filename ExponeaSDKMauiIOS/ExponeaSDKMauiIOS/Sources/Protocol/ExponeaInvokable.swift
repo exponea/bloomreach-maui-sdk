@@ -93,6 +93,14 @@ public extension ExponeaInvokable {
             return setLogLevel(level: .assertValueFromDict(data: data, key: "level"))
         case let .setSafeMode(data):
             return setSafeMode(value: .assertValueFromDict(data: data, key: "value"))
+        case let .trackPaymentEvent(data):
+            return trackPaymentEvent(data: data["data"] as! [String: JSONConvertible], timestamp: .assertValueFromDict(data: data, key: "timestamp"))
+        case let .trackEvent(data):
+            return trackEvent(data: data["data"] as! [String: JSONConvertible], timestamp: .assertValueFromDict(data: data, key: "timestamp"), eventyType: .assertValueFromDict(data: data, key: "eventType"))
+        case .trackSessionEnd:
+            return trackSessionEnd()
+        case .trackSessionStart:
+            return trackSessionStart()
         }
     }
 }
@@ -129,7 +137,7 @@ public extension ExponeaInvokable {
             return .success("Configuration done")
         }
         catch let error {
-            return .success("Configuration error \(error)")
+            return .failure("Configuration error \(error)")
         }
     }
     
@@ -147,7 +155,7 @@ public extension ExponeaInvokable {
     
     func getCustomerCookie() -> MethodResult {
         if let customerCookie = Exponea.shared.customerCookie {
-            return .success(Exponea.shared.customerCookie)
+            return .success(customerCookie)
         }
         return .failure("customerCookie is nil")
     }

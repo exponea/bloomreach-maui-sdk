@@ -26,7 +26,6 @@ extension Optional where Wrapped == String {
         if let self {
             return self
         } else {
-            assertionFailure("Cant unwrap value")
             return ""
         }
     }

@@ -28,6 +28,7 @@
 		550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917162A8A57FA00ACED6C /* ExponeaSDK.swift */; };
 		550917192A8A589600ACED6C /* MethodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917182A8A589600ACED6C /* MethodResult.swift */; };
 		7F417ECFF422ACA87385C7C5 /* ExponeaSDKMauiIOS.h in Resources */ = {isa = PBXBuildFile; fileRef = 7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */; };
+		C0719EF194411AEF6873B2BA /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B08F8ADDA0AA7FDFC7AC9 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 			files = (
 				315601B82A9F316900CD8F22 /* Quick in Frameworks */,
 				315601B62A9F316900CD8F22 /* Nimble in Frameworks */,
+				C0719EF194411AEF6873B2BA /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 315601B22A9F315A00CD8F22 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */;
 			buildPhases = (
+				1E51F3449ABA21770874B018 /* [CP] Check Pods Manifest.lock */,
 				315601A82A9F315900CD8F22 /* Sources */,
 				315601A92A9F315900CD8F22 /* Frameworks */,
 				315601AA2A9F315900CD8F22 /* Resources */,
+				0263B3983485030E158407C6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,8 +259,6 @@
 			dependencies = (
 			);
 			name = ExponeaSDKMauiIOS;
-			packageProductDependencies = (
-			);
 			productName = ExponeaSDKMauiIOS;
 			productType = "com.apple.product-type.framework";
 		};
@@ -286,8 +288,8 @@
 			);
 			mainGroup = 7F417479199F939F660629AF;
 			packageReferences = (
-				315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */,
-				315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */,
+				315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble.git" */,
+				315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick.git" */,
 			);
 			productRefGroup = 7F417D112C3A4C0D5DC2DBCD /* Products */;
 			projectDirPath = "";
@@ -318,6 +320,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0263B3983485030E158407C6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ExponeaSDK/ExponeaSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ExponeaSDK-Notifications/ExponeaSDK_Notifications.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK_Notifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E51F3449ABA21770874B018 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		86573B02099CCE11D72B2B6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,6 +432,7 @@
 /* Begin XCBuildConfiguration section */
 		315601B32A9F315A00CD8F22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50802E7D0B373DAEDE7CF8D0 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -403,6 +450,7 @@
 		};
 		315601B42A9F315A00CD8F22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FFFEEC76A372BFF38B838A9 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -638,7 +686,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+		315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble.git";
 			requirement = {
@@ -646,7 +694,7 @@
 				kind = branch;
 			};
 		};
-		315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */ = {
+		315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Quick.git";
 			requirement = {
@@ -659,12 +707,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		315601B52A9F316900CD8F22 /* Nimble */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */;
+			package = 315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble.git" */;
 			productName = Nimble;
 		};
 		315601B72A9F316900CD8F22 /* Quick */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */;
+			package = 315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick.git" */;
 			productName = Quick;
 		};
 /* End XCSwiftPackageProductDependency section */

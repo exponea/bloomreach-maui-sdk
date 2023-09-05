@@ -12,7 +12,6 @@ extension Bool {
         if let value = data[key] as? Bool {
             return value
         } else {
-            assertionFailure("Nil value")
             return false
         }
     }
