@@ -6,6 +6,7 @@
 //
 
 import ExponeaSDK
+import Foundation
 
 public protocol ExponeaInvokable {
     func parse(method: String?, params: String?) -> MethodResult
@@ -181,9 +182,7 @@ public extension ExponeaInvokable {
             flushMode = "immediate"
         case .manual:
             flushMode = "manual"
-        case let .periodic(value):
-            flushMode = "periodic:\(value)"
-        @unknown default:
+        default:
             flushMode = ""
             assertionFailure()
         }
@@ -191,7 +190,14 @@ public extension ExponeaInvokable {
     }
     
     func getFlushPeriod() -> MethodResult {
-        .failure("")
+        let period: String
+        switch Exponea.shared.flushingMode {
+        case let .periodic(value):
+            period = "\(value)"
+        default:
+            return .failure("Unknown flush period")
+        }
+        return .success(period)
     }
     
     func getTokenTrackFrequency() -> MethodResult {
