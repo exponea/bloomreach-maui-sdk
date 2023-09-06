@@ -33,6 +33,10 @@ import setDefaultProperties
 import setFlushPeriod
 import setLogLevel
 import setSessionTimeout
+import trackEvent
+import trackPaymentEvent
+import trackSessionEnd
+import trackSessionStart
 
 
 class ExponeaSDK(
@@ -62,6 +66,10 @@ class ExponeaSDK(
             "GetSessionTimeout" -> this.getSessionTimeout()
             "SetSessionTimeout" -> this.setSessionTimeout(parseDouble(params))
             "GetTokenTrackFrequency" -> this.getTokenTrackFrequency()
+            "TrackPaymentEvent" -> this.trackPaymentEvent(parseAsMap(params))
+            "TrackEvent" -> this.trackEvent(parseAsMap(params))
+            "TrackSessionEnd" -> this.trackSessionEnd()
+            "TrackSessionStart" -> this.trackSessionStart()
             else -> {
                 throw ExponeaUnsupportedException("Method $method is currently unsupported")
             }

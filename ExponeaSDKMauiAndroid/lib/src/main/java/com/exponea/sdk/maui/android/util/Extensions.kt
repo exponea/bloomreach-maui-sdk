@@ -3,6 +3,7 @@ package com.exponea.sdk.maui.android.util
 import com.exponea.sdk.Exponea
 import com.exponea.sdk.maui.android.exception.ExponeaException
 import com.exponea.sdk.util.Logger
+import java.util.Date
 import kotlin.reflect.KClass
 
 fun <T> Result<T>.returnOnException(mapThrowable: (e: Throwable) -> T): T {
@@ -85,4 +86,8 @@ internal fun <T : Any> Map<String, Any?>.getNullSafely(key: String, type: KClass
     return (value as? T) ?: throw ExponeaException.common(
         "Incorrect type for key '$key'. Expected ${type.simpleName} got ${value::class.simpleName}"
     )
+}
+
+internal fun currentTimeSeconds(): Double {
+    return Date().time / 1000.0
 }
