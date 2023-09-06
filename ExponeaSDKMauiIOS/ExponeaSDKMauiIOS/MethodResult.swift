@@ -29,15 +29,15 @@ public class MethodResult : NSObject {
     }
     
     public static func success(_ data: String?) -> MethodResult {
-        return MethodResult(success: true, data: data ?? "", error: "")
+        .init(success: true, data: data ?? "", error: "")
     }
     
     public static func failure(_ message: String) -> MethodResult {
-        return MethodResult(success: false, data: "", error: message)
+        MethodResult(success: false, data: "", error: message)
     }
     
     public static func unsupportedMethod(_ method: String) -> MethodResult {
-        return .failure("Method \(method) is currently unsupported")
+        .failure("Method \(method) is currently unsupported")
     }
 }
 

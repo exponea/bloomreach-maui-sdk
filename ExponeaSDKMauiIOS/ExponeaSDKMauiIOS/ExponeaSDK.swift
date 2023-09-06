@@ -5,6 +5,7 @@
 //  Created by Adam Mihalik on 14/08/2023.
 //
 
+import ExponeaSDKObjC
 import ExponeaSDK
 
 // This protocol is used queried using reflection by native iOS SDK to see if it's run by Maui SDK
@@ -34,22 +35,15 @@ public class MauiAuthorizationProvider : NSObject, AuthorizationProviderType {
 }
 
 @objc(ExponeaSDK)
-public class ExponeaSDK : NSObject {
-
+public class ExponeaSDK: NSObject, ExponeaInvokable {
+    
     @objc
     public static let instance = ExponeaSDK()
 
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {
         do {
-            switch method {
-            case "greetings":
-                return sayHello()
-            case "configureWithResult":
-                return invokeInit2(params)
-            default:
-                return MethodResult.unsupportedMethod(method ?? "nil")
-            }
+            return parse(method: method, params: params)
         } catch let error {
             return MethodResult.failure("Method \(method ?? "nil") failed: \(error)")
         }
@@ -61,48 +55,9 @@ public class ExponeaSDK : NSObject {
         params: String?,
         done: @escaping (MethodResult)->()
     ) {
-        switch method {
-        case "fetchAppInbox":
-            Exponea.shared.fetchAppInbox { messages in
-                guard let messagesJson = try? JSONSerialization.data(withJSONObject: messages),
-                      let messagesString = String(data: messagesJson, encoding: .utf8) else {
-                    done(MethodResult.failure("Unable to serialize AppInbox messages"))
-                    return
-                }
-                done(MethodResult.success(messagesString))
-            }
-        case "setInAppMessageDelegate":
-            guard let params = params,
-                  let paramsData = params.data(using: .utf8),
-                  let delegateSetup = try? JSONSerialization.jsonObject(
-                    with: paramsData,
-                    options: []
-                  ) as? [String: Bool?] else {
-                done(MethodResult.failure("Unable to register InAppMessage delegate for given input"))
-                return
-            }
-            let overrideDefaultBehavior = (delegateSetup["overrideDefaultBehavior"] ?? false) ?? false
-            let trackActions = (delegateSetup["trackActions"] ?? true) ?? true
-            Exponea.shared.inAppMessagesDelegate = MauiInAppDelegate(
-                overrideDefaultBehavior: overrideDefaultBehavior,
-                trackActions: trackActions,
-                handler: { message, button, interaction in
-                    var result = [
-                        "message": message,
-                        "interaction": interaction
-                    ]
-                    if let button = button {
-                        result["button"] = button
-                    }
-                    guard let resultJson = try? JSONSerialization.data(withJSONObject: result),
-                          let resultString = String(data: resultJson, encoding: .utf8) else {
-                        done(MethodResult.failure("Unable to serialize InApp action data"))
-                        return
-                    }
-                    done(MethodResult.success(resultString))
-                }
-            )
-        default:
+        do {
+            return parseAsync(method: method, params: params, done: done)
+        } catch let error {
             return done(MethodResult.unsupportedMethod(method ?? "nil"))
         }
     }
@@ -119,30 +74,6 @@ public class ExponeaSDK : NSObject {
         } catch let error {
             return MethodResultForUI.failure("Method \(method ?? "nil") failed: \(error)")
         }
-    }
-
-    private func invokeInit2(_ confParams: String?) -> MethodResult {
-        guard let confParams = confParams,
-              let confParamsData = confParams.data(using: .utf8),
-              let confMap = try? JSONSerialization.jsonObject(
-                with: confParamsData,
-                options: []
-              ) as? [String: Any?] else {
-            return MethodResult.failure("Unable to init SDK with empty configuration input")
-        }
-        guard let conf = try? Configuration(
-            projectToken: confMap["projectToken"] as? String,
-            authorization: Authorization.token(confMap["projectToken"] as? String ?? ""),
-            baseUrl: confMap["baseUrl"] as? String
-        ) else {
-            return MethodResult.failure("Unable to build configuration from params")
-        }
-        Exponea.shared.configure(with: conf)
-        return MethodResult.success("")
-    }
-
-    private func sayHello() -> MethodResult {
-        return MethodResult.success("Hello from iOS")
     }
 }
 
