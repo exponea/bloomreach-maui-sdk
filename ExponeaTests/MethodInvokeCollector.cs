@@ -146,6 +146,17 @@ public class MethodInvokeCollector : IMethodChannelConsumerPlatformSpecific
         }
     }
 
+    public string? FindMethodInput(string methodName)
+    {
+        List<MethodInvoke> methodInvokes = _invokedMethods.FindAll(invoke => invoke.MethodName == methodName);
+        Assert.That(
+            methodInvokes.Count,
+            Is.GreaterThan(0),
+            "Method " + methodName + " has not been called at all"
+        );
+        return methodInvokes.First().InputData;
+    }
+
     public void VerifyMethodInput(
         string methodName,
         string? equalsTo)

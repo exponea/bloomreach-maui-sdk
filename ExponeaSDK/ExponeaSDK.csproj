@@ -36,11 +36,9 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
 		<Folder Include="Platforms\iOS\" />
 		<Folder Include="Lib\" />
-		<Folder Include="Lib\Models\" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
 		<Folder Include="Platforms\Android\" />
-		<Folder Include="Lib\Models\" />
 	</ItemGroup>
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) != true">
 		<Compile Remove="**\Android\**\*.cs" />

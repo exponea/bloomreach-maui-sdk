@@ -37,4 +37,9 @@ public static class ConverterUtils
     {
         return source?.Trim().Trim('"');
     }
+
+    public static double GetNowInSeconds()
+    {
+        return Convert.ToDouble(DateTimeOffset.Now.ToUnixTimeMilliseconds()) / 1000;
+    }
 }

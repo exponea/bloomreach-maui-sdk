@@ -256,6 +256,40 @@ namespace Exponea
             return _safeMode;
         }
 
+        public static void TrackPaymentEvent(Payment payment, double? timestamp = null)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackPaymentEvent",
+                ConverterUtils.SerializeInput(new Dictionary<string, object?>
+                {
+                    {"payment", payment},
+                    {"timestamp", timestamp ?? ConverterUtils.GetNowInSeconds()}
+                })
+            );
+        }
+
+        public static void TrackEvent(Event evt, double? timestamp = null)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackEvent",
+                ConverterUtils.SerializeInput(new Dictionary<string, object?>
+                {
+                    {"event", evt},
+                    {"timestamp", timestamp ?? ConverterUtils.GetNowInSeconds()}
+                })
+            );
+        }
+
+        public static void TrackSessionEnd()
+        {
+            Instance.Channel.InvokeMethod("TrackSessionEnd", null);
+        }
+
+        public static void TrackSessionStart()
+        {
+            Instance.Channel.InvokeMethod("TrackSessionStart", null);
+        }
+
         internal static void ThrowOrLog(Exception exception)
         {
             // TODO: log
