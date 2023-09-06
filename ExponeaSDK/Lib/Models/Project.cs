@@ -1,4 +1,4 @@
-﻿namespace ExponeaSDK
+﻿namespace Exponea
 {
     public class Project
     {

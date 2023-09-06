@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ExponeaSDK;
+using Exponea;
 using Microsoft.Maui.Accessibility;
 using Microsoft.Maui.Controls;
 
@@ -30,14 +30,14 @@ public partial class MainPage : ContentPage
 
         config.DefaultProperties = props;
 
-        config.IOsConfiguration = new iOSConfiguration(appGroup: "group.com.exponea.xamarin");
+        //config.IOsConfiguration = new iOSConfiguration(appGroup: "group.com.exponea.xamarin");
 
-        config.AndroidConfiguration = new AndroidConfiguration(pushIcon: "push_icon", automaticPushNotification: true);
+        //config.AndroidConfiguration = new AndroidConfiguration(pushIcon: "push_icon", automaticPushNotification: true);
 
         config.AdvancedAuthEnabled = true;
 
         config.AllowDefaultCustomerProperties = false;
-        Greetings.Text = ExponeaSDK.ExponeaSDK.ConfigureWithResult(config);
+        Exponea.ExponeaSDK.Configure(config);
 
     }
 

@@ -1,23 +1,16 @@
-﻿namespace ExponeaSDK
+﻿using System.Runtime.Serialization;
+
+namespace Exponea
 {
     public enum HttpLoggingLevel
     {
+        [EnumMember(Value = "none")]
         NONE,
+        [EnumMember(Value = "basic")]
         BASIC,
+        [EnumMember(Value = "headers")]
         HEADERS,
-        BODY
-
-    }
-
-    internal enum HttpLoggingLevelInternal
-    {
-        /** No logs. */
-        NONE,
-        /** Logs request and response lines. */
-        BASIC,
-        /** Logs request and response lines and their respective headers. */
-        HEADERS,
-        /** Logs request and response lines and their respective headers and bodies (if present). */
+        [EnumMember(Value = "body")]
         BODY
     }
 }
