@@ -10,11 +10,12 @@ import Foundation
 
 public protocol ExponeaInvokable {
     func parse(method: String?, params: String?) -> MethodResult
+    func parseAsync(method: String?, params: String?, done: @escaping (MethodResult)->())
     
     // MARK: - Base
     func anonymize() -> MethodResult
     func configure(data: [String: Any]) -> MethodResult
-    func flushData() -> MethodResult
+    func flushData(completion: TypeBlock<MethodResult>?)
     func getConfiguration() -> MethodResult
     func getCustomerCookie() -> MethodResult
     func getCheckPushSetup() -> MethodResult
@@ -44,6 +45,15 @@ public protocol ExponeaInvokable {
 }
 
 public extension ExponeaInvokable {
+    func parseAsync(method: String?, params: String?, done: @escaping TypeBlock<MethodResult>) {
+        switch ExponeaAsyncMethodType(method: method, params: params, asyncBlock: done) {
+        case let .flushData(data):
+            flushData(completion: data)
+        case .unsupported:
+            break
+        }
+    }
+
     func parse(method: String?, params: String?) -> MethodResult {
         switch ExponeaMethodType(method: method, params: params) {
         case .anonymize:
@@ -54,8 +64,6 @@ public extension ExponeaInvokable {
             return MethodResult.unsupportedMethod(method ?? "nil")
         case let .configure(data):
             return configure(data: data)
-        case .flushData:
-            return flushData()
         case .getConfiguration:
             return getConfiguration()
         case .getCheckPushSetup:
@@ -102,6 +110,8 @@ public extension ExponeaInvokable {
             return trackSessionEnd()
         case .trackSessionStart:
             return trackSessionStart()
+        default:
+            return .unsupportedMethod(method ?? "Uknown method")
         }
     }
 }
@@ -142,9 +152,19 @@ public extension ExponeaInvokable {
         }
     }
     
-    func flushData() -> MethodResult {
-        Exponea.shared.flushData()
-        return .success("Flush done")
+    func flushData(completion: TypeBlock<MethodResult>?) {
+        Exponea.shared.flushData { result in
+            switch result {
+            case let .success(value):
+                completion?(.success("\(value)"))
+            case .flushAlreadyInProgress:
+                completion?(.failure("¨Flush already in progress"))
+            case .noInternetConnection:
+                completion?(.failure("No internet connection"))
+            case let .error(error):
+                completion?(.failure("Flush error \(error.localizedDescription)"))
+            }
+        }
     }
 
     func getConfiguration() -> MethodResult {

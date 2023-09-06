@@ -8,7 +8,7 @@
 import ExponeaSDK
 
 public enum ExponeaAsyncMethodType {
-    case fetchConsent(data: TypeBlock<MethodResult>?)
+    case flushData(data: TypeBlock<MethodResult>?)
     case unsupported
     
     init(method: String?, params: String?, asyncBlock: TypeBlock<MethodResult>? = nil) {
@@ -17,8 +17,8 @@ public enum ExponeaAsyncMethodType {
             return
         }
         switch methodName.lowercased() {
-        case "fetchconsents":
-            self = .fetchConsent(data: asyncBlock)
+        case "flushdata":
+            self = .flushData(data: asyncBlock)
         default:
             self = .unsupported
         }

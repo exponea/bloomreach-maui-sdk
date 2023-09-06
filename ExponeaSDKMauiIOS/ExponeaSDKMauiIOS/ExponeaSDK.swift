@@ -55,48 +55,9 @@ public class ExponeaSDK: NSObject, ExponeaInvokable {
         params: String?,
         done: @escaping (MethodResult)->()
     ) {
-        switch method {
-        case "fetchAppInbox":
-            Exponea.shared.fetchAppInbox { messages in
-                guard let messagesJson = try? JSONSerialization.data(withJSONObject: messages),
-                      let messagesString = String(data: messagesJson, encoding: .utf8) else {
-                    done(MethodResult.failure("Unable to serialize AppInbox messages"))
-                    return
-                }
-                done(MethodResult.success(messagesString))
-            }
-        case "setInAppMessageDelegate":
-            guard let params = params,
-                  let paramsData = params.data(using: .utf8),
-                  let delegateSetup = try? JSONSerialization.jsonObject(
-                    with: paramsData,
-                    options: []
-                  ) as? [String: Bool?] else {
-                done(MethodResult.failure("Unable to register InAppMessage delegate for given input"))
-                return
-            }
-            let overrideDefaultBehavior = (delegateSetup["overrideDefaultBehavior"] ?? false) ?? false
-            let trackActions = (delegateSetup["trackActions"] ?? true) ?? true
-            Exponea.shared.inAppMessagesDelegate = MauiInAppDelegate(
-                overrideDefaultBehavior: overrideDefaultBehavior,
-                trackActions: trackActions,
-                handler: { message, button, interaction in
-                    var result = [
-                        "message": message,
-                        "interaction": interaction
-                    ]
-                    if let button = button {
-                        result["button"] = button
-                    }
-                    guard let resultJson = try? JSONSerialization.data(withJSONObject: result),
-                          let resultString = String(data: resultJson, encoding: .utf8) else {
-                        done(MethodResult.failure("Unable to serialize InApp action data"))
-                        return
-                    }
-                    done(MethodResult.success(resultString))
-                }
-            )
-        default:
+        do {
+            return parseAsync(method: method, params: params, done: done)
+        } catch let error {
             return done(MethodResult.unsupportedMethod(method ?? "nil"))
         }
     }
