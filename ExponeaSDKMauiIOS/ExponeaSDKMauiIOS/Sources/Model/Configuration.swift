@@ -9,7 +9,7 @@ import ExponeaSDK
 
 struct Configuration {
     
-    let appGroup: String?
+    let appGroup: String
     let advancedAuthEnabled: Bool
     let allowDefaultCustomerProperties: Bool
     let automaticPushNotificationTracking: Bool
@@ -23,10 +23,10 @@ struct Configuration {
     var tokenTrackFrequency: TokenTrackFrequency = .onTokenChange
     
     init(data: [String: Any]) {
-        appGroup = data["appGroup"] as? String
+        appGroup = .assertValueFromDict(data: data, key: "appGroup")
         advancedAuthEnabled = .assertValueFromDict(data: data, key: "advancedAuthEnabled")
         allowDefaultCustomerProperties = .assertValueFromDict(data: data, key: "allowDefaultCustomerProperties")
-        automaticPushNotificationTracking = .assertValueFromDict(data: data, key: "automaticPushNotificationTracking")
+        automaticPushNotificationTracking = .assertValueFromDict(data: data, key: "automaticPushNotification")
         automaticSessionTracking = .assertValueFromDict(data: data, key: "automaticSessionTracking")
         baseUrl = .assertValueFromDict(data: data, key: "baseUrl")
         flushEventMaxRetries = data["flushEventMaxRetries"] as? Int ?? 0

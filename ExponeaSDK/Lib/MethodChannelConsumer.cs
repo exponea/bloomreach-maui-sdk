@@ -58,6 +58,20 @@ namespace Exponea
             _channelInternal = platformChannel;
         }
 
+        internal virtual MethodMauiResult? InvokeMethodWithMethod(string method, string? data)
+        {
+            try
+            {
+                var result = _channelInternal?.InvokeMethod(method, data);
+                return result;
+            }
+            catch (Exception e)
+            {
+                ExponeaSDK.ThrowOrLog(e);
+                return null;
+            }
+        }
+
         internal virtual string? InvokeMethod(string method, string? data)
         {
             try
@@ -75,6 +89,7 @@ namespace Exponea
                 return null;
             }
         }
+
         internal virtual void InvokeMethodAsync(string method, string? data, Action<string?, Exception?> action)
         {
             _channelInternal?.InvokeMethodAsync(method, data, (result, exception) =>

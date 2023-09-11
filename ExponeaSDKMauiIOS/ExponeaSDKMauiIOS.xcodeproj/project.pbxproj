@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,13 +21,12 @@
 		313DA6F42A9CC86A00B49508 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F32A9CC86A00B49508 /* Customer.swift */; };
 		313DA6F62A9CD32700B49508 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F52A9CD32700B49508 /* Int.swift */; };
 		315601AF2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */; };
-		315601B62A9F316900CD8F22 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 315601B52A9F316900CD8F22 /* Nimble */; };
-		315601B82A9F316900CD8F22 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 315601B72A9F316900CD8F22 /* Quick */; };
-		3172A7CA2AA86E5100A9AEF8 /* ExponeaSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3172A7C92AA86E5100A9AEF8 /* ExponeaSDK */; };
-		3172A7CC2AA86E5100A9AEF8 /* ExponeaSDK-Notifications in Frameworks */ = {isa = PBXBuildFile; productRef = 3172A7CB2AA86E5100A9AEF8 /* ExponeaSDK-Notifications */; };
 		550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917162A8A57FA00ACED6C /* ExponeaSDK.swift */; };
 		550917192A8A589600ACED6C /* MethodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917182A8A589600ACED6C /* MethodResult.swift */; };
+		5519E4062AAF524F00D4FFD5 /* Jsons in Resources */ = {isa = PBXBuildFile; fileRef = 5519E4052AAF524F00D4FFD5 /* Jsons */; };
+		7961C72AB3D0D63F87012F88 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3C2D9CD77DC4CCE18E672E /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */; };
 		7F417ECFF422ACA87385C7C5 /* ExponeaSDKMauiIOS.h in Resources */ = {isa = PBXBuildFile; fileRef = 7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */; };
+		EFD3CEE4313281E03C9B9200 /* Pods_ExponeaSDKMauiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 721DA621285C11ADD4408864 /* Pods_ExponeaSDKMauiIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F3C2D9CD77DC4CCE18E672E /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		312E76CF2AA330D700ECC118 /* ExponeaAsyncMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaAsyncMethodType.swift; sourceTree = "<group>"; };
 		312E76D12AA3312D00ECC118 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		312E76D32AA334E100ECC118 /* Array+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+JSON.swift"; sourceTree = "<group>"; };
@@ -56,9 +56,15 @@
 		313DA6F52A9CD32700B49508 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExponeaSDKMauiIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDKMauiIOSTests.swift; sourceTree = "<group>"; };
+		3B3277877BC93EB555B570FA /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		550917162A8A57FA00ACED6C /* ExponeaSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDK.swift; sourceTree = "<group>"; };
 		550917182A8A589600ACED6C /* MethodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodResult.swift; sourceTree = "<group>"; };
+		5519E4052AAF524F00D4FFD5 /* Jsons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Jsons; path = ../../ExponeaTests/Jsons; sourceTree = "<group>"; };
+		66487FCBD27261B30D576F03 /* Pods-ExponeaSDKMauiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS/Pods-ExponeaSDKMauiIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		721DA621285C11ADD4408864 /* Pods_ExponeaSDKMauiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExponeaSDKMauiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */ = {isa = PBXFileReference; lastKnownFileType = file.h; path = ExponeaSDKMauiIOS.h; sourceTree = "<group>"; };
+		7FB0447AA28386FD1A99D452 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		EFB1BFA829F1F04E0B814A32 /* Pods-ExponeaSDKMauiIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS.release.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS/Pods-ExponeaSDKMauiIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				315601B82A9F316900CD8F22 /* Quick in Frameworks */,
-				315601B62A9F316900CD8F22 /* Nimble in Frameworks */,
+				7961C72AB3D0D63F87012F88 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,14 +80,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3172A7CA2AA86E5100A9AEF8 /* ExponeaSDK in Frameworks */,
-				3172A7CC2AA86E5100A9AEF8 /* ExponeaSDK-Notifications in Frameworks */,
+				EFD3CEE4313281E03C9B9200 /* Pods_ExponeaSDKMauiIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0767E040153ECEA6C1531600 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66487FCBD27261B30D576F03 /* Pods-ExponeaSDKMauiIOS.debug.xcconfig */,
+				EFB1BFA829F1F04E0B814A32 /* Pods-ExponeaSDKMauiIOS.release.xcconfig */,
+				3B3277877BC93EB555B570FA /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */,
+				7FB0447AA28386FD1A99D452 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		313DA6E12A9C9C1B00B49508 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,9 +145,19 @@
 		315601AD2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				5519E4052AAF524F00D4FFD5 /* Jsons */,
 				315601AE2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.swift */,
 			);
 			path = ExponeaSDKMauiIOSTests;
+			sourceTree = "<group>";
+		};
+		31CDB0FF2AA9B25400CA4DB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				721DA621285C11ADD4408864 /* Pods_ExponeaSDKMauiIOS.framework */,
+				1F3C2D9CD77DC4CCE18E672E /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7F41740311FAA8BC52F1841C /* ExponeaSDKMauiIOS */ = {
@@ -152,6 +177,8 @@
 				315601AD2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests */,
 				7F417D112C3A4C0D5DC2DBCD /* Products */,
 				7F41740311FAA8BC52F1841C /* ExponeaSDKMauiIOS */,
+				31CDB0FF2AA9B25400CA4DB6 /* Frameworks */,
+				0767E040153ECEA6C1531600 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 315601B22A9F315A00CD8F22 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOSTests" */;
 			buildPhases = (
+				E63B144978BCEC91F0CC2396 /* [CP] Check Pods Manifest.lock */,
 				315601A82A9F315900CD8F22 /* Sources */,
 				315601A92A9F315900CD8F22 /* Frameworks */,
 				315601AA2A9F315900CD8F22 /* Resources */,
+				7F9280794161FBB5C304B42E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,8 +220,6 @@
 			);
 			name = ExponeaSDKMauiIOSTests;
 			packageProductDependencies = (
-				315601B52A9F316900CD8F22 /* Nimble */,
-				315601B72A9F316900CD8F22 /* Quick */,
 			);
 			productName = ExponeaSDKMauiIOSTests;
 			productReference = 315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */;
@@ -202,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F417EF55465076FE0805D40 /* Build configuration list for PBXNativeTarget "ExponeaSDKMauiIOS" */;
 			buildPhases = (
+				E29D8F21DE7D107D32B08A8D /* [CP] Check Pods Manifest.lock */,
 				7F417046FEB4501EF4EEA6FC /* Headers */,
 				7F4171E7C84DA8E5587536F9 /* Sources */,
 				7F417E0F8FA7ECD1836843ED /* Frameworks */,
@@ -213,8 +241,6 @@
 			);
 			name = ExponeaSDKMauiIOS;
 			packageProductDependencies = (
-				3172A7C92AA86E5100A9AEF8 /* ExponeaSDK */,
-				3172A7CB2AA86E5100A9AEF8 /* ExponeaSDK-Notifications */,
 			);
 			productName = ExponeaSDKMauiIOS;
 			productType = "com.apple.product-type.framework";
@@ -229,6 +255,8 @@
 				TargetAttributes = {
 					315601AB2A9F315900CD8F22 = {
 						CreatedOnToolsVersion = 14.3.1;
+						DevelopmentTeam = UVDCL7YSZS;
+						ProvisioningStyle = Automatic;
 					};
 					7F417226E66D5529EC26EB51 = {
 						LastSwiftMigration = 1430;
@@ -245,9 +273,6 @@
 			);
 			mainGroup = 7F417479199F939F660629AF;
 			packageReferences = (
-				315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */,
-				315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */,
-				3172A7C82AA86E5100A9AEF8 /* XCRemoteSwiftPackageReference "exponea-ios-sdk" */,
 			);
 			productRefGroup = 7F417D112C3A4C0D5DC2DBCD /* Products */;
 			projectDirPath = "";
@@ -264,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5519E4062AAF524F00D4FFD5 /* Jsons in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +302,79 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F9280794161FBB5C304B42E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ExponeaSDK/ExponeaSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ExponeaSDK-Notifications/ExponeaSDK_Notifications.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK_Notifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E29D8F21DE7D107D32B08A8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExponeaSDKMauiIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E63B144978BCEC91F0CC2396 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		315601A82A9F315900CD8F22 /* Sources */ = {
@@ -321,6 +420,7 @@
 /* Begin XCBuildConfiguration section */
 		315601B32A9F315A00CD8F22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B3277877BC93EB555B570FA /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -338,6 +438,7 @@
 		};
 		315601B42A9F315A00CD8F22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FB0447AA28386FD1A99D452 /* Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -403,8 +504,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -477,6 +577,7 @@
 		};
 		7F417A037C51EB49F0FE084C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66487FCBD27261B30D576F03 /* Pods-ExponeaSDKMauiIOS.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -490,11 +591,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
@@ -510,6 +607,7 @@
 		};
 		7F417A3FB8CA61557AE85C51 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFB1BFA829F1F04E0B814A32 /* Pods-ExponeaSDKMauiIOS.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -523,11 +621,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
@@ -571,56 +665,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Nimble.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Quick.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		3172A7C82AA86E5100A9AEF8 /* XCRemoteSwiftPackageReference "exponea-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exponea/exponea-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.17.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		315601B52A9F316900CD8F22 /* Nimble */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 315601A22A9F2D0F00CD8F22 /* XCRemoteSwiftPackageReference "Nimble" */;
-			productName = Nimble;
-		};
-		315601B72A9F316900CD8F22 /* Quick */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 315601A52A9F2D1800CD8F22 /* XCRemoteSwiftPackageReference "Quick" */;
-			productName = Quick;
-		};
-		3172A7C92AA86E5100A9AEF8 /* ExponeaSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3172A7C82AA86E5100A9AEF8 /* XCRemoteSwiftPackageReference "exponea-ios-sdk" */;
-			productName = ExponeaSDK;
-		};
-		3172A7CB2AA86E5100A9AEF8 /* ExponeaSDK-Notifications */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3172A7C82AA86E5100A9AEF8 /* XCRemoteSwiftPackageReference "exponea-ios-sdk" */;
-			productName = "ExponeaSDK-Notifications";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7F41786F04E986D36BE53209 /* Project object */;
 }
