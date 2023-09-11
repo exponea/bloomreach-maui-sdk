@@ -49,7 +49,7 @@ configurations {
 }
 
 dependencies {
-    collectDependencyTree ('com.exponea.sdk:sdk:3.7.0') {
+    collectDependencyTree ('com.exponea.sdk:sdk:3.7.1') {
         // exclude if will be replaced by MAUI/Xamarin alternative
         exclude group: 'com.google.code.gson', module: 'gson'
         exclude group: 'androidx.arch.core', module: 'core-common'

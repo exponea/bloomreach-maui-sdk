@@ -29,16 +29,9 @@ public partial class MainPage : ContentPage
             };
 
         config.DefaultProperties = props;
-
-        //config.IOsConfiguration = new iOSConfiguration(appGroup: "group.com.exponea.xamarin");
-
-        //config.AndroidConfiguration = new AndroidConfiguration(pushIcon: "push_icon", automaticPushNotification: true);
-
-        config.AdvancedAuthEnabled = true;
-
+        config.AdvancedAuthEnabled = false;
         config.AllowDefaultCustomerProperties = false;
         Exponea.ExponeaSDK.Configure(config);
-
     }
 
 	private void OnCounterClicked(object sender, EventArgs eventArgs)

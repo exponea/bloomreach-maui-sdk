@@ -16,6 +16,7 @@
 		<OutputType>Library</OutputType>
 		<AssemblyName>ExponeaSdk</AssemblyName>
 		<PackOnBuild>true</PackOnBuild>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
@@ -62,7 +63,7 @@
 		<PackageReference Include="Square.OkHttp3.LoggingInterceptor" Version="4.4.1" />
 		<PackageReference Include="Square.OkHttp3" Version="4.9.1" />
 		
-		<AndroidLibrary Include="..\ExponeaSDKMauiAndroid\lib\aarLibs\sdk-3.7.0.aar" />
+		<AndroidLibrary Include="..\ExponeaSDKMauiAndroid\lib\aarLibs\sdk-3.7.1.aar" />
 		<AndroidLibrary Include="..\ExponeaSDKMauiAndroid\lib\jarLibs\gson-extras-0.2.2.jar" Bind="false" />
 		<AndroidLibrary Include="..\ExponeaSDKMauiAndroid\lib\jarLibs\jsoup-1.15.4.jar" Bind="false" />
 		<AndroidLibrary Include="..\ExponeaSDKMauiAndroid\lib\jarLibs\okhttp-brotli-4.9.1.jar" />
