@@ -1,14 +1,14 @@
 PODS:
-  - ExponeaSDK (2.17.0):
+  - ExponeaSDK (2.18.0):
     - SwiftSoup (= 2.6.1)
-  - ExponeaSDK-Notifications (2.17.0)
+  - ExponeaSDK-Notifications (2.18.0)
   - Nimble (10.0.0)
   - Quick (5.0.1)
   - SwiftSoup (2.6.1)
 
 DEPENDENCIES:
-  - ExponeaSDK (= 2.17.0)
-  - ExponeaSDK-Notifications (= 2.17.0)
+  - ExponeaSDK (= 2.18.0)
+  - ExponeaSDK-Notifications (= 2.18.0)
   - Nimble
   - Quick
 
@@ -21,12 +21,12 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
-  ExponeaSDK: a81bec582129aa1bac7ae965450a13017437ded1
-  ExponeaSDK-Notifications: 959789fa334f9ef266cb612a61ce8383e70b0839
+  ExponeaSDK: 9dd54f7d073beddc7d5ab191e8737fb56fc48ba1
+  ExponeaSDK-Notifications: 60c9ec6c9f0766e7d962aae0127cabf803545295
   Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
   Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
   SwiftSoup: 5dd2c1b06afc964f30d99894af6ede22ede627aa
 
-PODFILE CHECKSUM: 5d3dda925af8d2a67bc3e0cf6a3b263dc362c84c
+PODFILE CHECKSUM: 67890d59ca6220ae5446382d442631ca4f3cde2a
 
 COCOAPODS: 1.11.3
