@@ -29,18 +29,18 @@ struct Configuration {
         automaticPushNotificationTracking = .assertValueFromDict(data: data, key: "automaticPushNotification")
         automaticSessionTracking = .assertValueFromDict(data: data, key: "automaticSessionTracking")
         baseUrl = .assertValueFromDict(data: data, key: "baseUrl")
-        flushEventMaxRetries = data["flushEventMaxRetries"] as? Int ?? 0
+        flushEventMaxRetries = data["maxTries"] as? Int ?? 0
         projectToken = .assertValueFromDict(data: data, key: "projectToken")
         requirePushAuthorization = .assertValueFromDict(data: data, key: "requirePushAuthorization")
         sessionTimeout = .assertValueFromDict(data: data, key: "sessionTimeout")
-        token = .assertValueFromDict(data: data, key: "token")
+        token = .assertValueFromDict(data: data, key: "authorization")
         if let tokenTrackFrequency = data["tokenTrackFrequency"] as? String {
             switch tokenTrackFrequency {
-            case "onTokenChange":
+            case "token_change":
                 self.tokenTrackFrequency = .onTokenChange
             case "daily":
                 self.tokenTrackFrequency = .daily
-            case "everyLaunch":
+            case "every_launch":
                 self.tokenTrackFrequency = .everyLaunch
             default:
                 assertionFailure("No token track frequency set")

@@ -32,8 +32,8 @@ namespace Exponea
 
         public bool Success { get; set; }
     }
-    
-    internal class MethodChannelConsumer
+
+    public class MethodChannelConsumer
     {
 
         private readonly IMethodChannelConsumerPlatformSpecific? _channelInternal = null;
@@ -123,10 +123,11 @@ namespace Exponea
             }
         }
     }
-    internal interface IMethodChannelConsumerPlatformSpecific
+
+    public interface IMethodChannelConsumerPlatformSpecific
     {
-        internal MethodMauiResult InvokeMethod(string method, string? data);
-        internal void InvokeMethodAsync(string method, string? data, Action<MethodMauiResult, Exception?> action);
-        internal MethodMauiResultForView InvokeUiMethod(string method, string? data);
+        MethodMauiResult InvokeMethod(string method, string? data);
+        void InvokeMethodAsync(string method, string? data, Action<MethodMauiResult, Exception?> action);
+        MethodMauiResultForView InvokeUiMethod(string method, string? data);
     }
 }

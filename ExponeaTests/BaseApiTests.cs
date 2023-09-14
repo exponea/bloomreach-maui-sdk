@@ -498,6 +498,45 @@ public class BaseApiTests
     }
 
     [Test]
+    public void SetFlushMode_Unknown()
+    {
+        ExponeaSDK.SetFlushMode(FlushMode.Unknown);
+        _methodCollector.VerifyMethodCalled("SetFlushMode", calledExactly: 0, calledAtLeast: 0);
+    }
+
+    [Test]
+    public void SetFlushMode_Immediate()
+    {
+        ExponeaSDK.SetFlushMode(FlushMode.Immediate);
+        _methodCollector.VerifyMethodCalled("SetFlushMode");
+        _methodCollector.VerifyMethodInput("SetFlushMode", TestUtils.ReadFile("SetFlushMode_Immediate"));
+    }
+
+    [Test]
+    public void SetFlushMode_AppClose()
+    {
+        ExponeaSDK.SetFlushMode(FlushMode.AppClose);
+        _methodCollector.VerifyMethodCalled("SetFlushMode");
+        _methodCollector.VerifyMethodInput("SetFlushMode", TestUtils.ReadFile("SetFlushMode_AppClose"));
+    }
+
+    [Test]
+    public void SetFlushMode_Manual()
+    {
+        ExponeaSDK.SetFlushMode(FlushMode.Manual);
+        _methodCollector.VerifyMethodCalled("SetFlushMode");
+        _methodCollector.VerifyMethodInput("SetFlushMode", TestUtils.ReadFile("SetFlushMode_Manual"));
+    }
+
+    [Test]
+    public void SetFlushMode_Period()
+    {
+        ExponeaSDK.SetFlushMode(FlushMode.Period);
+        _methodCollector.VerifyMethodCalled("SetFlushMode");
+        _methodCollector.VerifyMethodInput("SetFlushMode", TestUtils.ReadFile("SetFlushMode_Period"));
+    }
+
+    [Test]
     public void GetFlushPeriod_Invalid()
     {
         _methodCollector.RegisterSuccessMethodResult("GetFlushPeriod", TestUtils.ReadFile("GetFlushPeriod_Invalid"));

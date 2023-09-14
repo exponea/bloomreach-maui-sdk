@@ -123,8 +123,8 @@ public class MethodInvokeCollector : IMethodChannelConsumerPlatformSpecific
         if (calledExactly >= 0)
         {
             Assert.That(
-                calledExactly,
-                Is.EqualTo(calledTimes),
+                calledTimes,
+                Is.EqualTo(calledExactly),
                 "Method " + methodName + " is called " + calledTimes + " times, but expected to be called " + calledExactly + " times"
             );
         }

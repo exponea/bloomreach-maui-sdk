@@ -6,12 +6,12 @@ namespace Exponea
 	{
         
         private static bool _safeMode = true;
-        
-        internal static ExponeaSDK Instance = new ExponeaSDK();
 
-        internal MethodChannelConsumer Channel;
+        public static ExponeaSDK Instance = new ExponeaSDK();
 
-        internal ExponeaSDK()
+        protected internal MethodChannelConsumer Channel;
+
+        protected internal ExponeaSDK()
         {
             Channel = new MethodChannelConsumer();
         }
@@ -110,6 +110,33 @@ namespace Exponea
                     // TODO: log or throw
                     return FlushMode.Unknown;
             }
+        }
+
+        public static void SetFlushMode(FlushMode mode)
+        {
+            string flushModeString;
+            switch (mode)
+            {
+                case FlushMode.Unknown:
+                    // TODO: log or throw
+                    return;
+                case FlushMode.AppClose:
+                    flushModeString = "app_close";
+                    break;
+                case FlushMode.Immediate:
+                    flushModeString = "immediate";
+                    break;
+                case FlushMode.Manual:
+                    flushModeString = "manual";
+                    break;
+                case FlushMode.Period:
+                    flushModeString = "period";
+                    break;
+                default:
+                    // TODO: log or throw
+                    return;
+            }
+            Instance.Channel.InvokeMethod("SetFlushMode", flushModeString);
         }
 
         public static TimeSpan GetFlushPeriod()

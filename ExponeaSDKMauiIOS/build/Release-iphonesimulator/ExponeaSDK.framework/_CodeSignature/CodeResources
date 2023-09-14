@@ -54,51 +54,35 @@
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		NA6o0i/H6uWLlpOwE1KkWKQnk/8=
+		sQsUZDEyQVspYYL77rthIxAiArI=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		eNj1w3n23u1P92YDA3bH3HrWETE=
+		2d+q0En6UkagRN1cdeWc3WbzfWA=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		kYmvzIrX28skf/SpJPvDZs4XTWE=
-		</data>
-		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
-		<data>
-		0fafADm+SkRCcIVQ3jYlpSHrrsg=
+		FSPnLbho3G+LL9smI3XgVOqBIQ4=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
 		eORdHIBenk7w0mqkC8QcceiU+20=
 		</data>
-		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
-		<data>
-		0fafADm+SkRCcIVQ3jYlpSHrrsg=
-		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		VTR012ehDAEr7omEPKDBx3fRhhk=
+		langPC1lVAPBjXAZUZXU0K8cnbU=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		kYmvzIrX28skf/SpJPvDZs4XTWE=
-		</data>
-		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
-		<data>
-		EMEGgXnS7/OdxRWiAw100LZo5BI=
+		FSPnLbho3G+LL9smI3XgVOqBIQ4=
 		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
 		NHfppEY8BCFtzO1WzwptXiU0oX4=
 		</data>
-		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
-		<data>
-		EMEGgXnS7/OdxRWiAw100LZo5BI=
-		</data>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		BW7bO364irP+1hXqNJ8/tr/uj2U=
+		O9JL7y9kVcMtm7NL3JwopFFNKi0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -188,28 +172,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0yX9gnkPmci5mo0iyo63lf7EVwMtTbfNxKd8jbKI9Jo=
+			bg11wHQurCTAYdaGaG8s927wdIIR/faaYc2D8vBGB8o=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			79u5hUisuRQ6HUmqiUAwsFjG8CPbmcT7/wHQf9PPUcw=
+			UpedeXYiVLfW5Q64J2DzMz+d1kMuqIAS1Meey95Ckg4=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Jzr4awvDRyV8yMRIgsOuFo5aIjDqVyScqqcAdEVfoec=
-			</data>
-		</dict>
-		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LKp3/ZvNeijeTB6XfCtabeyJD/kBw+gYSadkWUrrQWc=
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -219,32 +196,18 @@
 			PEw6YjPC0PN2dxAY/QE/Iiyz9ywZ0VRAJNz+qeav7Xc=
 			</data>
 		</dict>
-		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LKp3/ZvNeijeTB6XfCtabeyJD/kBw+gYSadkWUrrQWc=
-			</data>
-		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xV3asISLezZ5XcQ3MaEWl7bhnGXlA+mHZC2JelhYKDw=
+			3HLngSYwtqyYSldhat5whgw1mlUoLriuxa2xFfUCKDQ=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Jzr4awvDRyV8yMRIgsOuFo5aIjDqVyScqqcAdEVfoec=
-			</data>
-		</dict>
-		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			RBghZVi7aoxJZDFiaxXALhfrw2uAj+Afw6sWR2gLE1k=
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -254,18 +217,11 @@
 			SngNtF1Lr8diLS7NgMWUhCNxndpdzducV2Syx12CMfA=
 			</data>
 		</dict>
-		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			RBghZVi7aoxJZDFiaxXALhfrw2uAj+Afw6sWR2gLE1k=
-			</data>
-		</dict>
 		<key>Modules/ExponeaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ij3JUu9hep82laBPVJDZ/WcBd8KMDee/VHnnNNN8aO4=
+			eHc7GFILfWZoKUl4+XqlQAcTt8/ArwQAAk69WmjHm/8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

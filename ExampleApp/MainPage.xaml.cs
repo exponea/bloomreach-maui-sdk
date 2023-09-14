@@ -1,50 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using Exponea;
-using Microsoft.Maui.Accessibility;
-using Microsoft.Maui.Controls;
+﻿using Exponea;
 
 namespace ExampleApp;
 
 public partial class MainPage : ContentPage
 {
-	private int _count = 0;
+    
+    public MainPage()
+    {
+        InitializeComponent();
 
-	public MainPage()
-	{
-		InitializeComponent();
-		
-        var config = new Configuration(
-            "b556af1a-bf4e-11ed-ac28-de4945357d1a",
-            "urncrotvrtuomaircpsettnbz2wgpey1uj0zozwlylqp1ftfvw46dnvvq7rnivd8",
-            "https://demoapp-api.bloomreach.com"
-            );
-        config.AutomaticSessionTracking = true;
-
-        var props = new Dictionary<string, object>()
-            {
-                { "thisIsADefaultStringProperty", "This is a default string value" },
-                { "thisIsADefaultIntProperty", 1},
-                { "thisIsADefaultDoubleProperty", 12.53623}
-            };
-
-        config.DefaultProperties = props;
-        config.AdvancedAuthEnabled = false;
-        config.AllowDefaultCustomerProperties = false;
-        Exponea.ExponeaSDK.Configure(config);
+        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
+        SessionStartButton.IsVisible = !Exponea.ExponeaSDK.IsAutomaticSessionTracking();
+        SessionEndButton.IsVisible = !Exponea.ExponeaSDK.IsAutomaticSessionTracking();
     }
 
-	private void OnCounterClicked(object sender, EventArgs eventArgs)
-	{
-		_count++;
+    async void ShowConfiguration(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ConfigInfoPage());
+    }
 
-		if (_count == 1)
-			CounterBtn.Text = $"Clicked {_count} time";
-		else
-			CounterBtn.Text = $"Clicked {_count} times";
+    void TrackCustomEvent(object sender, EventArgs e)
+    {
+        Exponea.ExponeaSDK.TrackEvent(new Event("custom_event") { ["thisIsAStringProperty"] = "thisIsAStringValue" });
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    void TrackPayment(object sender, EventArgs e)
+    {
+        Exponea.ExponeaSDK.TrackPaymentEvent(new Payment(12.34, "EUR", "Virtual", "handbag", "Awesome leather handbag"));
+    }
+
+    void SessionStart(object sender, EventArgs e)
+    {
+        Exponea.ExponeaSDK.TrackSessionStart();
+    }
+
+    void SessionEnd(object sender, EventArgs e)
+    {
+        Exponea.ExponeaSDK.TrackSessionEnd();
+    }
+
+    void Anonymize(object sender, EventArgs e)
+    {
+        Exponea.ExponeaSDK.Anonymize();
+        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
+    }
+
+    async void Flush(object sender, EventArgs e)
+    {
+        if (sender == null) throw new ArgumentNullException(nameof(sender));
+        try
+        {
+            await Exponea.ExponeaSDK.FlushData();
+            await DisplayAlert("Flush finished", "Flush finished", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Flush failed", ex.Message, "OK");
+        }
+    }
+
+    async void IdentifyCustomer(object sender, EventArgs e)
+    {
+        var registered = await DisplayPromptAsync("Identify customer", "Registered");
+        var propertyName = await DisplayPromptAsync("Identify customer", "Property name");
+        var propertyValue = await DisplayPromptAsync("Identify customer", "Property value");
+        // Preparing the data.
+        if (string.IsNullOrEmpty(registered) || string.IsNullOrEmpty(propertyName) ||
+            string.IsNullOrEmpty(propertyValue))
+        {
+            await DisplayAlert("Error", "One or more fields were left empty, skipping identifying the customer.", "OK");
+            return;
+        }
+
+        var customer = new Customer(registered)
+            .WithProperty(propertyName, propertyValue);
+        Exponea.ExponeaSDK.IdentifyCustomer(customer);
+    }
+
+    async void Switch_Project_ClickedAsync(object sender, EventArgs e)
+    {
+        var projectToken = await DisplayPromptAsync("Switch project", "Project token");
+        var authorization = await DisplayPromptAsync("Switch project", "Authorization");
+        var baseUrl = await DisplayPromptAsync("Switch project", "Base URL");
+
+        if (string.IsNullOrEmpty(projectToken) || string.IsNullOrEmpty(authorization) || string.IsNullOrEmpty(baseUrl))
+        {
+            await DisplayAlert("Error", "One or more fields were left empty, skipping switching the project.", "OK");
+            return;
+        }
+
+        Exponea.ExponeaSDK.Anonymize(new Project(projectToken, authorization, baseUrl));
+        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
+        Preferences.Set("projectToken", projectToken);
+        Preferences.Set("authorization", authorization);
+        Preferences.Set("baseURL", baseUrl);
+    }
 }
-
-

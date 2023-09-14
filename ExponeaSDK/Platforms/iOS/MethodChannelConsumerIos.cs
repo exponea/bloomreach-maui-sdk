@@ -4,11 +4,11 @@ namespace Exponea.Platforms.iOS
 {
     internal class MethodChannelConsumerIos : IMethodChannelConsumerPlatformSpecific
     {
-        private static readonly ExponeaSDK NativeSdk = ExponeaSDK.Instance;
+        private static readonly ExponeaSdkNativeiOS.ExponeaSDK NativeSdk = ExponeaSdkNativeiOS.ExponeaSDK.Instance;
 
         MethodMauiResult IMethodChannelConsumerPlatformSpecific.InvokeMethod(string method, string? data)
         {
-            var nativeResult = NativeSdk.Channel.InvokeMethodWithMethod(method, data);
+            var nativeResult = NativeSdk.InvokeMethodWithMethod(method, data);
             var mauiResult = new MethodMauiResult(
                 nativeResult.Success,
                 nativeResult.Data,
@@ -21,17 +21,25 @@ namespace Exponea.Platforms.iOS
         {
             try
             {
-                /*
-                NativeSdk.Channel.InvokeMethodAsync(method, data, delegate (ExponeaSdkNativeiOS.MethodResult nativeResult)
+                NativeSdk.InvokeMethodAsyncWithMethod(method, data, delegate (ExponeaSdkNativeiOS.MethodResult nativeResult)
                 {
-                    var mauiResult = new MethodMauiResult(
-                        nativeResult.Success,
-                        nativeResult.Data,
-                        nativeResult.Error
-                    );
-                    action.Invoke(mauiResult, null);
+                    try
+                    {
+                        var mauiResult = new MethodMauiResult(
+                            nativeResult.Success,
+                            nativeResult.Data,
+                            nativeResult.Error
+                        );
+                        action.Invoke(mauiResult, null);
+                    }
+                    catch (Exception e)
+                    {
+                        action.Invoke(
+                            new MethodMauiResult(false, "", $"Native {method} failed, see logs"),
+                            e
+                        );
+                    }
                 });
-                */
             }
             catch (Exception e)
             {
@@ -44,7 +52,7 @@ namespace Exponea.Platforms.iOS
 
         MethodMauiResultForView IMethodChannelConsumerPlatformSpecific.InvokeUiMethod(string method, string? data)
         {
-            var nativeResult = NativeSdk.Channel.InvokeMethodWithMethod(method, data);
+            var nativeResult = NativeSdk.InvokeMethodForUIWithMethod(method, data);
             var mauiResult = new MethodMauiResultForView(
                 nativeResult.Success,
                 null,

@@ -37,7 +37,7 @@ public class MauiAuthorizationProvider : NSObject, AuthorizationProviderType {
 public class ExponeaSDK: NSObject, ExponeaInvokable {
     
     @objc
-    public static let instance = ExponeaSDK()
+    public static var instance = ExponeaSDK()
 
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {

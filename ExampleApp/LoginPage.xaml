@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:exp="clr-namespace:Exponea;assembly=ExponeaSdk"
+             x:Class="ExampleApp.LoginPage"
+             Title="LoginPage">
+    <StackLayout>
+        <Frame BackgroundColor="#fed500" Padding="24" CornerRadius="0" Margin="0, 0, 0, 24">
+            <Label Text="Exponea Example APP" HorizontalTextAlignment="Center" TextColor="#1d1731" FontSize="24" />
+        </Frame>
+
+        <Entry x:Name="ProjectToken" Placeholder="Project token" Margin="12, 0"></Entry>
+        <Entry x:Name="Authorization" Placeholder="Authorization" Margin="12, 0"></Entry>
+        <Entry x:Name="Url" Placeholder="Base URL" Margin="12, 0"></Entry>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="Auto session tracking" VerticalOptions="Center"></Label>
+            <Switch x:Name="AutomaticSessionTracking" IsToggled="true" VerticalOptions="Center" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="12, 0">
+            <Label Text="Flush mode" VerticalOptions="Center"></Label>
+            <Picker x:Name="FlushMode" VerticalOptions="Center" SelectedIndexChanged="flushMode_SelectedIndexChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type exp:FlushMode}">
+                        <exp:FlushMode>Immediate</exp:FlushMode>
+                        <exp:FlushMode>Period</exp:FlushMode>
+                        <exp:FlushMode>Manual</exp:FlushMode>
+                        <exp:FlushMode>AppClose</exp:FlushMode>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry x:Name="Period" Placeholder="Period in minutes" />
+        </StackLayout>
+        <Button Text="Configure" Clicked="Configure_Clicked" Margin="12, 0"/>
+    </StackLayout>
+</ContentPage>

@@ -30,6 +30,7 @@ import isConfigured
 import setAutomaticSessionTracking
 import setCheckPushSetup
 import setDefaultProperties
+import setFlushMode
 import setFlushPeriod
 import setLogLevel
 import setSessionTimeout
@@ -54,6 +55,7 @@ class ExponeaSDK(
             "GetDefaultProperties" -> this.getDefaultProperties()
             "SetDefaultProperties" -> this.setDefaultProperties(parseAsMap(params))
             "GetFlushMode" -> this.getFlushMode()
+            "SetFlushMode" -> this.setFlushMode(params!!)
             "GetFlushPeriod" -> this.getFlushPeriod()
             "SetFlushPeriod" -> this.setFlushPeriod(parseLong(params))
             "IdentifyCustomer" -> this.identifyCustomer(parseAsMap(params))

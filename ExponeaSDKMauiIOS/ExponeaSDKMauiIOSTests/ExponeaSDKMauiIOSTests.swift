@@ -73,7 +73,7 @@ class ExponeaSDKMauiIOSTests: QuickSpec {
                 return
             }
         }
- 
+        
         it("setDefaultProperties") {
             let exponea = Exponea.shared
             let configData: [String: Any] = [
@@ -123,17 +123,15 @@ class ExponeaSDKMauiIOSTests: QuickSpec {
                 "tokenTrackFrequency": "daily"
             ]
             let _ = ExponeaSDK.instance.configure(data: configData)
-            let successSet = ExponeaSDK.instance.setAutomaticSessionTracking(value: true, timeout: 10).success
+            let successSet = ExponeaSDK.instance.setAutomaticSessionTracking(value: true).success
             expect(successSet).to(beTrue())
             let isAutomatic = Exponea.shared.configuration?.automaticSessionTracking == true
             expect(isAutomatic).to(beTrue())
         }
         
         it("log level") {
-            let success = ExponeaSDK.instance.setLogLevel(level: 1).success
+            let success = ExponeaSDK.instance.setLogLevel(level: "error").success
             expect(success).to(beTrue())
-//            let value = Exponea.logger.logLevel == .error
-//            expect(value).to(beTrue())
         }
 
         it("timeout") {

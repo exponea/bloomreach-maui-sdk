@@ -5,11 +5,11 @@ target 'ExponeaSDKMauiIOS' do
   # Pods for ExponeaSDKMauiIOS
   pod "ExponeaSDK", "2.17.0"
   pod "ExponeaSDK-Notifications", "2.17.0"
-  pod "Quick"
-  pod "Nimble"
 
   target 'ExponeaSDKMauiIOSTests' do
     # Pods for testing
+    pod "Quick"
+    pod "Nimble"
   end
 
 end

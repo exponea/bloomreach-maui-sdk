@@ -216,6 +216,16 @@ internal fun ExponeaSDK.getFlushMode(): String {
     }
 }
 
+internal fun ExponeaSDK.setFlushMode(source: String) {
+    Exponea.flushMode = when (source) {
+        "app_close" -> FlushMode.APP_CLOSE
+        "period" -> FlushMode.PERIOD
+        "manual" -> FlushMode.MANUAL
+        "immediate" -> FlushMode.IMMEDIATE
+        else -> throw ExponeaDataException.invalidValue("flushMode", source)
+    }
+}
+
 internal fun ExponeaSDK.getFlushPeriod(): Long {
     return Exponea.flushPeriod.timeUnit.toMillis(Exponea.flushPeriod.amount)
 }

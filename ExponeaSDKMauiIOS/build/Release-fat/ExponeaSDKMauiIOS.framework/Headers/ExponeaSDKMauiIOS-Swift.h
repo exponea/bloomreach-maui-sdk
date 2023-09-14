@@ -270,8 +270,9 @@ SWIFT_CLASS_NAMED("ExponeaMauiVersion")
 
 SWIFT_CLASS_NAMED("ExponeaSDK")
 @interface ExponeaSDK : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) ExponeaSDK * _Nonnull instance;)
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, strong) ExponeaSDK * _Nonnull instance;)
 + (ExponeaSDK * _Nonnull)instance SWIFT_WARN_UNUSED_RESULT;
++ (void)setInstance:(ExponeaSDK * _Nonnull)value;
 - (MethodResult * _Nonnull)invokeMethodWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params SWIFT_WARN_UNUSED_RESULT;
 - (void)invokeMethodAsyncWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params done:(void (^ _Nonnull)(MethodResult * _Nonnull))done;
 - (MethodResultForUI * _Nonnull)invokeMethodForUIWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params SWIFT_WARN_UNUSED_RESULT;

@@ -15,7 +15,7 @@ struct Customer {
     
     init(data: [String: Any]) {
         customerIds = data["customerIds"] as? [String: String]
-        properties = data["properties"] as? [String: JSONConvertible] ?? [:]
+        properties = JsonDataParser.parse(dictionary: data["properties"] as? [String: Any] ?? [:])
         timestamp = data["timestamp"] as? Double
     }
 }

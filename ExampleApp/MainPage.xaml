@@ -1,43 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExampleApp.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <StackLayout>
+        <Frame BackgroundColor="#fed500" Padding="24" CornerRadius="0" HeightRequest="30">
+            <Label Text="Exponea Example APP" HorizontalTextAlignment="Center" TextColor="#1d1731" FontSize="24" />
+        </Frame>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                x:Name="Greetings"
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
-
+        <Label x:Name="CustomerCookie" Text="Customer cookie:" Margin="20,0,0,0" />
+        <ScrollView Margin="0,0,0,12">
+            <StackLayout Spacing="10" Margin="10,0,10,0">
+                <Button BackgroundColor="#fed500" Text="Show Configuration" Clicked="ShowConfiguration" />
+                <Button BackgroundColor="#fed500" Text="Track custom event" Clicked="TrackCustomEvent" />
+                <Button BackgroundColor="#fed500" Text="Track payment" Clicked="TrackPayment" />
+                <Button BackgroundColor="#fed500" x:Name="SessionStartButton" Text="Track session start"
+                        Clicked="SessionStart" />
+                <Button BackgroundColor="#fed500" x:Name="SessionEndButton" Text="Track session end"
+                        Clicked="SessionEnd" />
+                <Button BackgroundColor="#fed500" Text="Anonymize" Clicked="Anonymize" />
+                <Button BackgroundColor="#fed500" Text="Flush" Clicked="Flush" />
+                <Button Text="Identify Customer" Clicked="IdentifyCustomer" />
+            </StackLayout>
+        </ScrollView>
+        <Button Text="Switch Project" BackgroundColor="#fed500" Clicked="Switch_Project_ClickedAsync" Margin="12, 0"/>
+    </StackLayout>
 </ContentPage>
-

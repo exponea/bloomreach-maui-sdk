@@ -479,6 +479,54 @@ class BaseApiTests {
     }
 
     @Test
+    fun SetFlushMode_Immediate() {
+        val propsSlot = slot<FlushMode>()
+        every {
+            Exponea.flushMode = capture(propsSlot)
+        } just Runs
+        val result = instance.invokeMethod("SetFlushMode", readTestFile("SetFlushMode_Immediate"))
+        assertTrue(result.success)
+        assertTrue(propsSlot.isCaptured)
+        assertEquals(propsSlot.captured, FlushMode.IMMEDIATE)
+    }
+
+    @Test
+    fun SetFlushMode_Manual() {
+        val propsSlot = slot<FlushMode>()
+        every {
+            Exponea.flushMode = capture(propsSlot)
+        } just Runs
+        val result = instance.invokeMethod("SetFlushMode", readTestFile("SetFlushMode_Manual"))
+        assertTrue(result.success)
+        assertTrue(propsSlot.isCaptured)
+        assertEquals(propsSlot.captured, FlushMode.MANUAL)
+    }
+
+    @Test
+    fun SetFlushMode_Period() {
+        val propsSlot = slot<FlushMode>()
+        every {
+            Exponea.flushMode = capture(propsSlot)
+        } just Runs
+        val result = instance.invokeMethod("SetFlushMode", readTestFile("SetFlushMode_Period"))
+        assertTrue(result.success)
+        assertTrue(propsSlot.isCaptured)
+        assertEquals(propsSlot.captured, FlushMode.PERIOD)
+    }
+
+    @Test
+    fun SetFlushMode_AppClose() {
+        val propsSlot = slot<FlushMode>()
+        every {
+            Exponea.flushMode = capture(propsSlot)
+        } just Runs
+        val result = instance.invokeMethod("SetFlushMode", readTestFile("SetFlushMode_AppClose"))
+        assertTrue(result.success)
+        assertTrue(propsSlot.isCaptured)
+        assertEquals(propsSlot.captured, FlushMode.APP_CLOSE)
+    }
+
+    @Test
     fun GetFlushPeriod_Zero() {
         every { Exponea.flushPeriod } returns FlushPeriod(0, TimeUnit.SECONDS)
         val result = instance.invokeMethod("GetFlushPeriod", null)

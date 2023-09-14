@@ -24,6 +24,8 @@
 		550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917162A8A57FA00ACED6C /* ExponeaSDK.swift */; };
 		550917192A8A589600ACED6C /* MethodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550917182A8A589600ACED6C /* MethodResult.swift */; };
 		5519E4062AAF524F00D4FFD5 /* Jsons in Resources */ = {isa = PBXBuildFile; fileRef = 5519E4052AAF524F00D4FFD5 /* Jsons */; };
+		55C464A02AB1ED0200BB9CBF /* JsonDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4649F2AB1ED0200BB9CBF /* JsonDataParser.swift */; };
+		55C464A22AB1EDD800BB9CBF /* ExponeaDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C464A12AB1EDD800BB9CBF /* ExponeaDataError.swift */; };
 		7961C72AB3D0D63F87012F88 /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3C2D9CD77DC4CCE18E672E /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */; };
 		7F417ECFF422ACA87385C7C5 /* ExponeaSDKMauiIOS.h in Resources */ = {isa = PBXBuildFile; fileRef = 7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */; };
 		EFD3CEE4313281E03C9B9200 /* Pods_ExponeaSDKMauiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 721DA621285C11ADD4408864 /* Pods_ExponeaSDKMauiIOS.framework */; };
@@ -60,6 +62,8 @@
 		550917162A8A57FA00ACED6C /* ExponeaSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaSDK.swift; sourceTree = "<group>"; };
 		550917182A8A589600ACED6C /* MethodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodResult.swift; sourceTree = "<group>"; };
 		5519E4052AAF524F00D4FFD5 /* Jsons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Jsons; path = ../../ExponeaTests/Jsons; sourceTree = "<group>"; };
+		55C4649F2AB1ED0200BB9CBF /* JsonDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDataParser.swift; sourceTree = "<group>"; };
+		55C464A12AB1EDD800BB9CBF /* ExponeaDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponeaDataError.swift; sourceTree = "<group>"; };
 		66487FCBD27261B30D576F03 /* Pods-ExponeaSDKMauiIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExponeaSDKMauiIOS.debug.xcconfig"; path = "Target Support Files/Pods-ExponeaSDKMauiIOS/Pods-ExponeaSDKMauiIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		721DA621285C11ADD4408864 /* Pods_ExponeaSDKMauiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExponeaSDKMauiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F417238AABE205EE8AF36A0 /* ExponeaSDKMauiIOS.h */ = {isa = PBXFileReference; lastKnownFileType = file.h; path = ExponeaSDKMauiIOS.h; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		313DA6E12A9C9C1B00B49508 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				55C4649E2AB1ECF500BB9CBF /* Utils */,
 				313DA6E82A9C9C5B00B49508 /* Protocol */,
 				313DA6E52A9C9C4600B49508 /* Model */,
 				313DA6E22A9C9C1E00B49508 /* Extensions */,
@@ -158,6 +163,15 @@
 				1F3C2D9CD77DC4CCE18E672E /* Pods_ExponeaSDKMauiIOS_ExponeaSDKMauiIOSTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55C4649E2AB1ECF500BB9CBF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				55C4649F2AB1ED0200BB9CBF /* JsonDataParser.swift */,
+				55C464A12AB1EDD800BB9CBF /* ExponeaDataError.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		7F41740311FAA8BC52F1841C /* ExponeaSDKMauiIOS */ = {
@@ -219,8 +233,6 @@
 				315601B12A9F315900CD8F22 /* PBXTargetDependency */,
 			);
 			name = ExponeaSDKMauiIOSTests;
-			packageProductDependencies = (
-			);
 			productName = ExponeaSDKMauiIOSTests;
 			productReference = 315601AC2A9F315900CD8F22 /* ExponeaSDKMauiIOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -240,8 +252,6 @@
 			dependencies = (
 			);
 			name = ExponeaSDKMauiIOS;
-			packageProductDependencies = (
-			);
 			productName = ExponeaSDKMauiIOS;
 			productType = "com.apple.product-type.framework";
 		};
@@ -272,8 +282,6 @@
 				en,
 			);
 			mainGroup = 7F417479199F939F660629AF;
-			packageReferences = (
-			);
 			productRefGroup = 7F417D112C3A4C0D5DC2DBCD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -313,17 +321,17 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests/Pods-ExponeaSDKMauiIOS-ExponeaSDKMauiIOSTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ExponeaSDK/ExponeaSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/ExponeaSDK-Notifications/ExponeaSDK_Notifications.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExponeaSDK_Notifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -389,7 +397,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C464A02AB1ED0200BB9CBF /* JsonDataParser.swift in Sources */,
 				312E76D62AA35C0F00ECC118 /* Recommendation.swift in Sources */,
+				55C464A22AB1EDD800BB9CBF /* ExponeaDataError.swift in Sources */,
 				313DA6EC2A9CA5FD00B49508 /* String.swift in Sources */,
 				313DA6F42A9CC86A00B49508 /* Customer.swift in Sources */,
 				550917172A8A57FA00ACED6C /* ExponeaSDK.swift in Sources */,
