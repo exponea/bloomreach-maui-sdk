@@ -8,7 +8,7 @@ Anonymize will delete all stored information and reset the current customer. The
 #### 💻 Usage
 
 ``` csharp
- ExponeaSDK.Anonymize();
+ BloomreachSDK.Anonymize();
 ```
 
 ### Project settings switch
@@ -17,7 +17,7 @@ SDK also allows you to switch to a different project, keeping the benefits descr
 #### 💻 Usage
 
 ``` csharp
- ExponeaSDK.Anonymize(
+ BloomreachSDK.Anonymize(
     new Project(
         "project-token",
         "your-auth-token",

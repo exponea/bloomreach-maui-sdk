@@ -1,4 +1,4 @@
-﻿using Exponea;
+﻿using Bloomreach;
 using Color = System.Drawing.Color;
 
 namespace ExampleApp;
@@ -14,7 +14,7 @@ public partial class LoginPage : ContentPage
         Url.Text = Preferences.Get("baseURL", "https://demoapp-api.bloomreach.com");
         FlushMode.SelectedIndex = 0;
 
-        if (Exponea.ExponeaSDK.IsConfigured())
+        if (Bloomreach.BloomreachSDK.IsConfigured())
         {
             GoToNextPage();
         }
@@ -39,23 +39,23 @@ public partial class LoginPage : ContentPage
             AdvancedAuthEnabled = false
         };
 
-        Exponea.ExponeaSDK.Configure(config);
+        Bloomreach.BloomreachSDK.Configure(config);
         var flushModeSelected = (FlushMode)FlushMode.SelectedItem;
-        Exponea.ExponeaSDK.SetFlushMode(flushModeSelected);
-        Exponea.ExponeaSDK.SetLogLevel(LogLevel.Verbose);
-        if (flushModeSelected == Exponea.FlushMode.Period && Period.Text.Trim() != "")
+        Bloomreach.BloomreachSDK.SetFlushMode(flushModeSelected);
+        Bloomreach.BloomreachSDK.SetLogLevel(LogLevel.Verbose);
+        if (flushModeSelected == Bloomreach.FlushMode.Period && Period.Text.Trim() != "")
         {
             var isParsable = int.TryParse(Period.Text, out var minutes);
             if (isParsable)
             {
-                Exponea.ExponeaSDK.SetFlushPeriod(new TimeSpan(0, minutes: minutes, 0));
+                Bloomreach.BloomreachSDK.SetFlushPeriod(new TimeSpan(0, minutes: minutes, 0));
             }
             else
             {
                 Console.WriteLine("Period could not be parsed.");
             }
         }
-        Exponea.ExponeaSDK.SetDefaultProperties(new Dictionary<string, object>
+        Bloomreach.BloomreachSDK.SetDefaultProperties(new Dictionary<string, object>
         {
             { "thisIsADefaultStringProperty", "This is a default string value" },
             { "thisIsADefaultIntProperty", 1 },
@@ -69,7 +69,7 @@ public partial class LoginPage : ContentPage
 
     void flushMode_SelectedIndexChanged(Object sender, EventArgs e)
     {
-        Period.IsVisible = (FlushMode)FlushMode.SelectedItem == Exponea.FlushMode.Period;
+        Period.IsVisible = (FlushMode)FlushMode.SelectedItem == Bloomreach.FlushMode.Period;
     }
 
     private async void GoToNextPage()

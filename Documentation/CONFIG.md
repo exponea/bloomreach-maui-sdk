@@ -3,21 +3,21 @@
 
 ## 🔍 Configuration
 
-Before using most of the SDK functionality, you'll need to configure Exponea to connect it to the backend application. Configuration consists of these properties:
+Before using most of the SDK functionality, you'll need to configure Bloomreach to connect it to the backend application. Configuration consists of these properties:
 
 #### ProjectToken
 
-* Is your project token which can be found in the Exponea APP ```Project``` -> ```Overview```
+* Is your project token which can be found in the Bloomreach APP ```Project``` -> ```Overview```
 * If you need to switch project settings during runtime of the application, you can use [Anonymize feature](./ANONYMIZE.md)
 
 #### Authorization
 
-* Exponea **public** key.
+* Bloomreach **public** key.
 * For more information, please see [Exponea API documentation](https://docs.exponea.com/reference#access-keys)
 
 #### BaseURL
 
-* Base URL of your Exponea deployment.
+* Base URL of your Bloomreach deployment.
 * Default value `https://api.exponea.com`
 
 #### ProjectRouteMap
@@ -28,7 +28,7 @@ For detailed information, please go to [Project Mapping documentation](./PROJECT
 
 #### MaxTries
 
-* Maximum number of retries to flush data to Exponea API.
+* Maximum number of retries to flush data to Bloomreach API.
 * SDK will consider the value flushed if this number is exceeded and delete it from the queue.
 
 #### SessionTimeout
@@ -39,7 +39,7 @@ When the application is closed, the SDK doesn't track the end of the session rig
 
 * Flag to control the automatic tracking of user sessions.
 * When set to true, the SDK will
-automatically send `session_start` and `session_end` events to Exponea API
+automatically send `session_start` and `session_end` events to Bloomreach API
 * You can opt out by setting this flag to false and implement your own session tracking.
 
 #### DefaultProperties
@@ -107,5 +107,5 @@ config.DefaultProperties = new Dictionary<string, object>()
 
             };
 config.AutomaticPushNotification = false;
-ExponeaSDK.Configure(config);
+BloomreachSDK.Configure(config);
 ```

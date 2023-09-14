@@ -1,6 +1,6 @@
 
-# MAUI Exponea SDK
-MAUI Exponea SDK allows your application to interact with the [Exponea](https://exponea.com/) Customer Data & Experience Platform. Exponea empowers B2C marketers to raise conversion rates, improve acquisition ROI, and maximize customer lifetime value.
+# MAUI Bloomreach SDK
+MAUI Bloomreach SDK allows your application to interact with the [Bloomreach](https://bloomreach.com/) Customer Data & Experience Platform. Bloomreach empowers B2C marketers to raise conversion rates, improve acquisition ROI, and maximize customer lifetime value.
 
 
 SDK is created as .net wrapper for binding libraries of [native Android SDK](https://github.com/exponea/exponea-android-sdk) and [native iOS SDK](https://github.com/exponea/exponea-ios-sdk).
@@ -8,14 +8,14 @@ SDK is created as .net wrapper for binding libraries of [native Android SDK](htt
 
 ## Getting started
 
- - Add ExponeaSDK NuGet as a dependency
- - Just use ExponeaSDK methods by calling 
+ - Add BloomreachSDK NuGet as a dependency
+ - Just use BloomreachSDK methods by calling 
 
  ```csharp
-   Exponea.ExponeaSDK.Configure(yourConfig);
+   Bloomreach.BloomreachSDK.Configure(yourConfig);
  ```
 
-Exponea SDK for multi-platform App UI (.NET MAUI) supports the following platforms:
+Bloomreach SDK for multi-platform App UI (.NET MAUI) supports the following platforms:
   * Android 5.0 (API 21) or higher
   * iOS 11 or higher
 

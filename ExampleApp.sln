@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp", "ExampleApp\ExampleApp.csproj", "{1027BEF8-7394-4A23-939A-5B6BBFF2914E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExponeaSDK", "ExponeaSDK\ExponeaSDK.csproj", "{69932396-8C47-403B-8D8C-12AB28D43EBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloomreachSDK", "BloomreachSDK\BloomreachSDK.csproj", "{69932396-8C47-403B-8D8C-12AB28D43EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExponeaTests", "ExponeaTests\ExponeaTests.csproj", "{EC0F5FE8-D818-4605-9F46-E025D1A04EF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloomreachTests", "BloomreachTests\BloomreachTests.csproj", "{EC0F5FE8-D818-4605-9F46-E025D1A04EF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

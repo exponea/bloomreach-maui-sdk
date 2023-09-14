@@ -1,4 +1,4 @@
-﻿using Exponea;
+﻿using Bloomreach;
 using System.Text.Json;
 
 namespace ExampleApp;
@@ -9,11 +9,11 @@ public partial class ConfigInfoPage : ContentPage
     {
         InitializeComponent();
 
-        AutomaticSessionTracking.Text = Exponea.ExponeaSDK.IsAutomaticSessionTracking() ? "enabled" : "disabled";
-        FlushMode.Text = Exponea.ExponeaSDK.GetFlushMode().ToString();
-        FlushPeriod.Text = Exponea.ExponeaSDK.GetFlushPeriod().ToString();
-        LogLevel.Text = Exponea.ExponeaSDK.GetLogLevel().ToString();
-        DefaultProperties.Text = JsonSerializer.Serialize(Exponea.ExponeaSDK.GetDefaultProperties());
+        AutomaticSessionTracking.Text = Bloomreach.BloomreachSDK.IsAutomaticSessionTracking() ? "enabled" : "disabled";
+        FlushMode.Text = Bloomreach.BloomreachSDK.GetFlushMode().ToString();
+        FlushPeriod.Text = Bloomreach.BloomreachSDK.GetFlushPeriod().ToString();
+        LogLevel.Text = Bloomreach.BloomreachSDK.GetLogLevel().ToString();
+        DefaultProperties.Text = JsonSerializer.Serialize(Bloomreach.BloomreachSDK.GetDefaultProperties());
     }
 
 }

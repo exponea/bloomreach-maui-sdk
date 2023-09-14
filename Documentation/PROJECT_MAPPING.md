@@ -1,6 +1,6 @@
 ## 🌋 Project Mapping
 
-Exponea SDK can track specified event types into multiple projects.
+Bloomreach SDK can track specified event types into multiple projects.
 
 The configuration contains **ProjectRouteMap**, a map of event types and projects into which you'd like to track events. A project is identified by its baseUrl, project token, and authorization token.
 
@@ -37,7 +37,7 @@ config.ProjectRouteMap = new Dictionary<EventType, IList<Project>>() {
 };
 ```
 
-When a push notification is opened, Exponea SDK will track the event three times with the same parameters, just changing the project. That means that you will see the same event in the projects `default-project`, `project-a`, and `project-b`.
+When a push notification is opened, Bloomreach SDK will track the event three times with the same parameters, just changing the project. That means that you will see the same event in the projects `default-project`, `project-a`, and `project-b`.
 
 Project mapping can be used for these specific event types:
 
@@ -62,7 +62,7 @@ Project mapping can be used for these specific event types:
         // Virtual and hard payments can be tracked to better measure conversions, for example.
         Payment,
 
-        // Event used for registering the push notifications token of the device with Exponea.
+        // Event used for registering the push notifications token of the device with Bloomreach.
         PushToken,
 
         // For tracking that push notification has been delivered

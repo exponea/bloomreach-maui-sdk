@@ -1,4 +1,4 @@
-﻿using Exponea;
+﻿using Bloomreach;
 
 namespace ExampleApp;
 
@@ -9,9 +9,9 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
 
-        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
-        SessionStartButton.IsVisible = !Exponea.ExponeaSDK.IsAutomaticSessionTracking();
-        SessionEndButton.IsVisible = !Exponea.ExponeaSDK.IsAutomaticSessionTracking();
+        CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
+        SessionStartButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
+        SessionEndButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
     }
 
     async void ShowConfiguration(object sender, EventArgs e)
@@ -21,28 +21,28 @@ public partial class MainPage : ContentPage
 
     void TrackCustomEvent(object sender, EventArgs e)
     {
-        Exponea.ExponeaSDK.TrackEvent(new Event("custom_event") { ["thisIsAStringProperty"] = "thisIsAStringValue" });
+        Bloomreach.BloomreachSDK.TrackEvent(new Event("custom_event") { ["thisIsAStringProperty"] = "thisIsAStringValue" });
     }
 
     void TrackPayment(object sender, EventArgs e)
     {
-        Exponea.ExponeaSDK.TrackPaymentEvent(new Payment(12.34, "EUR", "Virtual", "handbag", "Awesome leather handbag"));
+        Bloomreach.BloomreachSDK.TrackPaymentEvent(new Payment(12.34, "EUR", "Virtual", "handbag", "Awesome leather handbag"));
     }
 
     void SessionStart(object sender, EventArgs e)
     {
-        Exponea.ExponeaSDK.TrackSessionStart();
+        Bloomreach.BloomreachSDK.TrackSessionStart();
     }
 
     void SessionEnd(object sender, EventArgs e)
     {
-        Exponea.ExponeaSDK.TrackSessionEnd();
+        Bloomreach.BloomreachSDK.TrackSessionEnd();
     }
 
     void Anonymize(object sender, EventArgs e)
     {
-        Exponea.ExponeaSDK.Anonymize();
-        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
+        Bloomreach.BloomreachSDK.Anonymize();
+        CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
     }
 
     async void Flush(object sender, EventArgs e)
@@ -50,7 +50,7 @@ public partial class MainPage : ContentPage
         if (sender == null) throw new ArgumentNullException(nameof(sender));
         try
         {
-            await Exponea.ExponeaSDK.FlushData();
+            await Bloomreach.BloomreachSDK.FlushData();
             await DisplayAlert("Flush finished", "Flush finished", "OK");
         }
         catch (Exception ex)
@@ -74,7 +74,7 @@ public partial class MainPage : ContentPage
 
         var customer = new Customer(registered)
             .WithProperty(propertyName, propertyValue);
-        Exponea.ExponeaSDK.IdentifyCustomer(customer);
+        Bloomreach.BloomreachSDK.IdentifyCustomer(customer);
     }
 
     async void Switch_Project_ClickedAsync(object sender, EventArgs e)
@@ -89,8 +89,8 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        Exponea.ExponeaSDK.Anonymize(new Project(projectToken, authorization, baseUrl));
-        CustomerCookie.Text = "Customer cookie: \n" + Exponea.ExponeaSDK.GetCustomerCookie();
+        Bloomreach.BloomreachSDK.Anonymize(new Project(projectToken, authorization, baseUrl));
+        CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
         Preferences.Set("projectToken", projectToken);
         Preferences.Set("authorization", authorization);
         Preferences.Set("baseURL", baseUrl);

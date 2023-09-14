@@ -1,6 +1,6 @@
 ## 🔍 Payments
 
-Exponea SDK has a convenience method `Track` to help you track information about a payment for product/service within the application.
+Bloomreach SDK has a convenience method `Track` to help you track information about a payment for product/service within the application.
 ```
 void Track(Payment);
 ```
@@ -8,7 +8,7 @@ To support multiple platforms and use-cases, SDK defines Map of values that cont
 #### 💻 Usage
 
 ```csharp
-ExponeaSDK.Track(new Payment(
+BloomreachSDK.Track(new Payment(
     12.34,
     "EUR",
     "CardHolder",

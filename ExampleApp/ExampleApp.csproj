@@ -11,7 +11,7 @@
 		<ApplicationTitle>ExampleApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.exponea.maui.exampleapp</ApplicationId>
+		<ApplicationId>com.bloomreach.maui.exampleapp</ApplicationId>
 		<ApplicationIdGuid>baebc4b6-bfb4-4528-b749-7773328c9bfd</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -77,7 +77,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ExponeaSDK\ExponeaSDK.csproj" />
+	  <ProjectReference Include="..\BloomreachSDK\BloomreachSDK.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Platforms\Android\MainApplication.cs">
