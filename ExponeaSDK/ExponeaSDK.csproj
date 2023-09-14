@@ -1,6 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<PackageId>ExponeaSDK</PackageId>
+		<PackageVersion>0.0.1</PackageVersion>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<Authors>Bloomreach</Authors>
+		<Title>BloomreachSDK</Title>
+		<Description>Bloomreach SDK allows your application to interact with the Bloomreach Customer Data &amp; Experience Platform. Bloomreach empowers B2C marketers to raise conversion rates, improve acquisition ROI, and maximize customer lifetime value.</Description>
+		<Copyright>Copyright (C) 2023 Bloomreach</Copyright>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/exponea/bloomreach-maui-sdk</PackageProjectUrl>
+		<PackageIcon>bloomreach_128_128.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/exponea/bloomreach-maui-sdk</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>maui .net tracking analytics sdk bloomreach</PackageTags>
+	</PropertyGroup>
+	
+	<PropertyGroup>
 		<TargetFrameworks>net6.0;net6.0-android;net7.0-ios</TargetFrameworks>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
@@ -122,6 +140,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<InternalsVisibleTo Include="ExponeaTests" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Documentation\Images\bloomreach_128_128.png" Pack="true" PackagePath="bloomreach_128_128.png" Visible="false"/>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
