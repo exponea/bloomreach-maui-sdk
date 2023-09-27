@@ -9,6 +9,7 @@ import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseDouble
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseLong
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.serializeData
 import com.bloomreach.sdk.maui.android.util.returnOnException
+import com.exponea.sdk.Exponea
 import com.exponea.sdk.util.logOnException
 import configure
 import flushData
@@ -71,6 +72,7 @@ class BloomreachSdkAndroid(
             "TrackEvent" -> this.trackEvent(parseAsMap(params))
             "TrackSessionEnd" -> this.trackSessionEnd()
             "TrackSessionStart" -> this.trackSessionStart()
+            "HandleRemoteMessage" -> this.handleRemoteMessage(context, parseAsMap(params))
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }

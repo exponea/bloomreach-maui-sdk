@@ -1,4 +1,9 @@
-﻿using Bloomreach.Utils;
+﻿using System.Runtime.Versioning;
+using Bloomreach.Utils;
+
+#if IOS
+using UserNotifications;
+#endif
 
 namespace Bloomreach
 {
@@ -33,7 +38,7 @@ namespace Bloomreach
         public static bool GetCheckPushSetup()
         {
             string? result = Instance.Channel.InvokeMethod("GetCheckPushSetup", null);
-            return result?.ToLower()?.Equals("true") ?? false;
+            return ConverterUtils.ToBool(result);
         }
 
         public static void Configure(Configuration config)
@@ -77,7 +82,7 @@ namespace Bloomreach
             {
                 Instance.Channel.InvokeMethodAsync("FlushData", null, (result, exception) =>
                 {
-                    ApplyResultToTask(flush, result?.ToLower()?.Equals("true") ?? false, exception);
+                    ApplyResultToTask(flush, ConverterUtils.ToBool(result), exception);
                 });
             }
             catch (Exception e)
@@ -170,7 +175,7 @@ namespace Bloomreach
         public static bool IsAutomaticSessionTracking()
         {
             string? result = Instance.Channel.InvokeMethod("IsAutomaticSessionTracking", null);
-            return result?.ToLower()?.Equals("true") ?? false;
+            return ConverterUtils.ToBool(result);
         }
 
         public static void SetAutomaticSessionTracking(bool enabled)
@@ -181,13 +186,13 @@ namespace Bloomreach
         public static bool IsAutoPushNotification()
         {
             string? result = Instance.Channel.InvokeMethod("IsAutoPushNotification", null);
-            return result?.ToLower()?.Equals("true") ?? false;
+            return ConverterUtils.ToBool(result);
         }
 
         public static bool IsConfigured()
         {
             string? result = Instance.Channel.InvokeMethod("IsConfigured", null);
-            return result?.ToLower()?.Equals("true") ?? false;
+            return ConverterUtils.ToBool(result);
         }
 
         public static LogLevel GetLogLevel()
@@ -317,16 +322,198 @@ namespace Bloomreach
             Instance.Channel.InvokeMethod("TrackSessionStart", null);
         }
 
+        [SupportedOSPlatform("android")]
+        public static bool HandleRemoteMessage(NotificationPayload payload)
+        {
+            var serializedPayload = ConverterUtils.SerializeInput(payload);
+            if (serializedPayload == null)
+            {
+                return false;
+            }
+            string? result = Instance.Channel.HandleRemoteMessage(serializedPayload);
+            return ConverterUtils.ToBool(result);
+        }
+
+#if IOS
+        [SupportedOSPlatform("ios")]
+        public static bool HandleRemoteMessage(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
+        {
+            string? result = Instance.Channel.HandleRemoteMessage(request, contentHandler);
+            return ConverterUtils.ToBool(result);
+        }
+
+        [SupportedOSPlatform("ios")]
+        public static void HandleRemoteMessageTimeWillExpire()
+        {
+            Instance.Channel.InvokeMethod("HandleRemoteMessageTimeWillExpire", null);
+        }
+#endif
+
+        public static void HandlePushNotificationOpened(NotificationAction action)
+        {
+            Instance.Channel.InvokeMethod("HandlePushNotificationOpened", ConverterUtils.SerializeInput(action));
+        }
+
+        public static void HandlePushNotificationOpenedWithoutTrackingConsent(NotificationAction action)
+        {
+            Instance.Channel.InvokeMethod("HandlePushNotificationOpenedWithoutTrackingConsent", ConverterUtils.SerializeInput(action));
+        }
+
+        public static void HandleCampaignClick(Uri url)
+        {
+            Instance.Channel.InvokeMethod("HandleCampaignClick", url.ToString());
+        }
+
+        public static void HandleHmsPushToken(string pushToken)
+        {
+            Instance.Channel.InvokeMethod("HandleHmsPushToken", pushToken);
+        }
+
+        public static void HandlePushToken(string pushToken)
+        {
+            Instance.Channel.InvokeMethod("HandlePushToken", pushToken);
+        }
+
+        public static bool IsExponeaNotification(NotificationPayload notificationPayload)
+        {
+            var result = Instance.Channel.InvokeMethod(
+                "IsExponeaNotification",
+                ConverterUtils.SerializeInput(notificationPayload.RawData)
+            );
+            return ConverterUtils.ToBool(result);
+        }
+
+        public static void TrackClickedPush(NotificationAction action)
+        {
+            Instance.Channel.InvokeMethod("TrackClickedPush", ConverterUtils.SerializeInput(action));
+        }
+
+        public static void TrackClickedPushWithoutTrackingConsent(NotificationAction action)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackClickedPushWithoutTrackingConsent",
+                ConverterUtils.SerializeInput(action)
+            );
+        }
+
+        public static void TrackPushToken(string pushToken)
+        {
+            Instance.Channel.InvokeMethod("TrackPushToken", pushToken);
+        }
+
+        public static void TrackDeliveredPush(NotificationPayload payload)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackDeliveredPush",
+                ConverterUtils.SerializeInput(payload.RawData)
+            );
+        }
+
+        public static void TrackDeliveredPushWithoutTrackingConsent(NotificationPayload payload)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackDeliveredPushWithoutTrackingConsent",
+                ConverterUtils.SerializeInput(payload.RawData)
+            );
+        }
+
+        public static void TrackHmsPushToken(string pushToken)
+        {
+            Instance.Channel.InvokeMethod(
+                "TrackHmsPushToken",
+                pushToken
+            );
+        }
+
+        public static void RequestPushAuthorization()
+        {
+            Instance.Channel.InvokeMethod("RequestPushAuthorization", null);
+        }
+
+        public static void SetReceivedPushCallback(Action<NotificationPayload> listener)
+        {
+            Instance.Channel.InvokeMethodAsync("SetReceivedPushCallback", null, (result, exception) =>
+            {
+                if (exception != null)
+                {
+                    ThrowOrLog(exception);
+                    return;
+                }
+                if (result == null)
+                {
+                    Log("ReceivedPushCallback got empty notification data");
+                    return;
+                }
+                try
+                {
+                    var rawPayload = ConverterUtils.DeserializeOutput<Dictionary<string, string>>(result);
+                    if (rawPayload == null)
+                    {
+                        ThrowOrLog(BloomreachException.Common("ReceivedPushCallback got invalid notification data"));
+                        return;
+                    }
+                    var payload = NotificationPayload.Parse(rawPayload);
+                    listener.Invoke(payload);
+                }
+                catch (Exception e)
+                {
+                    ThrowOrLog(e);
+                }
+            });
+        }
+
+        public static void SetOpenedPushCallback(Action<NotificationAction> listener)
+        {
+            Instance.Channel.InvokeMethodAsync("SetOpenedPushCallback", null, (result, exception) =>
+            {
+                if (exception != null)
+                {
+                    ThrowOrLog(exception);
+                    return;
+                }
+                if (result == null)
+                {
+                    Log("SetOpenedPushCallback got empty notification action");
+                    return;
+                }
+                try
+                {
+                    var payload = ConverterUtils.DeserializeOutput<NotificationAction>(result);
+                    if (payload == null)
+                    {
+                        ThrowOrLog(BloomreachException.Common("SetOpenedPushCallback got invalid notification action"));
+                        return;
+                    }
+                    listener.Invoke(payload);
+                }
+                catch (Exception e)
+                {
+                    ThrowOrLog(e);
+                }
+            });
+        }
+
         internal static void ThrowOrLog(Exception exception)
         {
-            // TODO: log
-            Console.WriteLine(exception);
+            Log(exception);
             if (!IsSafeMode())
             {
                 throw exception;
             }
         }
-        
+
+        private static void Log(string message)
+        {
+            // TODO: log
+            Console.WriteLine(message);
+        }
+
+        private static void Log(Exception exception)
+        {
+            // TODO: log
+            Console.WriteLine(exception);
+        }
+
         private static void ApplyResultToTask<T>(TaskCompletionSource<T> task, T resultOrDefault, Exception? exception)
         {
             if (exception == null || IsSafeMode())

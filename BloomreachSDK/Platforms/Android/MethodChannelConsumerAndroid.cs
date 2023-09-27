@@ -1,5 +1,4 @@
 ﻿
-using System.Text.Json;
 using Com.Bloomreach.Sdk.Maui.Android;
 
 namespace Bloomreach.Platforms.Android

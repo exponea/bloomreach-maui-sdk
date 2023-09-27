@@ -52,10 +52,6 @@
 	  <None Remove="Lib\" />
 	  <None Remove="Lib\Models\" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-		<Folder Include="Platforms\iOS\" />
-		<Folder Include="Lib\" />
-	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
 		<Folder Include="Platforms\Android\" />
 	</ItemGroup>
@@ -142,8 +138,8 @@
 		<InternalsVisibleTo Include="BloomreachTests" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\Documentation\Images\bloomreach_128_128.png" Pack="true" PackagePath="bloomreach_128_128.png" Visible="false"/>
-		<None Include="..\README.md" Pack="true" PackagePath="README.md" Visible="false"/>
+		<None Include="..\Documentation\Images\bloomreach_128_128.png" Pack="true" PackagePath="bloomreach_128_128.png" Visible="false" />
+		<None Include="..\README.md" Pack="true" PackagePath="README.md" Visible="false" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

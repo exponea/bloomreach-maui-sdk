@@ -43,6 +43,10 @@ namespace BloomreachSdkNativeiOS
 		// -(MethodResultForUI * _Nonnull)invokeMethodForUIWithMethod:(NSString * _Nullable)method params:(NSString * _Nullable)params __attribute__((warn_unused_result("")));
 		[Export ("invokeMethodForUIWithMethod:params:")]
 		MethodResultForUI InvokeMethodForUIWithMethod ([NullAllowed] string method, [NullAllowed] string @params);
+
+		// -(MethodResult * _Nonnull)handleRemoteMessageWithNotificationRequest:(UNNotificationRequest * _Nonnull)notificationRequest handler:(void (^ _Nonnull)(UNNotificationContent * _Nonnull))handler __attribute__((warn_unused_result("")));
+		[Export ("handleRemoteMessageWithNotificationRequest:handler:")]
+		MethodResult HandleRemoteMessageWithNotificationRequest (UNNotificationRequest notificationRequest, Action<UNNotificationContent> handler);
 	}
 
 	// @interface MauiAuthorizationProvider : NSObject

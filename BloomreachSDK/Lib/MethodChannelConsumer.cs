@@ -1,4 +1,9 @@
 ﻿
+#if IOS
+using Bloomreach.Platforms.iOS;
+using UserNotifications;
+#endif
+
 namespace Bloomreach
 {
     public class MethodMauiResultForView
@@ -62,8 +67,7 @@ namespace Bloomreach
         {
             try
             {
-                var result = _channelInternal?.InvokeMethod(method, data);
-                return result;
+                return _channelInternal?.InvokeMethod(method, data);
             }
             catch (Exception e)
             {
@@ -121,6 +125,33 @@ namespace Bloomreach
                 BloomreachSDK.ThrowOrLog(e);
                 return null;
             }
+        }
+
+        internal virtual string? HandleRemoteMessage(params object[] args)
+        {
+#if ANDROID
+            return InvokeMethod("HandleRemoteMessage", (string?)args[0]);
+#elif IOS
+            try
+            {
+                var result = ((MethodChannelConsumerIos)_channelInternal!).HandleRemoteMessage(
+                    (UNNotificationRequest)args[0],
+                    (Action<UNNotificationContent>)args[1]
+                );
+                if (result?.Success == false)
+                {
+                    BloomreachSDK.ThrowOrLog(new Exception($"Method HandleRemoteMessage return failure status, see logs"));
+                }
+                return result?.Data;
+            }
+            catch (Exception e)
+            {
+                BloomreachSDK.ThrowOrLog(e);
+                return null;
+            }
+#else
+            return null;
+#endif
         }
     }
 

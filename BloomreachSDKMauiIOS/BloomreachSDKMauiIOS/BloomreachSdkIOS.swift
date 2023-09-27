@@ -6,6 +6,7 @@
 //
 
 import ExponeaSDK
+import ExponeaSDK_Notifications
 
 // This protocol is used queried using reflection by native iOS SDK to see if it's run by Maui SDK
 @objc(IsBloomreachMauiSDK)
@@ -73,6 +74,23 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
         } catch let error {
             return MethodResultForUI.failure("Method \(method ?? "nil") failed: \(error)")
         }
+    }
+    
+    @objc
+    public func handleRemoteMessage(
+        notificationRequest: UNNotificationRequest,
+        handler: @escaping (UNNotificationContent) -> Void
+    ) -> MethodResult {
+        guard let appGroup = Exponea.shared.configuration?.appGroup else {
+            return .failure("Notification service not configured properly")
+        }
+        if (!ExponeaSDK.Exponea.isExponeaNotification(userInfo: notificationRequest.content.userInfo)) {
+            return .failure("Notification is non-Bloomreach, skipping")
+        }
+        // TODO: this has to be kept as field
+        let notifService = ExponeaNotificationService(appGroup: appGroup)
+        notifService.process(request: notificationRequest, contentHandler: handler)
+        return .success("true")
     }
 }
 

@@ -42,4 +42,14 @@ public static class ConverterUtils
     {
         return Convert.ToDouble(DateTimeOffset.Now.ToUnixTimeMilliseconds()) / 1000;
     }
+
+    public static IDictionary<string, object> NormalizeDictionary(IDictionary<string,string> source)
+    {
+        return source.ToDictionary<KeyValuePair<string, string>, string, object>(
+            pair => pair.Key,
+            pair => pair.Value
+        );
+    }
+
+    public static bool ToBool(string? result) => result?.ToLower()?.Equals("true") ?? false;
 }

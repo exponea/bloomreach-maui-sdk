@@ -1,5 +1,7 @@
 ﻿
 
+using UserNotifications;
+
 namespace Bloomreach.Platforms.iOS
 {
     internal class MethodChannelConsumerIos : IMethodChannelConsumerPlatformSpecific
@@ -57,6 +59,20 @@ namespace Bloomreach.Platforms.iOS
                 nativeResult.Success,
                 null,
                 // nativeResult.Data,
+                nativeResult.Error
+            );
+            return mauiResult;
+        }
+
+        internal MethodMauiResult HandleRemoteMessage(UNNotificationRequest notificationRequest, Action<UNNotificationContent> handler)
+        {
+            var nativeResult = NativeSdk.HandleRemoteMessageWithNotificationRequest(
+                notificationRequest,
+                handler
+            );
+            var mauiResult = new MethodMauiResult(
+                nativeResult.Success,
+                nativeResult.Data,
                 nativeResult.Error
             );
             return mauiResult;
