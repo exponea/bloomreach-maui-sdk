@@ -25,18 +25,10 @@ namespace Bloomreach.Platforms.iOS
         {
             try
             {
-                if (method == "RequestAuthorization")
-                {
-                    Console.WriteLine("APNS-BR PushRequest requested");
-                }
                 NativeSdk.InvokeMethodAsyncWithMethod(method, data, delegate (BloomreachSdkNativeiOS.MethodResult nativeResult)
                 {
                     try
                     {
-                        if (method == "RequestAuthorization")
-                        {
-                            Console.WriteLine("APNS-BR PushRequest responded " + nativeResult.Success);
-                        }
                         var mauiResult = new MethodMauiResult(
                             nativeResult.Success,
                             nativeResult.Data,

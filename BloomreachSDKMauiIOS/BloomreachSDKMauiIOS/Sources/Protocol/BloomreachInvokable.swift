@@ -59,7 +59,7 @@ public protocol BloomreachInvokable {
     func trackHmsPushToken() -> MethodResult
     func setReceivedPushCallback(completion: TypeBlock<MethodResult>?)
     func setOpenedPushCallback(completion: TypeBlock<MethodResult>?)
-    func requestAuthorization(completion: TypeBlock<MethodResult>?)
+    func requestPushAuthorization(completion: TypeBlock<MethodResult>?)
     
 }
 
@@ -74,8 +74,8 @@ public extension BloomreachInvokable {
             setReceivedPushCallback(completion: data)
         case let .setOpenedPushCallback(data):
             setOpenedPushCallback(completion: data)
-        case let .requestAuthorization(data):
-            requestAuthorization(completion: data)
+        case let .requestPushAuthorization(data):
+            requestPushAuthorization(completion: data)
         }
     }
 
@@ -596,7 +596,7 @@ public extension BloomreachInvokable {
         Exponea.shared.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
     }
 
-    func requestAuthorization(completion: TypeBlock<MethodResult>?) {
+    func requestPushAuthorization(completion: TypeBlock<MethodResult>?) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
             if let error {
                 completion?(.failure(error.localizedDescription))

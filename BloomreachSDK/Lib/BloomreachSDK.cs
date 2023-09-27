@@ -460,7 +460,7 @@ namespace Bloomreach
 
         public static void RequestPushAuthorization()
         {
-            Instance.Channel.InvokeMethodAsync("RequestAuthorization", null, (s, exception) =>
+            Instance.Channel.InvokeMethodAsync("RequestPushAuthorization", null, (s, exception) =>
             {
                 Console.WriteLine("APNS-BR Requested permission with result " + s);
             });
