@@ -44,6 +44,23 @@ public protocol BloomreachInvokable {
     func trackEvent(data: [String: Any], timestamp: Double?) -> MethodResult
     func trackSessionEnd() -> MethodResult
     func trackSessionStart() -> MethodResult
+
+    // MARK: - Notification
+    func handlePushNotificationOpened(data: [String: Any], identifier: String?) -> MethodResult
+    func handleCampaignIntent(url: String?) -> MethodResult
+    func handleHmsPushToken() -> MethodResult
+    func handlePushToken(token: String) -> MethodResult
+    func isBloomreachNotification(userInfo: [String : Any]) -> MethodResult
+    func trackClickedPush(data: [String: Any]) -> MethodResult
+    func trackClickedPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+    func trackPushToken(token: String?) -> MethodResult
+    func trackDeliveredPush(data: [String: Any]) -> MethodResult
+    func trackDeliveredPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+    func trackHmsPushToken() -> MethodResult
+    func setReceivedPushCallback(completion: TypeBlock<MethodResult>?)
+    func setOpenedPushCallback(completion: TypeBlock<MethodResult>?)
+    func requestAuthorization(completion: TypeBlock<MethodResult>?)
+    
 }
 
 public extension BloomreachInvokable {
@@ -53,6 +70,12 @@ public extension BloomreachInvokable {
             flushData(completion: data)
         case .unsupported:
             break
+        case let .setReceivedPushCallback(data):
+            setReceivedPushCallback(completion: data)
+        case let .setOpenedPushCallback(data):
+            setOpenedPushCallback(completion: data)
+        case let .requestAuthorization(data):
+            requestAuthorization(completion: data)
         }
     }
 
@@ -116,6 +139,28 @@ public extension BloomreachInvokable {
             return trackSessionEnd()
         case .trackSessionStart:
             return trackSessionStart()
+        case let .handlePushNotificationOpened(data):
+            return handlePushNotificationOpened(data: data["data"] as! [String: Any], identifier: .assertValueFromDict(data: data, key: "identifier"))
+        case let .handleCampaignIntent(data):
+            return handleCampaignIntent(url: data)
+        case .handleHmsPushToken:
+            return handleHmsPushToken()
+        case let .handlePushToken(data):
+            return handlePushToken(token: data ?? "")
+        case let .isBloomreachNotification(data):
+            return isBloomreachNotification(userInfo: data)
+        case let .trackClickedPush(data):
+            return trackClickedPush(data: data)
+        case let .trackClickedPushWithoutTrackingConsent(data):
+            return trackClickedPushWithoutTrackingConsent(data: data)
+        case let .trackPushToken(data):
+            return trackPushToken(token: data)
+        case let .trackDeliveredPush(data):
+            return trackDeliveredPush(data: data)
+        case let .trackDeliveredPushWithoutTrackingConsent(data):
+            return trackDeliveredPushWithoutTrackingConsent(data: data)
+        case .trackHmsPushToken:
+            return trackHmsPushToken()
         default:
             return .unsupportedMethod(method ?? "Uknown method")
         }
@@ -464,5 +509,82 @@ public extension BloomreachInvokable {
     func trackSessionStart() -> MethodResult {
         Exponea.shared.trackSessionStart()
         return .success(nil)
+    }
+}
+
+// MARK: - Notification
+public extension BloomreachInvokable {
+    func handlePushNotificationOpened(data: [String: Any], identifier: String?) -> MethodResult {
+        Exponea.shared.handlePushNotificationOpened(userInfo: data, actionIdentifier: identifier)
+        return .success(nil)
+    }
+    
+    func handleCampaignIntent(url: String?) -> MethodResult {
+        guard let url = URL(string: url ?? "") else {
+            return .failure("Incorrect URL")
+        }
+        Exponea.shared.trackCampaignClick(url: url, timestamp: Date().timeIntervalSince1970)
+        return .success(nil)
+    }
+    
+    func handleHmsPushToken() -> MethodResult {
+        .unsupportedMethod("unsupported method")
+    }
+    
+    func handlePushToken(token: String) -> MethodResult {
+        Exponea.shared.handlePushNotificationToken(token: token)
+        return .success(nil)
+    }
+    
+    func isBloomreachNotification(userInfo: [String : Any]) -> MethodResult {
+        let isExponea = Exponea.isExponeaNotification(userInfo: userInfo)
+        return .success(isExponea ? "true" : "false")
+    }
+
+    func trackClickedPush(data: [String: Any]) -> MethodResult {
+        Exponea.shared.trackPushOpened(with: data)
+        return .success(nil)
+    }
+    
+    func trackClickedPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        Exponea.shared.trackPushOpenedWithoutTrackingConsent(with: data)
+        return .success(nil)
+    }
+    
+    func trackPushToken(token: String?) -> MethodResult {
+        Exponea.shared.trackPushToken(token)
+        return .success(nil)
+    }
+    
+    func trackDeliveredPush(data: [String: Any]) -> MethodResult {
+        Exponea.shared.trackPushReceived(userInfo: data)
+        return .success(nil)
+    }
+    
+    func trackDeliveredPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        Exponea.shared.trackPushReceivedWithoutTrackingConsent(userInfo: data)
+        return .success(nil)
+    }
+    
+    func trackHmsPushToken() -> MethodResult {
+        .unsupportedMethod("unsupported method")
+    }
+    
+    func setOpenedPushCallback(completion: TypeBlock<MethodResult>?) {
+        Exponea.shared.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
+    }
+    
+    func setReceivedPushCallback(completion: TypeBlock<MethodResult>?) {
+        Exponea.shared.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
+    }
+
+    func requestAuthorization(completion: TypeBlock<MethodResult>?) {
+        UNUserNotificationCenter.current().requestAuthorization { isGranted, error in
+            if let error {
+                completion?(.failure(error.localizedDescription))
+            } else {
+                completion?(.success(isGranted ? "true" : "false"))
+            }
+        }
     }
 }

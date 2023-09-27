@@ -9,6 +9,9 @@ import ExponeaSDK
 
 public enum BloomreachAsyncMethodType {
     case flushData(data: TypeBlock<MethodResult>?)
+    case setReceivedPushCallback(data: TypeBlock<MethodResult>?)
+    case setOpenedPushCallback(data: TypeBlock<MethodResult>?)
+    case requestAuthorization(completion: TypeBlock<MethodResult>?)
     case unsupported
     
     init(method: String?, params: String?, asyncBlock: TypeBlock<MethodResult>? = nil) {
@@ -19,6 +22,12 @@ public enum BloomreachAsyncMethodType {
         switch methodName.lowercased() {
         case "flushdata":
             self = .flushData(data: asyncBlock)
+        case "setreceivedpushcallback":
+            self = .setReceivedPushCallback(data: asyncBlock)
+        case "setopenedpushcallback":
+            self = .setOpenedPushCallback(data: asyncBlock)
+        case "requestauthorization":
+            self = .requestAuthorization(completion: asyncBlock)
         default:
             self = .unsupported
         }
