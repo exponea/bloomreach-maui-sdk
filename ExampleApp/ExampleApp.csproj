@@ -28,27 +28,35 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
-	  <CodesignProvision>Automatic</CodesignProvision>
-	  <CodesignKey>iPhone Developer</CodesignKey>
-	  <MtouchInterpreter>-all</MtouchInterpreter>
-	  <MtouchArch>x86_64</MtouchArch>
-	  <MtouchLink>None</MtouchLink>
+		<CreatePackage>false</CreatePackage>
+		<CodesignProvision>Automatic</CodesignProvision>
+		<CodesignKey>iPhone Developer</CodesignKey>
+		<MtouchInterpreter>-all</MtouchInterpreter>
+		<MtouchArch>x86_64</MtouchArch>
+		<MtouchLink>None</MtouchLink>
+		<CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	  <WarningLevel>4</WarningLevel>
+		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
-	  <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
-	  <AndroidDexTool>d8</AndroidDexTool>
+		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+		<AndroidDexTool>d8</AndroidDexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('android'))">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>Platforms\Android\ExampleApp.jks</AndroidSigningKeyStore>
+		<AndroidSigningStorePass>Exponea</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>key0</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>Exponea</AndroidSigningKeyPass>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
-	  <MtouchInterpreter>-all</MtouchInterpreter>
-	  <MtouchArch>x86_64</MtouchArch>
+		<CreatePackage>false</CreatePackage>
+		<MtouchInterpreter>-all</MtouchInterpreter>
+		<MtouchArch>x86_64</MtouchArch>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
+		<CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -74,15 +82,18 @@
 		  <ForegroundFile>Resources\AppIcon\appiconexamplefg.svg</ForegroundFile>
 		  <Color>#512BD4</Color>
 		</MauiIcon>
+		
+		<!--  Assets  -->
+		<MauiAsset Include="Platforms\Android\Assets\agconnect-services.json" Condition="'$(TargetFramework)' == 'net6.0-android'" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BloomreachSDK\BloomreachSDK.csproj" />
+		<ProjectReference Include="..\BloomreachSDK\BloomreachSDK.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Update="Platforms\Android\MainApplication.cs">
-	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-	  </Compile>
+		<Compile Update="Platforms\Android\MainApplication.cs">
+			<ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+		</Compile>
 	</ItemGroup>
 
 	<!-- Android -->
@@ -107,5 +118,7 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
 		<GoogleServicesJson Include="Platforms\Android\google-services.json" />
 		<PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.2.2" />
+		<PackageReference Include="Huawei.Hms.Push" Version="6.10.0.300" />
+		<PackageReference Include="Huawei.Hms.NetworkFrameworkCompat" Version="6.0.11.300" />
 	</ItemGroup>
 </Project>

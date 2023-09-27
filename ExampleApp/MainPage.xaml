@@ -15,6 +15,9 @@
                 <Button BackgroundColor="#fed500" Text="Show Configuration" Clicked="ShowConfiguration" />
                 <Button BackgroundColor="#fed500" Text="Track custom event" Clicked="TrackCustomEvent" />
                 <Button BackgroundColor="#fed500" Text="Track payment" Clicked="TrackPayment" />
+                <Button Text="Register for push notifications" Clicked="Register_For_Push_Clicked"/>
+                <Button Text="Track push delivered" Clicked="Track_Delivered_Clicked"/>
+                <Button Text="Track push clicked" Clicked="Track_Clicked_Clicked"/>
                 <Button BackgroundColor="#fed500" x:Name="SessionStartButton" Text="Track session start"
                         Clicked="SessionStart" />
                 <Button BackgroundColor="#fed500" x:Name="SessionEndButton" Text="Track session end"

@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+#if IOS
+using Foundation;
+#endif
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -50,6 +56,16 @@ public static class ConverterUtils
             pair => pair.Value
         );
     }
+
+#if IOS
+    public static IDictionary<string, object> NormalizeDictionary(NSDictionary source)
+    {
+        return source.ToDictionary<KeyValuePair<NSObject, NSObject>, string, object>(
+            item => item.Key as NSString,
+            item => item.Value
+        );
+    }
+#endif
 
     public static bool ToBool(string? result) => result?.ToLower()?.Equals("true") ?? false;
 }

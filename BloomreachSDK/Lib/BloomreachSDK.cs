@@ -1,8 +1,11 @@
-﻿using System.Runtime.Versioning;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Versioning;
+using System.Threading.Tasks;
 using Bloomreach.Utils;
-
 #if IOS
 using UserNotifications;
+using Foundation;
 #endif
 
 namespace Bloomreach
@@ -325,7 +328,7 @@ namespace Bloomreach
         [SupportedOSPlatform("android")]
         public static bool HandleRemoteMessage(NotificationPayload payload)
         {
-            var serializedPayload = ConverterUtils.SerializeInput(payload);
+            var serializedPayload = ConverterUtils.SerializeInput(payload.RawData);
             if (serializedPayload == null)
             {
                 return false;
@@ -373,6 +376,13 @@ namespace Bloomreach
         {
             Instance.Channel.InvokeMethod("HandlePushToken", pushToken);
         }
+
+#if IOS
+        public static void HandlePushToken(NSData pushToken)
+        {
+            Instance.Channel.InvokeMethod("HandlePushToken", pushToken.ToString(NSStringEncoding.UTF8));
+        }
+#endif
 
         public static bool IsBloomreachNotification(NotificationPayload notificationPayload)
         {

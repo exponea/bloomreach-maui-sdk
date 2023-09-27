@@ -1,9 +1,11 @@
 package com.bloomreach.sdk.maui.android
 
 import android.Manifest
+import android.app.Activity
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -125,7 +127,11 @@ internal fun BloomreachSdkAndroid.requestPushAuthorization(context: Context) {
         Logger.i(this, "Push notifications permission already granted")
         return
     }
-    context.startActivity(Intent(context, NotificationsPermissionActivity::class.java))
+    val intent = Intent(context, NotificationsPermissionActivity::class.java)
+    if (context !is Activity) {
+        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+    }
+    context.startActivity(intent)
 }
 
 internal fun BloomreachSdkAndroid.setReceivedPushCallback(listener: (Map<String, Any>) -> Unit) {

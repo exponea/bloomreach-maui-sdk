@@ -1,5 +1,4 @@
 ﻿using Bloomreach;
-
 #if IOS
 using Foundation;
 using UIKit;
@@ -17,27 +16,6 @@ public partial class MainPage : ContentPage
         CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
         SessionStartButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
         SessionEndButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
-        RegisterForRemoteNotifications();
-    }
-
-    private static void RegisterForRemoteNotifications()
-    {
-#if IOS
-        if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-        {
-            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
-                new NSSet());
-
-            UIApplication.SharedApplication.RegisterUserNotificationSettings(pushSettings);
-            UIApplication.SharedApplication.RegisterForRemoteNotifications();
-        }
-        else
-        {
-            UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
-            UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
-        }
-#endif
     }
 
     async void ShowConfiguration(object sender, EventArgs e)
@@ -120,5 +98,29 @@ public partial class MainPage : ContentPage
         Preferences.Set("projectToken", projectToken);
         Preferences.Set("authorization", authorization);
         Preferences.Set("baseURL", baseUrl);
+    }
+
+    void Register_For_Push_Clicked(object sender, EventArgs e)
+    {
+        Bloomreach.BloomreachSDK.RequestPushAuthorization();
+    }
+
+    void Track_Delivered_Clicked(object sender, EventArgs e)
+    {
+        var payload = NotificationPayload.Parse(new Dictionary<string, string>
+        {
+            {"campaign_id", "id"}
+        });
+        Bloomreach.BloomreachSDK.TrackDeliveredPush(payload);
+    }
+
+    void Track_Clicked_Clicked(object sender, EventArgs e)
+    {
+        var action = new NotificationAction(
+            "click",
+            "action",
+            "https://bloomreach.com"
+        ).WithAttribute("campaign_id", "id");
+        Bloomreach.BloomreachSDK.TrackClickedPush(action);
     }
 }

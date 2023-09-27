@@ -61,7 +61,7 @@ internal fun parseProjectRouteMap(
     defaultBaseUrl: String
 ): Map<EventType, List<ExponeaProject>> {
     val mapping: HashMap<EventType, List<ExponeaProject>> = hashMapOf()
-    map.forEach { (eventTypeString, projectListAny) ->
+    for ((eventTypeString, projectListAny) in map) {
         try {
             val eventType = parseEventType(eventTypeString)
             val projectList = projectListAny as List<Map<String, Any?>>
