@@ -22,12 +22,15 @@ Bloomreach SDK for multi-platform App UI (.NET MAUI) supports the following plat
 ## Documentation
   * [Configuration](./Documentation/CONFIG.md)
   * [Tracking](./Documentation/TRACK.md)
+  * [Tracking consent](./Documentation/TRACKING_CONSENT.md)
   * [Tracking Campaigns(Android App Links)](./Documentation/ANDROID_UNIVERZAL_LINKS.md)
   * [Tracking Campaigns(Universal links)](./Documentation/IOS_UNIVERSAL_LINKS.md)
   * [Flushing](./Documentation/FLUSH.md)
   * [Push notifications](./Documentation/PUSH.md)
   * [Anonymize customer](./Documentation/ANONYMIZE.md)
   * [Payment tracking](./Documentation/PAYMENT.md)
+  * In-App Personalization
+    * [In-app messages](./Documentation/IN_APP_MESSAGES.md)
   * [Project mapping](./Documentation/PROJECT_MAPPING.md)
   
 ## Release Notes
