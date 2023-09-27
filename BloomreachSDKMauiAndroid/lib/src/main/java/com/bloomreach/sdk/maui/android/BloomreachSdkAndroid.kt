@@ -3,13 +3,13 @@ package com.bloomreach.sdk.maui.android
 import android.content.Context
 import anonymize
 import com.bloomreach.sdk.maui.android.exception.BloomreachUnsupportedException
+import com.bloomreach.sdk.maui.android.util.SerializeUtils
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseAsMap
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseBoolean
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseDouble
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseLong
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.serializeData
 import com.bloomreach.sdk.maui.android.util.returnOnException
-import com.exponea.sdk.Exponea
 import com.exponea.sdk.util.logOnException
 import configure
 import flushData
@@ -42,7 +42,35 @@ class BloomreachSdkAndroid(
     private val context: Context
 ) {
 
-    companion object
+    companion object {
+
+        private var pendingOpenedPush: Map<String, Any>? = null
+            set(value) {
+                pushNotificationClickListener?.let { listener ->
+                    value?.let { listener.invoke(it) }
+                    field = null
+                } ?: run {
+                    field = value
+                }
+            }
+        internal var pushNotificationClickListener: ((Map<String, Any>) -> Unit)? = null
+            set(value) {
+                field = value
+                value?.let { newListener ->
+                    pendingOpenedPush?.let {pendingData ->
+                        newListener.invoke(pendingData)
+                        pendingOpenedPush = null
+                    }
+                }
+            }
+        fun onPushNotificationClicked(
+            action: String,
+            url: String?,
+            additionalData: Map<String, Any?>
+        ) {
+
+        }
+    }
 
     @Suppress("IMPLICIT_CAST_TO_ANY", "unused")
     fun invokeMethod(method: String?, params: String?): MethodResult = runCatching {
@@ -73,6 +101,19 @@ class BloomreachSdkAndroid(
             "TrackSessionEnd" -> this.trackSessionEnd()
             "TrackSessionStart" -> this.trackSessionStart()
             "HandleRemoteMessage" -> this.handleRemoteMessage(context, parseAsMap(params))
+            "HandlePushNotificationOpened" -> this.handlePushNotificationOpened(parseAsMap(params))
+            "HandlePushNotificationOpenedWithoutTrackingConsent" -> this.handlePushNotificationOpenedWithoutTrackingConsent(parseAsMap(params))
+            "HandleCampaignClick" -> this.handleCampaignClick(context, params)
+            "HandleHmsPushToken" -> this.handleHmsPushToken(context, params)
+            "HandlePushToken" -> this.handlePushToken(context, params)
+            "IsBloomreachNotification" -> this.isBloomreachNotification(parseAsMap(params))
+            "TrackClickedPush" -> this.trackClickedPush(parseAsMap(params))
+            "TrackClickedPushWithoutTrackingConsent" -> this.trackClickedPushWithoutTrackingConsent(parseAsMap(params))
+            "TrackPushToken" -> this.trackPushToken(params)
+            "TrackDeliveredPush" -> this.trackDeliveredPush(parseAsMap(params))
+            "TrackDeliveredPushWithoutTrackingConsent" -> this.trackDeliveredPushWithoutTrackingConsent(parseAsMap(params))
+            "TrackHmsPushToken" -> this.trackHmsPushToken(params)
+            "RequestPushAuthorization" -> this.requestPushAuthorization(context)
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
@@ -85,7 +126,23 @@ class BloomreachSdkAndroid(
     @Suppress("unused")
     fun invokeMethodAsync(method: String?, params: String?, done: (MethodResult) -> Unit) = runCatching {
         when (method) {
-            "FlushData" -> this.flushData { done(MethodResult(it, it.toString(), "")) }
+            "FlushData" -> this.flushData {
+                runCatching {
+                    done(MethodResult(it, it.toString(), ""))
+                }.logOnException()
+            }
+            "SetReceivedPushCallback" -> this.setReceivedPushCallback {
+                runCatching {
+                    val response = serializeData(it)
+                    done(MethodResult.success(response))
+                }.logOnException()
+            }
+            "SetOpenedPushCallback" -> this.setOpenedPushCallback {
+                runCatching {
+                    val response = serializeData(it)
+                    done(MethodResult.success(response))
+                }.logOnException()
+            }
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }

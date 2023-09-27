@@ -15,6 +15,7 @@ import com.exponea.sdk.models.FlushMode
 import com.exponea.sdk.models.FlushPeriod
 import com.exponea.sdk.models.PropertiesList
 import com.exponea.sdk.util.Logger
+import com.exponea.sdk.util.logOnException
 import java.util.concurrent.TimeUnit
 
 internal fun BloomreachSdkAndroid.anonymize(params: Map<String, Any?>) {
@@ -300,6 +301,8 @@ internal fun BloomreachSdkAndroid.getTokenTrackFrequency(): String {
 
 internal fun BloomreachSdkAndroid.flushData(done: (Boolean) -> Unit) {
     Exponea.flushData {
-        done(it.isSuccess)
+        runCatching {
+            done(it.isSuccess)
+        }.logOnException()
     }
 }

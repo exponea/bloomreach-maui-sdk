@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.bloomreach.sdk.maui.android">
-
+    <application>
+        <receiver
+                android:name=".notifications.PushNotificationClickReceiver"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.exponea.sdk.action.PUSH_CLICKED" />
+                <action android:name="com.exponea.sdk.action.PUSH_DEEPLINK_CLICKED" />
+                <action android:name="com.exponea.sdk.action.PUSH_URL_CLICKED" />
+            </intent-filter>
+        </receiver>
+        <activity
+                android:name=".notifications.NotificationsPermissionActivity"
+                android:theme="@style/Theme.Invisible"
+        />
+    </application>
 </manifest>

@@ -374,10 +374,10 @@ namespace Bloomreach
             Instance.Channel.InvokeMethod("HandlePushToken", pushToken);
         }
 
-        public static bool IsExponeaNotification(NotificationPayload notificationPayload)
+        public static bool IsBloomreachNotification(NotificationPayload notificationPayload)
         {
             var result = Instance.Channel.InvokeMethod(
-                "IsExponeaNotification",
+                "IsBloomreachNotification",
                 ConverterUtils.SerializeInput(notificationPayload.RawData)
             );
             return ConverterUtils.ToBool(result);

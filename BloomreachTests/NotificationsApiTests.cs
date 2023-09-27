@@ -1,5 +1,6 @@
 ﻿using BloomreachTests.Utils;
 using Bloomreach;
+using Bloomreach.Utils;
 
 namespace BloomreachTests;
 
@@ -99,73 +100,73 @@ public class NotificationsApiTests
     }
     
     [Test]
-    public void IsExponeaNotification_TRUE()
+    public void IsBloomreachNotification_TRUE()
     {
-        _methodCollector.RegisterSuccessMethodResult("IsExponeaNotification", "true");
+        _methodCollector.RegisterSuccessMethodResult("IsBloomreachNotification", "true");
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
             {"prop1", "val1"},
             {"prop2", "val2"}
         });
-        var result = BloomreachSDK.IsExponeaNotification(notificationPayload);
-        _methodCollector.VerifyMethodCalled("IsExponeaNotification");
+        var result = BloomreachSDK.IsBloomreachNotification(notificationPayload);
+        _methodCollector.VerifyMethodCalled("IsBloomreachNotification");
         _methodCollector.VerifyMethodInput(
-            "IsExponeaNotification",
-            TestUtils.ReadFile("IsExponeaNotification")
+            "IsBloomreachNotification",
+            TestUtils.ReadFile("IsBloomreachNotification")
         );
         Assert.That(result, Is.True);
     }
     
     [Test]
-    public void IsExponeaNotification_FALSE()
+    public void IsBloomreachNotification_FALSE()
     {
-        _methodCollector.RegisterSuccessMethodResult("IsExponeaNotification", "false");
+        _methodCollector.RegisterSuccessMethodResult("IsBloomreachNotification", "false");
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
             {"prop1", "val1"},
             {"prop2", "val2"}
         });
-        var result = BloomreachSDK.IsExponeaNotification(notificationPayload);
-        _methodCollector.VerifyMethodCalled("IsExponeaNotification");
+        var result = BloomreachSDK.IsBloomreachNotification(notificationPayload);
+        _methodCollector.VerifyMethodCalled("IsBloomreachNotification");
         _methodCollector.VerifyMethodInput(
-            "IsExponeaNotification",
-            TestUtils.ReadFile("IsExponeaNotification")
+            "IsBloomreachNotification",
+            TestUtils.ReadFile("IsBloomreachNotification")
         );
         Assert.That(result, Is.False);
     }
     
     [Test]
-    public void IsExponeaNotification_InvalidIsFalse()
+    public void IsBloomreachNotification_InvalidIsFalse()
     {
-        _methodCollector.RegisterSuccessMethodResult("IsExponeaNotification", "non-valid-value");
+        _methodCollector.RegisterSuccessMethodResult("IsBloomreachNotification", "non-valid-value");
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
             {"prop1", "val1"},
             {"prop2", "val2"}
         });
-        var result = BloomreachSDK.IsExponeaNotification(notificationPayload);
-        _methodCollector.VerifyMethodCalled("IsExponeaNotification");
+        var result = BloomreachSDK.IsBloomreachNotification(notificationPayload);
+        _methodCollector.VerifyMethodCalled("IsBloomreachNotification");
         _methodCollector.VerifyMethodInput(
-            "IsExponeaNotification",
-            TestUtils.ReadFile("IsExponeaNotification")
+            "IsBloomreachNotification",
+            TestUtils.ReadFile("IsBloomreachNotification")
         );
         Assert.That(result, Is.False);
     }
     
     [Test]
-    public void IsExponeaNotification_ErrorIsFalse()
+    public void IsBloomreachNotification_ErrorIsFalse()
     {
-        _methodCollector.RegisterFailureMethodResult("IsExponeaNotification", "some error");
+        _methodCollector.RegisterFailureMethodResult("IsBloomreachNotification", "some error");
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
             {"prop1", "val1"},
             {"prop2", "val2"}
         });
-        var result = BloomreachSDK.IsExponeaNotification(notificationPayload);
-        _methodCollector.VerifyMethodCalled("IsExponeaNotification");
+        var result = BloomreachSDK.IsBloomreachNotification(notificationPayload);
+        _methodCollector.VerifyMethodCalled("IsBloomreachNotification");
         _methodCollector.VerifyMethodInput(
-            "IsExponeaNotification",
-            TestUtils.ReadFile("IsExponeaNotification")
+            "IsBloomreachNotification",
+            TestUtils.ReadFile("IsBloomreachNotification")
         );
         Assert.That(result, Is.False);
     }
@@ -237,8 +238,11 @@ public class NotificationsApiTests
     {
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
-            {"prop1", "val1"},
-            {"prop2", "val2"}
+            {"attributes", ConverterUtils.SerializeInput(new Dictionary<string, string>
+            {
+                {"prop1", "val1"},
+                {"prop2", "val2"}
+            })!}
         });
         BloomreachSDK.TrackDeliveredPush(notificationPayload);
         _methodCollector.VerifyMethodCalled("TrackDeliveredPush");
@@ -253,8 +257,11 @@ public class NotificationsApiTests
     {
         NotificationPayload notificationPayload = NotificationPayload.Parse(new Dictionary<string, string>()
         {
-            {"prop1", "val1"},
-            {"prop2", "val2"}
+            {"attributes", ConverterUtils.SerializeInput(new Dictionary<string, string>
+            {
+                {"prop1", "val1"},
+                {"prop2", "val2"}
+            })!}
         });
         BloomreachSDK.TrackDeliveredPushWithoutTrackingConsent(notificationPayload);
         _methodCollector.VerifyMethodCalled("TrackDeliveredPushWithoutTrackingConsent");

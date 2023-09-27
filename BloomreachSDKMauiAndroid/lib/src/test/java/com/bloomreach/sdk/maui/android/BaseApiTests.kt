@@ -1,6 +1,5 @@
 package com.bloomreach.sdk.maui.android
 
-import androidx.test.core.app.ApplicationProvider
 import com.bloomreach.sdk.maui.android.util.SerializeUtils
 import com.exponea.sdk.Exponea
 import com.exponea.sdk.models.CustomerIds
@@ -14,69 +13,24 @@ import com.exponea.sdk.util.Logger
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
-import io.mockk.mockkObject
 import io.mockk.slot
-import io.mockk.unmockkAll
 import io.mockk.verify
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import java.io.File
-import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
-class BaseApiTests {
-
-    private lateinit var instance: BloomreachSdkAndroid
-
-    // Directory that contains JSON files using by iOS, Maui and Android unit tests
-    // Json files contain data that are expected while invoking native methods.
-    private val mauiTestJsonDir = File("../../BloomreachTests/Jsons")
-
-    @Before
-    fun beforeTest() {
-        mockkObject(Exponea)
-        every { Exponea.anonymize(any(), any()) } just Runs
-        every { Exponea.init(any(), any()) } just Runs
-        every { Exponea.customerCookie } returns null
-        every { Exponea.defaultProperties } returns hashMapOf()
-        every { Exponea.defaultProperties = capture(slot()) } just Runs
-        every { Exponea.flushMode = capture(slot()) } just Runs
-        every { Exponea.flushPeriod = capture(slot()) } just Runs
-        every { Exponea.sessionTimeout } returns 0.0
-        every { Exponea.sessionTimeout = capture(slot()) } just Runs
-        every { Exponea.tokenTrackFrequency } returns ExponeaConfiguration.TokenFrequency.ON_TOKEN_CHANGE
-        every { Exponea.identifyCustomer(any(), any()) } just Runs
-        every { Exponea.isAutomaticSessionTracking } returns true
-        every { Exponea.isAutomaticSessionTracking = capture(slot()) } just Runs
-        every { Exponea.isAutoPushNotification } returns true
-        every { Exponea.isAutoPushNotification = capture(slot()) } just Runs
-        every { Exponea.flushData(any()) } just Runs
-        every { Exponea.identifyCustomer(any(), any()) } just Runs
-        instance = BloomreachSdkAndroid(ApplicationProvider.getApplicationContext())
-    }
-
-    @After
-    fun afterTest() {
-        unmockkAll()
-    }
+class BaseApiTests : TestsBase() {
 
     @Test
     fun readJsonFile() {
         val content = readTestFile("Configure_FullConfiguration_Input")
         assertNotNull(content)
-    }
-
-    private fun readTestFile(fileName: String): String {
-        return File(mauiTestJsonDir, "${fileName}.json")
-            .readText(StandardCharsets.UTF_8)
     }
 
     @Test
