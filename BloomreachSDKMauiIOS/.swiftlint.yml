@@ -1,0 +1,29 @@
+# https://github.com/realm/SwiftLint#configuration
+disabled_rules:
+    - cyclomatic_complexity
+    - file_length
+    - function_body_length
+    - function_parameter_count
+    - notification_center_detachment
+    - type_body_length
+    - inclusive_language
+    - line_length
+    - force_cast
+    - identifier_name
+    - force_try
+    - type_name
+
+custom_rules:
+    open_brace_spacing:
+        name: "Opening brace should be followed by space or newline"
+        regex: '(\{[^\s^\}])'
+        message: "Opening brace should be followed by space or newline"
+        severity: warning
+    close_brace_spacing:
+        name: "Closing brace should be followed by space or newline"
+        regex: '([^\s^\{]\})'
+        message: "Closing brace should be followed by space or newline"
+        severity: warning
+
+excluded:
+    - Pods
