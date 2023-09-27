@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>ExamplePushContentExtension</string>
+	<key>CFBundleName</key>
+	<string>ExamplePushContentExtension</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.exponea.ExponeaSDK-Example2.ExampleNotificationContent</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>UNNotificationExtensionCategory</key>
+			<string>EXPONEA_ACTIONABLE</string>
+			<key>UNNotificationExtensionInitialContentSizeRatio</key>
+			<real>0</real>
+			<key>UNNotificationExtensionUserInteractionEnabled</key>
+			<true/>
+			<key>UNNotificationExtensionDefaultContentHidden</key>
+			<false/>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.usernotifications.content-extension</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>NotificationViewController</string>
+	</dict>
+	<key>CFBundleVersion</key>
+	<string>4</string>
+	<key>MinimumOSVersion</key>
+	<string>16.1</string>
+</dict>
+</plist>

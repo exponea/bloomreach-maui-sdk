@@ -33,6 +33,6 @@
 		<string>remote-notification</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.exponea.xamarin</string>
+	<string>com.exponea.ExponeaSDK-Example2</string>
 </dict>
 </plist>

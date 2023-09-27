@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0-ios</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <OutputType>Library</OutputType>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <ApplicationId>com.exponea.ExponeaSDK-Example2.ExampleNotificationService</ApplicationId>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">16.1</SupportedOSPlatformVersion>
+    </PropertyGroup>
+    <PropertyGroup>
+        <IsAppExtension>true</IsAppExtension>
+        <IsWatchExtension>false</IsWatchExtension>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <WarningLevel>4</WarningLevel>
+      <CreatePackage>false</CreatePackage>
+        <CodesignProvision>Exponea iOS SDK Example App Notification Service</CodesignProvision>
+        <CodesignKey>Apple Development: Adam Mihalik (9ZX7RBSVJF)</CodesignKey>
+      <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <CreatePackage>false</CreatePackage>
+      <CodesignProvision>Exponea iOS SDK Example App Notification Service</CodesignProvision>
+      <CodesignKey>Apple Development: Adam Mihalik (9ZX7RBSVJF)</CodesignKey>
+      <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Platform)' == 'iPhoneSimulator' ">
+        <MtouchArch>x86_64</MtouchArch>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\BloomreachSDK\BloomreachSDK.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Info.plist" />
+        <None Include="Entitlements.plist" />
+    </ItemGroup>
+</Project>

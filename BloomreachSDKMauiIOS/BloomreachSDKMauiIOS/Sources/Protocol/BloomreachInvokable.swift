@@ -46,7 +46,7 @@ public protocol BloomreachInvokable {
     func trackSessionStart() -> MethodResult
 
     // MARK: - Notification
-    func handlePushNotificationOpened(data: [String: Any], identifier: String?) -> MethodResult
+    func handlePushNotificationOpened(data: [String: Any]) -> MethodResult
     func handleCampaignIntent(url: String?) -> MethodResult
     func handleHmsPushToken() -> MethodResult
     func handlePushToken(token: String) -> MethodResult
@@ -140,7 +140,7 @@ public extension BloomreachInvokable {
         case .trackSessionStart:
             return trackSessionStart()
         case let .handlePushNotificationOpened(data):
-            return handlePushNotificationOpened(data: data["data"] as! [String: Any], identifier: .assertValueFromDict(data: data, key: "identifier"))
+            return handlePushNotificationOpened(data: data)
         case let .handleCampaignIntent(data):
             return handleCampaignIntent(url: data)
         case .handleHmsPushToken:
@@ -161,6 +161,8 @@ public extension BloomreachInvokable {
             return trackDeliveredPushWithoutTrackingConsent(data: data)
         case .trackHmsPushToken:
             return trackHmsPushToken()
+        case .handleRemoteMessageTimeWillExpire:
+            return handleRemoteMessageTimeWillExpire()
         default:
             return .unsupportedMethod(method ?? "Uknown method")
         }
@@ -514,8 +516,12 @@ public extension BloomreachInvokable {
 
 // MARK: - Notification
 public extension BloomreachInvokable {
-    func handlePushNotificationOpened(data: [String: Any], identifier: String?) -> MethodResult {
-        Exponea.shared.handlePushNotificationOpened(userInfo: data, actionIdentifier: identifier)
+    func handlePushNotificationOpened(data: [String: Any]) -> MethodResult {
+        guard let userInfo = data["attributes"] as? [String: Any] else {
+            return .failure("Push notification payload is missing")
+        }
+        let identifier = data["url"] as? String
+        Exponea.shared.handlePushNotificationOpened(userInfo: userInfo, actionIdentifier: identifier)
         return .success(nil)
     }
     
@@ -539,6 +545,18 @@ public extension BloomreachInvokable {
     func isBloomreachNotification(userInfo: [String : Any]) -> MethodResult {
         let isExponea = Exponea.isExponeaNotification(userInfo: userInfo)
         return .success(isExponea ? "true" : "false")
+    }
+    
+    func handleRemoteMessageTimeWillExpire() -> MethodResult {
+        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR TimeWillExpire called")
+        guard let notifService = BloomreachSdkIOS.instance.notificationService else {
+            Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR No previous Push notification handling")
+            return .failure("No previous Push notification handling")
+        }
+        notifService.serviceExtensionTimeWillExpire()
+        BloomreachSdkIOS.instance.notificationService = nil
+        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR TimeWillExpire done")
+        return .success("true")
     }
 
     func trackClickedPush(data: [String: Any]) -> MethodResult {
@@ -579,11 +597,16 @@ public extension BloomreachInvokable {
     }
 
     func requestAuthorization(completion: TypeBlock<MethodResult>?) {
-        UNUserNotificationCenter.current().requestAuthorization { isGranted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
             if let error {
                 completion?(.failure(error.localizedDescription))
+            } else if granted {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+                completion?(.success("true"))
             } else {
-                completion?(.success(isGranted ? "true" : "false"))
+                completion?(.success("false"))
             }
         }
     }

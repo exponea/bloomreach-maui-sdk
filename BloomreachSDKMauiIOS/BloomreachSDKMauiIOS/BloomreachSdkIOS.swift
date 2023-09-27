@@ -39,6 +39,8 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
     
     @objc
     public static var instance = BloomreachSdkIOS()
+    
+    var notificationService: ExponeaNotificationService? = nil
 
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {
@@ -78,18 +80,30 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
     
     @objc
     public func handleRemoteMessage(
+        appGroup: String,
         notificationRequest: UNNotificationRequest,
         handler: @escaping (UNNotificationContent) -> Void
     ) -> MethodResult {
-        guard let appGroup = Exponea.shared.configuration?.appGroup else {
-            return .failure("Notification service not configured properly")
-        }
         if (!ExponeaSDK.Exponea.isExponeaNotification(userInfo: notificationRequest.content.userInfo)) {
+            Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification is non-Bloomreach, skipping")
             return .failure("Notification is non-Bloomreach, skipping")
         }
-        // TODO: this has to be kept as field
-        let notifService = ExponeaNotificationService(appGroup: appGroup)
-        notifService.process(request: notificationRequest, contentHandler: handler)
+        notificationService?.serviceExtensionTimeWillExpire()   // end previous if exists
+        notificationService = ExponeaNotificationService(appGroup: appGroup)
+        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification is processing")
+        notificationService?.process(request: notificationRequest, contentHandler: handler)
+        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification was processed")
+        return .success("true")
+    }
+    
+    @objc
+    public func handleRemoteMessageContent(
+        notification: UNNotification,
+        context: NSExtensionContext?,
+        controller: UIViewController
+    ) -> MethodResult {
+        let notificationContentService = ExponeaNotificationContentService()
+        notificationContentService.didReceive(notification, context: context, viewController: controller)
         return .success("true")
     }
 }

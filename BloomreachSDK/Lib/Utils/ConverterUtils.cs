@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 #if IOS
+using Bloomreach.Platforms.iOS;
 using Foundation;
 #endif
 using Newtonsoft.Json;
@@ -18,10 +16,14 @@ public static class ConverterUtils
         Formatting = Formatting.None,
         Converters = new List<JsonConverter>()
         {
+#if IOS
+            new NSObjectConverter(),
+#endif
             new DictionaryConverter(),
             new StringEnumConverter()
         },
-        ContractResolver = new CamelCasePropertyNamesContractResolver()
+        ContractResolver = new CamelCasePropertyNamesContractResolver(),
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
     };
 
     public static string? SerializeInput(object? data)
@@ -60,10 +62,15 @@ public static class ConverterUtils
 #if IOS
     public static IDictionary<string, object> NormalizeDictionary(NSDictionary source)
     {
-        return source.ToDictionary<KeyValuePair<NSObject, NSObject>, string, object>(
+#pragma warning disable CA1416
+        Console.WriteLine("APNS-BR Normalizing NSDictionary");
+        var result = source.ToDictionary<KeyValuePair<NSObject, NSObject>, string, object>(
             item => item.Key as NSString,
             item => item.Value
         );
+        Console.WriteLine("APNS-BR Normalizing done");
+        return result;
+#pragma warning restore CA1416
     }
 #endif
 

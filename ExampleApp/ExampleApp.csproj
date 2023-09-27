@@ -11,7 +11,7 @@
 		<ApplicationTitle>ExampleApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.bloomreach.maui.exampleapp</ApplicationId>
+		<ApplicationId>com.exponea.ExponeaSDK-Example2</ApplicationId>
 		<ApplicationIdGuid>baebc4b6-bfb4-4528-b749-7773328c9bfd</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -50,6 +50,13 @@
 		<AndroidSigningKeyAlias>key0</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>Exponea</AndroidSigningKeyPass>
 	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('android'))">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>Platforms\Android\ExampleApp.jks</AndroidSigningKeyStore>
+		<AndroidSigningStorePass>Exponea</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>key0</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>Exponea</AndroidSigningKeyPass>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
 		<MtouchInterpreter>-all</MtouchInterpreter>
@@ -57,6 +64,10 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
+		<MtouchArch>x86_64</MtouchArch>
+		<CodesignEntitlements>Platforms\iOS\Entitlements.plist</CodesignEntitlements>
+		<CodesignProvision>Exponea iOS SDK Example App</CodesignProvision>
+		<CodesignKey>Apple Development: Adam Mihalik (9ZX7RBSVJF)</CodesignKey>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -90,6 +101,17 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BloomreachSDK\BloomreachSDK.csproj" />
 	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net7.0-ios'">
+		<ProjectReference Include="..\ExamplePushServiceExtension\ExamplePushServiceExtension.csproj">
+			<IsAppExtension>true</IsAppExtension>
+			<IsWatchApp>false</IsWatchApp>
+		</ProjectReference>
+		<ProjectReference Include="..\ExamplePushContentExtension\ExamplePushContentExtension.csproj">
+			<IsAppExtension>true</IsAppExtension>
+			<IsWatchApp>false</IsWatchApp>
+		</ProjectReference>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<Compile Update="Platforms\Android\MainApplication.cs">
 			<ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>

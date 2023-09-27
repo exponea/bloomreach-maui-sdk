@@ -102,6 +102,7 @@ public partial class MainPage : ContentPage
 
     void Register_For_Push_Clicked(object sender, EventArgs e)
     {
+        Console.WriteLine("APNS-BR PushRequest clicked");
         Bloomreach.BloomreachSDK.RequestPushAuthorization();
     }
 

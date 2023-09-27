@@ -1,7 +1,7 @@
+using Foundation;
 using ObjCRuntime;
 using UserNotifications;
 using Bloomreach;
-using Foundation;
 
 namespace ExamplePushServiceExtension;
 

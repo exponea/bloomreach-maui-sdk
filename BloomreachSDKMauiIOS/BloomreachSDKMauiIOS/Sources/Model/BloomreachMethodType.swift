@@ -48,6 +48,7 @@ public enum BloomreachMethodType {
     case trackDeliveredPush(data: [String: Any])
     case trackDeliveredPushWithoutTrackingConsent(data: [String: Any])
     case trackHmsPushToken
+    case handleRemoteMessageTimeWillExpire
     case unsupported
 
     init(method: String?, params: String?) {
@@ -136,6 +137,8 @@ public enum BloomreachMethodType {
             self = .trackDeliveredPushWithoutTrackingConsent(data: params.json)
         case "trackhmspushtoken":
             self = .trackHmsPushToken
+        case "handleremotemessagetimewillexpire":
+            self = .handleRemoteMessageTimeWillExpire
         default:
             self = .unsupported
         }

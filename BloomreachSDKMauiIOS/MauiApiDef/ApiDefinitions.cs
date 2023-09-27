@@ -44,9 +44,13 @@ namespace BloomreachSdkNativeiOS
 		[Export ("invokeMethodForUIWithMethod:params:")]
 		MethodResultForUI InvokeMethodForUIWithMethod ([NullAllowed] string method, [NullAllowed] string @params);
 
-		// -(MethodResult * _Nonnull)handleRemoteMessageWithNotificationRequest:(UNNotificationRequest * _Nonnull)notificationRequest handler:(void (^ _Nonnull)(UNNotificationContent * _Nonnull))handler __attribute__((warn_unused_result("")));
-		[Export ("handleRemoteMessageWithNotificationRequest:handler:")]
-		MethodResult HandleRemoteMessageWithNotificationRequest (UNNotificationRequest notificationRequest, Action<UNNotificationContent> handler);
+		// -(MethodResult * _Nonnull)handleRemoteMessageWithAppGroup:(NSString * _Nonnull)appGroup notificationRequest:(UNNotificationRequest * _Nonnull)notificationRequest handler:(void (^ _Nonnull)(UNNotificationContent * _Nonnull))handler __attribute__((warn_unused_result("")));
+		[Export ("handleRemoteMessageWithAppGroup:notificationRequest:handler:")]
+		MethodResult HandleRemoteMessageWithAppGroup (string appGroup, UNNotificationRequest notificationRequest, Action<UNNotificationContent> handler);
+
+		// -(MethodResult * _Nonnull)handleRemoteMessageContentWithNotification:(UNNotification * _Nonnull)notification context:(NSExtensionContext * _Nullable)context controller:(UIViewController * _Nonnull)controller __attribute__((warn_unused_result("")));
+		[Export ("handleRemoteMessageContentWithNotification:context:controller:")]
+		MethodResult HandleRemoteMessageContentWithNotification (UNNotification notification, [NullAllowed] NSExtensionContext context, UIViewController controller);
 	}
 
 	// @interface MauiAuthorizationProvider : NSObject

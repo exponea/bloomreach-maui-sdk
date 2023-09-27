@@ -22,7 +22,7 @@ public class NotificationAction
     
     public string? ActionIdentifier { get; set; }
     
-    public Dictionary<string, object> Attributes { get; set; } = new ();
+    public Dictionary<string, object?> Attributes { get; set; } = new ();
     
     public NotificationAction WithAttribute(string key, object value)
     {
@@ -43,11 +43,15 @@ public class NotificationAction
 #if IOS
     public static NotificationAction Parse(UNNotificationResponse response)
     {
+#pragma warning disable CA1416
         var payload = response.Notification.Request.Content.UserInfo;
-        var identifier = response.ActionIdentifier;
-        return new NotificationAction(
+        var identifier = response.ActionIdentifier.ToString();
+#pragma warning restore CA1416
+        var target = new NotificationAction(
             identifier, identifier, identifier
         ).WithAttributes(ConverterUtils.NormalizeDictionary(payload));
+        target.ActionIdentifier = identifier;
+        return target;
     }
     
     public static NotificationAction Parse(NSDictionary userInfo)

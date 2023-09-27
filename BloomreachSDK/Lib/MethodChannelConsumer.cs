@@ -1,6 +1,7 @@
-﻿
-#if IOS
+﻿#if IOS
 using Bloomreach.Platforms.iOS;
+using Foundation;
+using UIKit;
 using UserNotifications;
 #endif
 
@@ -134,23 +135,60 @@ namespace Bloomreach
 #elif IOS
             try
             {
+                Console.WriteLine("APNS-BR Invoking handle remote message");
                 var result = ((MethodChannelConsumerIos)_channelInternal!).HandleRemoteMessage(
-                    (UNNotificationRequest)args[0],
-                    (Action<UNNotificationContent>)args[1]
+                    (string)args[0],
+                    (UNNotificationRequest)args[1],
+                    (Action<UNNotificationContent>)args[2]
                 );
                 if (result?.Success == false)
                 {
-                    BloomreachSDK.ThrowOrLog(new Exception($"Method HandleRemoteMessage return failure status, see logs"));
+                    BloomreachSDK.ThrowOrLog(
+                        new Exception($"Method HandleRemoteMessage return failure status, see logs: {result?.Error}")
+                    );
                 }
+                Console.WriteLine("APNS-BR HandleRemoteMessage done");
                 return result?.Data;
             }
             catch (Exception e)
             {
+                Console.WriteLine("APNS-BR Handle remote message errored " + e);
                 BloomreachSDK.ThrowOrLog(e);
                 return null;
             }
 #else
             return null;
+#endif
+        }
+
+        public void HandleNotificationReceived(params object[] args)
+        {
+#if ANDROID
+            BloomreachSDK.ThrowOrLog(new Exception($"Method HandleNotificationReceived is not supported on Android"));
+#elif IOS
+            try
+            {
+                Console.WriteLine("APNS-BR Invoking HandleNotificationReceived");
+                var result = ((MethodChannelConsumerIos)_channelInternal!).HandleNotificationReceived(
+                    (UNNotification)args[0],
+                    (NSExtensionContext?)args[1],
+                    (UIViewController)args[2]
+                );
+                if (result?.Success == false)
+                {
+                    BloomreachSDK.ThrowOrLog(
+                        new Exception($"Method HandleNotificationReceived return failure status, see logs: {result?.Error}")
+                    );
+                }
+                Console.WriteLine("APNS-BR HandleNotificationReceived done");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("APNS-BR HandleNotificationReceived errored " + e);
+                BloomreachSDK.ThrowOrLog(e);
+            }
+#else
+            BloomreachSDK.ThrowOrLog(new Exception($"Method HandleNotificationReceived is working only on iOS platform"));
 #endif
         }
     }

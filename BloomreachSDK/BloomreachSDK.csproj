@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<PackageId>BloomreachSDK</PackageId>
 		<PackageVersion>0.1.0</PackageVersion>
-		<ReleaseVersion>0.1.0</ReleaseVersion>
 		<Authors>Bloomreach</Authors>
 		<Title>BloomreachSDK</Title>
 		<Description>Bloomreach SDK allows your application to interact with the Bloomreach Customer Data &amp; Experience Platform. Bloomreach empowers B2C marketers to raise conversion rates, improve acquisition ROI, and maximize customer lifetime value.</Description>
@@ -45,6 +44,9 @@
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Platforms\Android\" />

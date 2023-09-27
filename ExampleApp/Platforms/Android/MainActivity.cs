@@ -6,6 +6,9 @@ using Android.OS;
 using Huawei.Agconnect.Config;
 using Huawei.Hms.Aaid;
 using Huawei.Hms.Push;
+using Android.Provider;
+using Huawei.Hmf.Tasks;
+using Task = System.Threading.Tasks.Task;
 
 namespace ExampleApp;
 

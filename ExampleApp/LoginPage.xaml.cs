@@ -32,7 +32,8 @@ public partial class LoginPage : ContentPage
                 { "thisIsADefaultIntProperty", 1 },
                 { "thisIsADefaultDoubleProperty", 12.53623 }
             },
-            AppGroup = "group.com.exponea.xamarin",
+            AppGroup = "group.com.exponea.ExponeaSDK-Example2",
+            RequirePushAuthorization = true,
             PushIcon = "push_icon",
             PushAccentColor = Color.FromArgb(0, 0, 255).ToArgb(),
             AutomaticPushNotification = true,

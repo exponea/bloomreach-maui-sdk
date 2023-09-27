@@ -4,6 +4,7 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using Bloomreach.Utils;
 #if IOS
+using UIKit;
 using UserNotifications;
 using Foundation;
 #endif
@@ -339,9 +340,13 @@ namespace Bloomreach
 
 #if IOS
         [SupportedOSPlatform("ios")]
-        public static bool HandleRemoteMessage(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
+        public static bool HandleRemoteMessage(
+            string appGroup,
+            UNNotificationRequest request,
+            Action<UNNotificationContent> contentHandler
+        )
         {
-            string? result = Instance.Channel.HandleRemoteMessage(request, contentHandler);
+            string? result = Instance.Channel.HandleRemoteMessage(appGroup, request, contentHandler);
             return ConverterUtils.ToBool(result);
         }
 
@@ -350,11 +355,23 @@ namespace Bloomreach
         {
             Instance.Channel.InvokeMethod("HandleRemoteMessageTimeWillExpire", null);
         }
+        
+        [SupportedOSPlatform("ios")]
+        public static void HandleNotificationReceived(
+            UNNotification notification,
+            NSExtensionContext? extensionContext,
+            UIViewController notificationViewController
+        )
+        {
+            Instance.Channel.HandleNotificationReceived(notification, extensionContext, notificationViewController);
+        }
 #endif
 
         public static void HandlePushNotificationOpened(NotificationAction action)
         {
+            Console.WriteLine("APNS-BR Calling HandlePushNotificationOpened");
             Instance.Channel.InvokeMethod("HandlePushNotificationOpened", ConverterUtils.SerializeInput(action));
+            Console.WriteLine("APNS-BR Calling HandlePushNotificationOpened is DONE");
         }
 
         public static void HandlePushNotificationOpenedWithoutTrackingConsent(NotificationAction action)
@@ -378,9 +395,15 @@ namespace Bloomreach
         }
 
 #if IOS
-        public static void HandlePushToken(NSData pushToken)
+        public static void HandlePushToken(NSData deviceToken)
         {
-            Instance.Channel.InvokeMethod("HandlePushToken", pushToken.ToString(NSStringEncoding.UTF8));
+            var bytes = deviceToken.ToArray<byte>();
+            var hexArray = bytes.Select(b => b.ToString("X2")).ToArray();
+            var deviceTokenString = string.Join(string.Empty, hexArray);
+            Console.WriteLine("APNS-BR Push token received");
+            Console.WriteLine("APNS-BR Push token " + deviceTokenString);
+            Console.WriteLine("APNS-BR Push token printed");
+            Instance.Channel.InvokeMethod("HandlePushToken", deviceTokenString);
         }
 #endif
 
@@ -437,7 +460,10 @@ namespace Bloomreach
 
         public static void RequestPushAuthorization()
         {
-            Instance.Channel.InvokeMethod("RequestPushAuthorization", null);
+            Instance.Channel.InvokeMethodAsync("RequestAuthorization", null, (s, exception) =>
+            {
+                Console.WriteLine("APNS-BR Requested permission with result " + s);
+            });
         }
 
         public static void SetReceivedPushCallback(Action<NotificationPayload> listener)
