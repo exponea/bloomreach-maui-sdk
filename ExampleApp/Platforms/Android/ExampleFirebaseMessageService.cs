@@ -11,6 +11,21 @@ public class ExampleFirebaseMessageService : FirebaseMessagingService
 {
     public override void OnMessageReceived(RemoteMessage message)
     {
+        Bloomreach.BloomreachSDK.SetOpenedPushCallback(action =>
+        {
+            switch (action.ActionType)
+            {
+                case "app":
+                    Console.WriteLine(action.Attributes);
+                    break;
+                case "deeplink":
+                    Console.WriteLine(action.Url);
+                    break;
+                case "web":
+                    Console.WriteLine(action.Url);
+                    break;
+            }
+        });
         Bloomreach.BloomreachSDK.SetReceivedPushCallback(payload =>
         {
             foreach (var entry in payload.RawData)
