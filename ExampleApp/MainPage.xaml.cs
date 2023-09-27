@@ -16,6 +16,29 @@ public partial class MainPage : ContentPage
         CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
         SessionStartButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
         SessionEndButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
+        RegisterCustomizedInAppHandler();
+    }
+
+    private void RegisterCustomizedInAppHandler()
+    {
+        Bloomreach.BloomreachSDK.SetInAppMessageActionCallback(false, false,
+            (message, text, url, interaction) =>
+            {
+                var infoMessage = $"Msg name: {message.Name}\n" +
+                                  $"Button name: {text}\n" +
+                                  $"URL: {url}\n" +
+                                  $"User interacts: {interaction}";
+                DisplayAlert("InApp action", infoMessage, "OK");
+                if (url == null)
+                {
+                    Bloomreach.BloomreachSDK.TrackInAppMessageClose(message, interaction);
+                }
+                else
+                {
+                    Bloomreach.BloomreachSDK.TrackInAppMessageClick(message, text, url);
+                }
+            }
+        );
     }
 
     async void ShowConfiguration(object sender, EventArgs e)

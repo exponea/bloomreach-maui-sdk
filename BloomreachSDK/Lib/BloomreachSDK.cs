@@ -616,36 +616,55 @@ namespace Bloomreach
             );
         }
 
-        public static void SetInAppMessageActionCallback(Action<InAppMessagePayload> listener)
+        public static void SetInAppMessageActionCallback(
+            bool overrideDefaultBehavior,
+            bool trackActions,
+            Action<InAppMessage, string?, string?, bool> listener
+        )
         {
-            Instance.Channel.InvokeMethodAsync("SetInAppMessageActionCallback", null, (result, exception) =>
+            var inputFlags = new Dictionary<string, bool>()
             {
-                if (exception != null)
+                { "overrideDefaultBehavior", overrideDefaultBehavior },
+                { "trackActions", trackActions }
+            };
+            Instance.Channel.InvokeMethodAsync(
+                "SetInAppMessageActionCallback",
+                ConverterUtils.SerializeInput(inputFlags),
+                (result, exception) =>
                 {
-                    ThrowOrLog(exception);
-                    return;
-                }
-                if (result == null)
-                {
-                    Log("ReceivedPushCallback got empty in app message data");
-                    return;
-                }
-                try
-                {
-                    var rawPayload = ConverterUtils.DeserializeOutput<Dictionary<string, string>>(result);
-                    if (rawPayload == null)
+                    if (exception != null)
                     {
-                        ThrowOrLog(BloomreachException.Common("ReceivedPushCallback got invalid in app message data"));
+                        ThrowOrLog(exception);
                         return;
                     }
-                    var payload = InAppMessagePayload.Parse(rawPayload);
-                    listener.Invoke(payload);
+                    if (result == null)
+                    {
+                        Log("ReceivedPushCallback got empty in app message data");
+                        return;
+                    }
+                    try
+                    {
+                        var actionPayload = ConverterUtils.DeserializeOutput<InAppMessageAction>(result);
+                        if (actionPayload?.Message == null)
+                        {
+                            ThrowOrLog(BloomreachException.Common("Received In App message got invalid data"));
+                            return;
+                        }
+                        var messageData = ConverterUtils.DeserializeOutput<IDictionary<string, object>>(actionPayload.Message);
+                        if (messageData == null)
+                        {
+                            ThrowOrLog(BloomreachException.Common("Received In App message got invalid message"));
+                            return;
+                        }
+                        var message = new InAppMessage(messageData);
+                        listener.Invoke(message, actionPayload.ButtonText, actionPayload.ButtonLink, actionPayload.IsUserInteraction ?? false);
+                    }
+                    catch (Exception e)
+                    {
+                        ThrowOrLog(e);
+                    }
                 }
-                catch (Exception e)
-                {
-                    ThrowOrLog(e);
-                }
-            });
+            );
         }
     }
 }

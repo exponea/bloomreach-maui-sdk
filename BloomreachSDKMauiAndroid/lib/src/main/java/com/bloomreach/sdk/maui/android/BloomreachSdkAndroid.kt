@@ -1,9 +1,11 @@
 package com.bloomreach.sdk.maui.android
 
+import InAppMessageAction
 import android.content.Context
 import anonymize
 import com.bloomreach.sdk.maui.android.exception.BloomreachUnsupportedException
 import com.bloomreach.sdk.maui.android.util.SerializeUtils
+import com.bloomreach.sdk.maui.android.util.SerializeUtils.deserializeData
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseAsMap
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseBoolean
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseDouble
@@ -30,9 +32,14 @@ import setCheckPushSetup
 import setDefaultProperties
 import setFlushMode
 import setFlushPeriod
+import setInAppMessageActionCallback
 import setLogLevel
 import setSessionTimeout
 import trackEvent
+import trackInAppMessageClick
+import trackInAppMessageClickWithoutTrackingConsent
+import trackInAppMessageClose
+import trackInAppMessageCloseWithoutTrackingConsent
 import trackPaymentEvent
 import trackSessionEnd
 import trackSessionStart
@@ -114,6 +121,13 @@ class BloomreachSdkAndroid(
             "TrackDeliveredPushWithoutTrackingConsent" -> this.trackDeliveredPushWithoutTrackingConsent(parseAsMap(params))
             "TrackHmsPushToken" -> this.trackHmsPushToken(params)
             "RequestPushAuthorization" -> this.requestPushAuthorization(context)
+            "TrackInAppMessageClick" ->
+                this.trackInAppMessageClick(deserializeData(params))
+            "TrackInAppMessageClickWithoutTrackingConsent" ->
+                this.trackInAppMessageClickWithoutTrackingConsent(deserializeData(params))
+            "TrackInAppMessageClose" -> this.trackInAppMessageClose(deserializeData(params))
+            "TrackInAppMessageCloseWithoutTrackingConsent" ->
+                this.trackInAppMessageCloseWithoutTrackingConsent(deserializeData(params))
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
@@ -143,6 +157,8 @@ class BloomreachSdkAndroid(
                     done(MethodResult.success(response))
                 }.logOnException()
             }
+            "SetInAppMessageActionCallback" ->
+                this.setInAppMessageActionCallback(parseAsMap(params)) { done(it) }
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }

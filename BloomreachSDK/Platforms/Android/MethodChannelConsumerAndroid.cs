@@ -6,7 +6,7 @@ namespace Bloomreach.Platforms.Android
 	internal class MethodChannelConsumerAndroid : IMethodChannelConsumerPlatformSpecific
     {
         private static readonly BloomreachSdkAndroid NativeSdk = new(
-            Platform.AppContext
+            Platform.CurrentActivity ?? Platform.AppContext
         );
 
         MethodMauiResult IMethodChannelConsumerPlatformSpecific.InvokeMethod(string method, string? data)

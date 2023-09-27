@@ -9,15 +9,10 @@ import Foundation
 
 extension Optional where Wrapped == String {
     var json: [String : Any] {
-        guard let confParams = self,
-              let confParamsData = confParams.data(using: .utf8),
-              let confMap = try? JSONSerialization.jsonObject(
-                with: confParamsData,
-                options: []
-              ) as? [String: Any] else {
+        guard let confParams = self else {
             return [:]
         }
-        return confMap
+        return confParams.json
     }
 }
 

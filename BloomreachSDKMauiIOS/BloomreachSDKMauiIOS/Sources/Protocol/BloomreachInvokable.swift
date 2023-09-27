@@ -634,15 +634,18 @@ public extension BloomreachInvokable {
     func setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?) {
         exponeaSDK.inAppMessagesDelegate = InAppMessageActionDelegateObject(
             overrideDefaultBehavior: data["overrideDefaultBehavior"] as? Bool ?? false,
-            trackActions: data["trackActions"] as? Bool ?? false,
+            trackActions: data["trackActions"] as? Bool ?? true,
             completion: completion
         )
     }
     
     func trackInAppMessageClick(data: [String: Any]) -> MethodResult {
+        guard let messageData = data["message"] as? String else {
+            return .failure("InApp message data are invalid")
+        }
         exponeaSDK.trackInAppMessageClick(
             message: .init(
-                data: data["message"] as! [String: Any]
+                data: messageData.json
             ),
             buttonText: data["buttonText"] as? String,
             buttonLink: data["buttonLink"] as? String
@@ -651,9 +654,12 @@ public extension BloomreachInvokable {
     }
     
     func trackInAppMessageClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        guard let messageData = data["message"] as? String else {
+            return .failure("InApp message data are invalid")
+        }
         exponeaSDK.trackInAppMessageClickWithoutTrackingConsent(
             message: .init(
-                data: data["message"] as! [String: Any]
+                data: messageData.json
             ),
             buttonText: data["buttonText"] as? String,
             buttonLink: data["buttonLink"] as? String
@@ -662,9 +668,12 @@ public extension BloomreachInvokable {
     }
     
     func trackInAppMessageClose(data: [String: Any]) -> MethodResult {
+        guard let messageData = data["message"] as? String else {
+            return .failure("InApp message data are invalid")
+        }
         exponeaSDK.trackInAppMessageClose(
             message: .init(
-                data: data["message"] as! [String: Any]
+                data: messageData.json
             ),
             isUserInteraction: data["isUserInteraction"] as? Bool ?? false
         )
@@ -672,9 +681,12 @@ public extension BloomreachInvokable {
     }
     
     func trackInAppMessageCloseWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        guard let messageData = data["message"] as? String else {
+            return .failure("InApp message data are invalid")
+        }
         exponeaSDK.trackInAppMessageCloseClickWithoutTrackingConsent(
             message: .init(
-                data: data["message"] as! [String: Any]
+                data: messageData.json
             ),
             isUserInteraction: data["isUserInteraction"] as? Bool ?? false
         )
@@ -684,20 +696,19 @@ public extension BloomreachInvokable {
 
 extension InAppMessage {
     init(data: [String: Any]) {
-        let filterrData: [String: Any] = data["filter"] as! [String: Any]
         self.init(
             id: data["id"] as? String ?? "",
             name: data["name"] as? String ?? "",
-            rawMessageType: data["rawMessageType"] as? String ?? "",
+            rawMessageType: data["rawMessageType"] as? String,
             rawFrequency: data["rawFrequency"] as? String ?? "",
             variantId: data["variantId"] as? Int ?? 0,
             variantName: data["variantName"] as? String ?? "",
-            trigger: .init(eventType: data["triggerValue"] as? String ?? "", filter: []),
-            dateFilter: .init(enabled: filterrData["enabled"] as? Bool ?? false, startDate: filterrData["startDate"] as? Date, endDate: filterrData["endDate"] as? Date),
-            payloadHtml: data["payloadHtml"] as? String ?? "",
-            isHtml: data["isHtml"] as? Bool ?? false,
-            hasTrackingConsent: data["hasTrackingConsent"] as? Bool ?? false,
-            consentCategoryTracking: data["consentCategoryTracking"] as? String ?? ""
+            trigger: .init(eventType: data["eventType"] as? String ?? "", filter: []),
+            dateFilter: .init(enabled: false, startDate: nil, endDate: nil),
+            payloadHtml: data["payloadHtml"] as? String,
+            isHtml: data["isHtml"] as? Bool,
+            hasTrackingConsent: data["hasTrackingConsent"] as? Bool,
+            consentCategoryTracking: data["consentCategoryTracking"] as? String
         )
     }
 }

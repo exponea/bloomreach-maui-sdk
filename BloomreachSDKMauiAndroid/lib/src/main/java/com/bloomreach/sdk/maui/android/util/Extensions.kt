@@ -1,8 +1,11 @@
 package com.bloomreach.sdk.maui.android.util
 
 import com.bloomreach.sdk.maui.android.BloomreachSdkAndroid
-import com.exponea.sdk.Exponea
 import com.bloomreach.sdk.maui.android.exception.BloomreachException
+import com.exponea.sdk.models.DateFilter
+import com.exponea.sdk.models.InAppMessage
+import com.exponea.sdk.models.InAppMessagePayload
+import com.exponea.sdk.models.eventfilter.EventFilter
 import com.exponea.sdk.util.Logger
 import java.util.Date
 import kotlin.reflect.KClass
@@ -91,4 +94,58 @@ internal fun <T : Any> Map<String, Any?>.getNullSafely(key: String, type: KClass
 
 internal fun currentTimeSeconds(): Double {
     return Date().time / 1000.0
+}
+
+val InAppMessageParser: InAppMessage? = null
+internal fun InAppMessage?.parseFrom(source: Map<String, Any?>): InAppMessage = InAppMessage(
+    source.getRequired("id"),
+    source.getRequired("name"),
+    source.getNullSafely("rawMessageType", "modal"),
+    source.getRequired("rawFrequency"),
+    null,
+    source.getRequired<Double>("variantId").toInt(),
+    source.getRequired("variantName"),
+    EventFilter(source.getRequired("eventType"), listOf()),
+    DateFilter(false),
+    source.getNullSafely<Double>("priority")?.toInt(),
+    source.getNullSafely<Double>("delayMS")?.toLong(),
+    source.getNullSafely<Double>("timeoutMS")?.toLong(),
+    source.getNullSafely("payloadHtml"),
+    source.getNullSafely("isHtml"),
+    source.getNullSafely("rawHasTrackingConsent"),
+    source.getNullSafely("consentCategoryTracking")
+)
+internal fun InAppMessage.toMap(): Map<String, Any> {
+    val target = mutableMapOf<String, Any>()
+    target["id"] = this.id
+    target["name"] = this.name
+    target["rawMessageType"] = this.messageType.value
+    this.frequency?.value?.let {
+        target["rawFrequency"] = it
+    }
+    target["variantId"] = this.variantId
+    target["variantName"] = this.variantName
+    this.trigger?.eventType?.let {
+        target["eventType"] = it
+    }
+    this.priority?.let {
+        target["priority"] = it
+    }
+    this.delay?.let {
+        target["delayMS"] = it
+    }
+    this.timeout?.let {
+        target["timeoutMS"] = it
+    }
+    this.payloadHtml?.let {
+        target["payloadHtml"] = it
+    }
+    this.isHtml?.let {
+        target["isHtml"] = it
+    }
+    target["rawHasTrackingConsent"] = this.hasTrackingConsent
+    this.consentCategoryTracking?.let {
+        target["consentCategoryTracking"] = it
+    }
+    return target
 }

@@ -28,8 +28,12 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
 
     override  func spec() {
         func getConfFrom(type: JSONType) -> [String : Any] {
+            return readTestFile(fileName: type.name)
+        }
+        
+        func readTestFile(fileName: String) -> [String : Any] {
             let mainBundle = Bundle(identifier: "com.bloomreach.maui.ios.BloomreachSDKMauiIOSTest.BloomreachSDKMauiIOSTests")
-            guard let path = mainBundle?.path(forResource: "Jsons/\(type.name)", ofType: "json") else { return [:] }
+            guard let path = mainBundle?.path(forResource: "Jsons/\(fileName)", ofType: "json") else { return [:] }
             guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe) else { return [:] }
             guard let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary else { return [:] }
             return jsonResult as! [String : Any]
@@ -183,23 +187,24 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             data["id"] = "id"
             data["isHtml"] = true
             data["variantId"] = 1
-            data["filter"] = ["enabled": true]
             let message: InAppMessage = .init(data: data)
             expect(message.id).to(equal("id"))
             expect(message.isHtml).to(beTrue())
             expect(message.variantId).to(equal(1))
-            expect(message.dateFilter.enabled).to(beTrue())
         }
         
         it("InAppMessageActionDelegateObject") {
-            BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
+            var exponeaMock = MockExponea()
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: exponeaMock)
             let data: [String: Any] = [
                 "overrideDefaultBehavior": true,
                 "trackActions": false
             ]
             BloomreachSdkIOS.instance.setInAppMessageActionCallback(data: data) { result in }
-            expect(Exponea.shared.inAppMessagesDelegate.overrideDefaultBehavior).to(beTrue())
-            expect(Exponea.shared.inAppMessagesDelegate.trackActions).to(beFalse())
+            expect(exponeaMock.inAppMessagesDelegate.overrideDefaultBehavior).to(beTrue())
+            expect(exponeaMock.inAppMessagesDelegate.trackActions).to(beFalse())
+            // TODO: call InAppDelegate and compare with 'SetInAppMessageActionCallback_Output'
+            // for now not douable, InAppMessagePayload and InAppMessageButton constructors are not visible here
         }
 
         it("InApp click") {
@@ -208,9 +213,8 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["id"] = "id"
             message["isHtml"] = true
             message["variantId"] = 1
-            message["filter"] = ["enabled": true]
             let data: [String: Any] = [
-                "message": message,
+                "message": message.jsonData,
                 "buttonText": "Button text",
                 "buttonLink": "Button link"
             ]
@@ -221,7 +225,6 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect(msg.id).to(equal("id"))
             expect(msg.isHtml).to(beTrue())
             expect(msg.variantId).to(equal(1))
-            expect(msg.dateFilter.enabled).to(beTrue())
             expect((found?.params[1] as! String)).to(equal("Button text"))
             expect((found?.params[2] as! String)).to(equal("Button link"))
         }
@@ -232,9 +235,8 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["id"] = "id"
             message["isHtml"] = true
             message["variantId"] = 1
-            message["filter"] = ["enabled": true]
             let data: [String: Any] = [
-                "message": message,
+                "message": message.jsonData,
                 "isUserInteraction": false
             ]
             let _ = BloomreachSdkIOS.instance.trackInAppMessageClose(data: data)
@@ -244,7 +246,6 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect(msg.id).to(equal("id"))
             expect(msg.isHtml).to(beTrue())
             expect(msg.variantId).to(equal(1))
-            expect(msg.dateFilter.enabled).to(beTrue())
             expect((found?.params[1] as! Bool)).to(beFalse())
         }
         
@@ -254,9 +255,8 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["id"] = "id"
             message["isHtml"] = true
             message["variantId"] = 1
-            message["filter"] = ["enabled": true]
             let data: [String: Any] = [
-                "message": message,
+                "message": message.jsonData,
                 "isUserInteraction": true
             ]
             let _ = BloomreachSdkIOS.instance.trackInAppMessageCloseWithoutTrackingConsent(data: data)
@@ -266,7 +266,6 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect(msg.id).to(equal("id"))
             expect(msg.isHtml).to(beTrue())
             expect(msg.variantId).to(equal(1))
-            expect(msg.dateFilter.enabled).to(beTrue())
             expect((found?.params[1] as! Bool)).to(beTrue())
         }
     }

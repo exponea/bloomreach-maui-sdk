@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 
 object SerializeUtils {
 
-    private val GSON = ExponeaGson.instance
+    val GSON = ExponeaGson.instance
 
     fun parseAsMap(params: String?): Map<String, Any?> {
         if (params == null) {
@@ -40,6 +40,11 @@ object SerializeUtils {
             is String -> return source.trim().trim('"')
         }
         return GSON.toJson(source)
+    }
+
+    inline fun <reified T : Any> deserializeData(source: String?): T? {
+        source ?: return null
+        return GSON.fromJson<T>(source, T::class.java)
     }
 
     fun mapToStringString(source: Map<String, Any?>?): Map<String, String>? {
