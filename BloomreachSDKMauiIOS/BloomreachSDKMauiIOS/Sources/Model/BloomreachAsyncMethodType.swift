@@ -12,6 +12,7 @@ public enum BloomreachAsyncMethodType {
     case setReceivedPushCallback(data: TypeBlock<MethodResult>?)
     case setOpenedPushCallback(data: TypeBlock<MethodResult>?)
     case requestPushAuthorization(completion: TypeBlock<MethodResult>?)
+    case setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?)
     case unsupported
     
     init(method: String?, params: String?, asyncBlock: TypeBlock<MethodResult>? = nil) {
@@ -28,6 +29,8 @@ public enum BloomreachAsyncMethodType {
             self = .setOpenedPushCallback(data: asyncBlock)
         case "requestpushauthorization":
             self = .requestPushAuthorization(completion: asyncBlock)
+            case "setinappmessageactioncallback":
+                        self = .setInAppMessageActionCallback(data: method.json, completion: asyncBlock)
         default:
             self = .unsupported
         }

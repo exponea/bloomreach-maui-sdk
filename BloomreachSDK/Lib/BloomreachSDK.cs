@@ -561,6 +561,92 @@ namespace Bloomreach
                 task.TrySetException(exception);
             }
         }
+
+        public static void TrackInAppMessageClick(InAppMessage message, string buttonText, string buttonLink)
+        {
+            Dictionary<string, object?> data = new Dictionary<string, object?>
+            {
+                {"message", ConverterUtils.SerializeInput(message) },
+                {"buttonText", buttonText },
+                {"buttonLink", buttonLink }
+            };
+            Instance.Channel.InvokeMethod(
+                "TrackInAppMessageClick",
+                ConverterUtils.SerializeInput(data)
+            );
+        }
+
+        public static void TrackInAppMessageClickWithoutTrackingConsent(InAppMessage message, string buttonText, string buttonLink)
+        {
+            Dictionary<string, object?> data = new Dictionary<string, object?>
+            {
+                {"message", ConverterUtils.SerializeInput(message) },
+                {"buttonText", buttonText },
+                {"buttonLink", buttonLink }
+            };
+            Instance.Channel.InvokeMethod(
+                "TrackInAppMessageClickWithoutTrackingConsent",
+                ConverterUtils.SerializeInput(data)
+            );
+        }
+
+        public static void TrackInAppMessageClose(InAppMessage message, bool? isUserInteraction = null)
+        {
+            Dictionary<string, object?> data = new Dictionary<string, object?>
+            {
+                {"message", ConverterUtils.SerializeInput(message) },
+                {"isUserInteraction", isUserInteraction }
+            };
+            Instance.Channel.InvokeMethod(
+                "TrackInAppMessageClose",
+                ConverterUtils.SerializeInput(data)
+            );
+        }
+
+        public static void TrackInAppMessageCloseWithoutTrackingConsent(InAppMessage message, bool? isUserInteraction = null)
+        {
+            Dictionary<string, object?> data = new Dictionary<string, object?>
+            {
+                {"message", ConverterUtils.SerializeInput(message) },
+                {"isUserInteraction", isUserInteraction }
+            };
+            Instance.Channel.InvokeMethod(
+                "TrackInAppMessageCloseWithoutTrackingConsent",
+                ConverterUtils.SerializeInput(data)
+            );
+        }
+
+        public static void SetInAppMessageActionCallback(Action<InAppMessagePayload> listener)
+        {
+            Instance.Channel.InvokeMethodAsync("SetInAppMessageActionCallback", null, (result, exception) =>
+            {
+                if (exception != null)
+                {
+                    ThrowOrLog(exception);
+                    return;
+                }
+                if (result == null)
+                {
+                    Log("ReceivedPushCallback got empty in app message data");
+                    return;
+                }
+                try
+                {
+                    var rawPayload = ConverterUtils.DeserializeOutput<Dictionary<string, string>>(result);
+                    if (rawPayload == null)
+                    {
+                        ThrowOrLog(BloomreachException.Common("ReceivedPushCallback got invalid in app message data"));
+                        return;
+                    }
+                    var payload = InAppMessagePayload.Parse(rawPayload);
+                    listener.Invoke(payload);
+                }
+                catch (Exception e)
+                {
+                    ThrowOrLog(e);
+                }
+            });
+        }
     }
 }
 

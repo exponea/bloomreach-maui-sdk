@@ -9,6 +9,7 @@ import ExponeaSDK
 import Foundation
 
 public protocol BloomreachInvokable {
+    var exponeaSDK: ExponeaType { get set }
     func parse(method: String?, params: String?) -> MethodResult
     func parseAsync(method: String?, params: String?, done: @escaping (MethodResult)->())
     
@@ -61,6 +62,12 @@ public protocol BloomreachInvokable {
     func setOpenedPushCallback(completion: TypeBlock<MethodResult>?)
     func requestPushAuthorization(completion: TypeBlock<MethodResult>?)
     
+    // MAKR: - InApp
+    func setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?)
+    func trackInAppMessageClick(data: [String: Any]) -> MethodResult
+    func trackInAppMessageClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+    func trackInAppMessageClose(data: [String: Any]) -> MethodResult
+    func trackInAppMessageCloseWithoutTrackingConsent(data: [String: Any]) -> MethodResult
 }
 
 public extension BloomreachInvokable {
@@ -76,6 +83,8 @@ public extension BloomreachInvokable {
             setOpenedPushCallback(completion: data)
         case let .requestPushAuthorization(data):
             requestPushAuthorization(completion: data)
+        case let .setInAppMessageActionCallback(data, completion):
+            setInAppMessageActionCallback(data: data, completion: completion)
         }
     }
 
@@ -163,6 +172,14 @@ public extension BloomreachInvokable {
             return trackHmsPushToken()
         case .handleRemoteMessageTimeWillExpire:
             return handleRemoteMessageTimeWillExpire()
+        case let .trackInAppMessageClick(data):
+            return trackInAppMessageClick(data: data)
+        case let .trackInAppMessageClickWithoutTrackingConsent(data):
+            return trackInAppMessageClickWithoutTrackingConsent(data: data)
+        case let .trackInAppMessageClose(data):
+            return trackInAppMessageClose(data: data)
+        case let .trackInAppMessageCloseWithoutTrackingConsent(data):
+            return trackInAppMessageCloseWithoutTrackingConsent(data: data)
         default:
             return .unsupportedMethod(method ?? "Uknown method")
         }
@@ -174,14 +191,14 @@ public extension BloomreachInvokable {
     func anonymize(data: [String: Any]) -> MethodResult {
         if let projectDic = data["project"] as? [String: Any],
            let mappingsDic = data["projectMapping"] as? [String: Any],
-           let project = parseExponeaProject(projectDic, defaultBaseUrl: Exponea.shared.configuration?.baseUrl ?? Constants.Repository.baseUrl) {
+           let project = parseExponeaProject(projectDic, defaultBaseUrl: exponeaSDK.configuration?.baseUrl ?? Constants.Repository.baseUrl) {
             let mappings = parseProjectMappings(mappingsDic)
-            Exponea.shared.anonymize(
+            exponeaSDK.anonymize(
                 exponeaProject: project,
                 projectMapping: mappings
             )
         } else {
-            Exponea.shared.anonymize()
+            exponeaSDK.anonymize()
         }
         return MethodResult.success("Anonymized")
     }
@@ -196,7 +213,7 @@ public extension BloomreachInvokable {
     }
     
     private func parseProjectMappings(_ source: [String: Any]) -> [EventType: [ExponeaProject]] {
-        let defaultBaseUrl = Exponea.shared.configuration?.baseUrl ?? Constants.Repository.baseUrl
+        let defaultBaseUrl = exponeaSDK.configuration?.baseUrl ?? Constants.Repository.baseUrl
         var mapping: [EventType: [ExponeaProject]]  = [:]
         for (key, value) in source {
             let eventType: EventType
@@ -245,7 +262,7 @@ public extension BloomreachInvokable {
     func configure(data: [String: Any]) -> MethodResult {
         let configuration: Configuration = .init(data: data)
         do {
-            try Exponea.shared.configure(
+            try (exponeaSDK as! ExponeaInternal).configure(
                 with: .init(
                     projectToken: configuration.projectToken,
                     projectMapping: nil,
@@ -272,7 +289,7 @@ public extension BloomreachInvokable {
     }
     
     func flushData(completion: TypeBlock<MethodResult>?) {
-        Exponea.shared.flushData { result in
+        exponeaSDK.flushData { result in
             switch result {
             case let .success(value):
                 completion?(.success("true"))
@@ -287,25 +304,25 @@ public extension BloomreachInvokable {
     }
 
     func getConfiguration() -> MethodResult {
-        guard let conf = Exponea.shared.configuration, let data = try? JSONEncoder().encode(conf) else {
+        guard let conf = exponeaSDK.configuration, let data = try? JSONEncoder().encode(conf) else {
             return .failure("Cant read configuration")
         }
         return .success(data.base64EncodedString())
     }
     
     func getCustomerCookie() -> MethodResult {
-        if let customerCookie = Exponea.shared.customerCookie {
+        if let customerCookie = exponeaSDK.customerCookie {
             return .success(customerCookie)
         }
         return .failure("customerCookie is nil")
     }
     
     func getCheckPushSetup() -> MethodResult {
-        .success(Exponea.shared.checkPushSetup ? "true" : "false")
+        .success(exponeaSDK.checkPushSetup ? "true" : "false")
     }
     
     func getDefaultProperties() -> MethodResult {
-        guard let properties = Exponea.shared.defaultProperties,
+        guard let properties = exponeaSDK.defaultProperties,
               let jsonProps = try? JSONSerialization.data(withJSONObject: properties, options: []),
               let stringProps = String(data: jsonProps, encoding: .utf8) else {
             return .failure("Cant get properties")
@@ -315,7 +332,7 @@ public extension BloomreachInvokable {
     
     func getFlushMode() -> MethodResult {
         let flushMode: String
-        switch Exponea.shared.flushingMode {
+        switch exponeaSDK.flushingMode {
         case .automatic:
             flushMode = "app_close"
         case .immediate:
@@ -330,7 +347,7 @@ public extension BloomreachInvokable {
     
     func getFlushPeriod() -> MethodResult {
         let period: String
-        switch Exponea.shared.flushingMode {
+        switch exponeaSDK.flushingMode {
         case let .periodic(value):
             period = "\(value * 1000)"
         default:
@@ -343,12 +360,12 @@ public extension BloomreachInvokable {
         guard let millis = millis else {
             return .failure("Flush period not set")
         }
-        Exponea.shared.flushingMode = .periodic(Int(exactly: millis / 1000) ?? 0)
+        exponeaSDK.flushingMode = .periodic(Int(exactly: millis / 1000) ?? 0)
         return .success("Flush period set successfuly")
     }
 
     func getTokenTrackFrequency() -> MethodResult {
-        guard let configuration = Exponea.shared.configuration else {
+        guard let configuration = exponeaSDK.configuration else {
             return .failure("Token track frequency is unknown")
         }
         let tokenFrequencyString: String
@@ -364,7 +381,7 @@ public extension BloomreachInvokable {
     }
     
     func getSessionTimeout() -> MethodResult {
-        guard let conf = Exponea.shared.configuration else {
+        guard let conf = exponeaSDK.configuration else {
             return .failure("Session timeout is unknown")
         }
         return .success("\(Int(conf.sessionTimeout * 1000))")
@@ -374,7 +391,7 @@ public extension BloomreachInvokable {
         guard let millis = millis else {
             return .failure("Flush period not set")
         }
-        Exponea.shared.setAutomaticSessionTracking(automaticSessionTracking: .enabled(timeout: Double(millis / 1000)))
+        (exponeaSDK as! ExponeaInternal).setAutomaticSessionTracking(automaticSessionTracking: .enabled(timeout: Double(millis / 1000)))
         return .success("Flush period set successfuly")
     }
     
@@ -396,7 +413,7 @@ public extension BloomreachInvokable {
     @discardableResult
     func identifyCustomer(data: [String: Any]) -> MethodResult {
         let customer: Customer = .init(data: data)
-        Exponea.shared.identifyCustomer(
+        exponeaSDK.identifyCustomer(
             customerIds: customer.customerIds,
             properties: customer.properties,
             timestamp: customer.timestamp
@@ -405,33 +422,33 @@ public extension BloomreachInvokable {
     }
 
     func isAutomaticSessionTracking() -> MethodResult {
-        .success(Exponea.shared.configuration?.automaticSessionTracking == true ? "true" : "false")
+        .success(exponeaSDK.configuration?.automaticSessionTracking == true ? "true" : "false")
     }
     
     func isAutoPushNotification() -> MethodResult {
-        .success(Exponea.shared.configuration?.automaticPushNotificationTracking == true ? "true" : "false")
+        .success(exponeaSDK.configuration?.automaticPushNotificationTracking == true ? "true" : "false")
     }
     
     func isConfigured() -> MethodResult {
-        .success(Exponea.shared.isConfigured ? "true" : "false")
+        .success(exponeaSDK.isConfigured ? "true" : "false")
     }
     
     func isSafeMode() -> MethodResult {
-        .success(Exponea.shared.safeModeEnabled ? "true" : "false")
+        .success(exponeaSDK.safeModeEnabled ? "true" : "false")
     }
 
     func setAutomaticSessionTracking(value: Bool) -> MethodResult {
-        Exponea.shared.setAutomaticSessionTracking(automaticSessionTracking: value ? .enabled() : .disabled)
+        (exponeaSDK as! ExponeaInternal).setAutomaticSessionTracking(automaticSessionTracking: value ? .enabled() : .disabled)
         return .success("Automatic session set")
     }
 
     func setCheckPushSetup(value: Bool) -> MethodResult {
-        Exponea.shared.checkPushSetup = value
+        exponeaSDK.checkPushSetup = value
         return .success("CheckPush has been set to \(value)")
     }
     
     func setDefaultProperties(data: [String: Any]) -> MethodResult {
-        Exponea.shared.defaultProperties = JsonDataParser.parse(dictionary: data)
+        exponeaSDK.defaultProperties = JsonDataParser.parse(dictionary: data)
         return .success("Default properties set")
     }
     
@@ -441,14 +458,14 @@ public extension BloomreachInvokable {
         }
         switch true {
         case value.contains("app_close"):
-            Exponea.shared.flushingMode = .automatic
+            exponeaSDK.flushingMode = .automatic
         case value.contains("immediate"):
-            Exponea.shared.flushingMode = .immediate
+            exponeaSDK.flushingMode = .immediate
         case value.contains("manual"):
-            Exponea.shared.flushingMode = .manual
+            exponeaSDK.flushingMode = .manual
         case value.contains("period"):
             // default flush period = 5 min
-            Exponea.shared.flushingMode = .periodic(5 * 60)
+            exponeaSDK.flushingMode = .periodic(5 * 60)
         default:
             assertionFailure()
             return .failure("Cant set flush mode")
@@ -476,7 +493,7 @@ public extension BloomreachInvokable {
     }
     
     func setSafeMode(value: Bool) -> MethodResult {
-        Exponea.shared.safeModeEnabled = value
+        exponeaSDK.safeModeEnabled = value
         return .success("Safe mode has been set to \(value)")
     }
 }
@@ -484,7 +501,7 @@ public extension BloomreachInvokable {
 // MARK: - Tracking
 public extension BloomreachInvokable {
     func trackPaymentEvent(data: [String: Any], timestamp: Double?) -> MethodResult {
-        Exponea.shared.trackPayment(properties: JsonDataParser.parse(dictionary: data), timestamp: timestamp)
+        exponeaSDK.trackPayment(properties: JsonDataParser.parse(dictionary: data), timestamp: timestamp)
         return .success(nil)
     }
     
@@ -495,7 +512,7 @@ public extension BloomreachInvokable {
         guard let attrsAny = data["attributes"] as? [String: Any] else {
             return .failure("Unable to parse Event properties")
         }
-        Exponea.shared.trackEvent(
+        exponeaSDK.trackEvent(
             properties: JsonDataParser.parse(dictionary: attrsAny),
             timestamp: timestamp,
             eventType: .assertValueFromDict(data: data, key: "name")
@@ -504,12 +521,12 @@ public extension BloomreachInvokable {
     }
 
     func trackSessionEnd() -> MethodResult {
-        Exponea.shared.trackSessionEnd()
+        exponeaSDK.trackSessionEnd()
         return .success(nil)
     }
     
     func trackSessionStart() -> MethodResult {
-        Exponea.shared.trackSessionStart()
+        exponeaSDK.trackSessionStart()
         return .success(nil)
     }
 }
@@ -521,7 +538,7 @@ public extension BloomreachInvokable {
             return .failure("Push notification payload is missing")
         }
         let identifier = data["url"] as? String
-        Exponea.shared.handlePushNotificationOpened(userInfo: userInfo, actionIdentifier: identifier)
+        exponeaSDK.handlePushNotificationOpened(userInfo: userInfo, actionIdentifier: identifier)
         return .success(nil)
     }
     
@@ -529,7 +546,7 @@ public extension BloomreachInvokable {
         guard let url = URL(string: url ?? "") else {
             return .failure("Incorrect URL")
         }
-        Exponea.shared.trackCampaignClick(url: url, timestamp: Date().timeIntervalSince1970)
+        exponeaSDK.trackCampaignClick(url: url, timestamp: Date().timeIntervalSince1970)
         return .success(nil)
     }
     
@@ -538,7 +555,7 @@ public extension BloomreachInvokable {
     }
     
     func handlePushToken(token: String) -> MethodResult {
-        Exponea.shared.handlePushNotificationToken(token: token)
+        exponeaSDK.handlePushNotificationToken(token: token)
         return .success(nil)
     }
     
@@ -560,27 +577,27 @@ public extension BloomreachInvokable {
     }
 
     func trackClickedPush(data: [String: Any]) -> MethodResult {
-        Exponea.shared.trackPushOpened(with: data)
+        exponeaSDK.trackPushOpened(with: data)
         return .success(nil)
     }
     
     func trackClickedPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
-        Exponea.shared.trackPushOpenedWithoutTrackingConsent(with: data)
+        exponeaSDK.trackPushOpenedWithoutTrackingConsent(with: data)
         return .success(nil)
     }
     
     func trackPushToken(token: String?) -> MethodResult {
-        Exponea.shared.trackPushToken(token)
+        exponeaSDK.trackPushToken(token)
         return .success(nil)
     }
     
     func trackDeliveredPush(data: [String: Any]) -> MethodResult {
-        Exponea.shared.trackPushReceived(userInfo: data)
+        exponeaSDK.trackPushReceived(userInfo: data)
         return .success(nil)
     }
     
     func trackDeliveredPushWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
-        Exponea.shared.trackPushReceivedWithoutTrackingConsent(userInfo: data)
+        exponeaSDK.trackPushReceivedWithoutTrackingConsent(userInfo: data)
         return .success(nil)
     }
     
@@ -589,11 +606,11 @@ public extension BloomreachInvokable {
     }
     
     func setOpenedPushCallback(completion: TypeBlock<MethodResult>?) {
-        Exponea.shared.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
+        exponeaSDK.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
     }
     
     func setReceivedPushCallback(completion: TypeBlock<MethodResult>?) {
-        Exponea.shared.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
+        exponeaSDK.pushNotificationsDelegate = PushNotificationManagerDelegateObject(completion: completion)
     }
 
     func requestPushAuthorization(completion: TypeBlock<MethodResult>?) {
@@ -611,3 +628,77 @@ public extension BloomreachInvokable {
         }
     }
 }
+
+// MARK: - InApp
+public extension BloomreachInvokable {
+    func setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?) {
+        exponeaSDK.inAppMessagesDelegate = InAppMessageActionDelegateObject(
+            overrideDefaultBehavior: data["overrideDefaultBehavior"] as? Bool ?? false,
+            trackActions: data["trackActions"] as? Bool ?? false,
+            completion: completion
+        )
+    }
+    
+    func trackInAppMessageClick(data: [String: Any]) -> MethodResult {
+        exponeaSDK.trackInAppMessageClick(
+            message: .init(
+                data: data["message"] as! [String: Any]
+            ),
+            buttonText: data["buttonText"] as? String,
+            buttonLink: data["buttonLink"] as? String
+        )
+        return .success(nil)
+    }
+    
+    func trackInAppMessageClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        exponeaSDK.trackInAppMessageClickWithoutTrackingConsent(
+            message: .init(
+                data: data["message"] as! [String: Any]
+            ),
+            buttonText: data["buttonText"] as? String,
+            buttonLink: data["buttonLink"] as? String
+        )
+        return .success(nil)
+    }
+    
+    func trackInAppMessageClose(data: [String: Any]) -> MethodResult {
+        exponeaSDK.trackInAppMessageClose(
+            message: .init(
+                data: data["message"] as! [String: Any]
+            ),
+            isUserInteraction: data["isUserInteraction"] as? Bool ?? false
+        )
+        return .success(nil)
+    }
+    
+    func trackInAppMessageCloseWithoutTrackingConsent(data: [String: Any]) -> MethodResult {
+        exponeaSDK.trackInAppMessageCloseClickWithoutTrackingConsent(
+            message: .init(
+                data: data["message"] as! [String: Any]
+            ),
+            isUserInteraction: data["isUserInteraction"] as? Bool ?? false
+        )
+        return .success(nil)
+    }
+}
+
+extension InAppMessage {
+    init(data: [String: Any]) {
+        let filterrData: [String: Any] = data["filter"] as! [String: Any]
+        self.init(
+            id: data["id"] as? String ?? "",
+            name: data["name"] as? String ?? "",
+            rawMessageType: data["rawMessageType"] as? String ?? "",
+            rawFrequency: data["rawFrequency"] as? String ?? "",
+            variantId: data["variantId"] as? Int ?? 0,
+            variantName: data["variantName"] as? String ?? "",
+            trigger: .init(eventType: data["triggerValue"] as? String ?? "", filter: []),
+            dateFilter: .init(enabled: filterrData["enabled"] as? Bool ?? false, startDate: filterrData["startDate"] as? Date, endDate: filterrData["endDate"] as? Date),
+            payloadHtml: data["payloadHtml"] as? String ?? "",
+            isHtml: data["isHtml"] as? Bool ?? false,
+            hasTrackingConsent: data["hasTrackingConsent"] as? Bool ?? false,
+            consentCategoryTracking: data["consentCategoryTracking"] as? String ?? ""
+        )
+    }
+}
+

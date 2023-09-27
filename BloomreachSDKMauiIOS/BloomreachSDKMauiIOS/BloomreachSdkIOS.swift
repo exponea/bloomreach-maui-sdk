@@ -42,6 +42,12 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
     
     var notificationService: ExponeaNotificationService? = nil
 
+    public var exponeaSDK: ExponeaType = Exponea.shared
+
+    public func setupExponeaSDK(type: ExponeaType) {
+        self.exponeaSDK = type
+    }
+
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {
         do {

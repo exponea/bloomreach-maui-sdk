@@ -19,8 +19,10 @@
 		313DA6F42A9CC86A00B49508 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F32A9CC86A00B49508 /* Customer.swift */; };
 		313DA6F62A9CD32700B49508 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313DA6F52A9CD32700B49508 /* Int.swift */; };
 		315601AF2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315601AE2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.swift */; };
+		31AEEFE92ABAF9E8007E2F9E /* InAppMessageActionDelegateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AEEFE82ABAF9E8007E2F9E /* InAppMessageActionDelegateObject.swift */; };
 		31B6B7752AB877CA00B8BD2C /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B6B7742AB877CA00B8BD2C /* Dictionary.swift */; };
 		31B6B7772AB8784F00B8BD2C /* PushNotificationManagerDelegateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B6B7762AB8784F00B8BD2C /* PushNotificationManagerDelegateObject.swift */; };
+		31FFB5BF2ABB2AFF00BDAD07 /* MockExponea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFB5BE2ABB2AFF00BDAD07 /* MockExponea.swift */; };
 		3D26963D0F8017D117CD24C8 /* Pods_BloomreachSDKMauiIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3544A38AF78696F520523016 /* Pods_BloomreachSDKMauiIOS.framework */; };
 		550893672AB313CD00ABBEF5 /* BloomreachAsyncMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550893652AB313CD00ABBEF5 /* BloomreachAsyncMethodType.swift */; };
 		550893682AB313CD00ABBEF5 /* BloomreachMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550893662AB313CD00ABBEF5 /* BloomreachMethodType.swift */; };
@@ -57,8 +59,10 @@
 		313DA6F52A9CD32700B49508 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		315601AC2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloomreachSDKMauiIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		315601AE2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomreachSDKMauiIOSTests.swift; sourceTree = "<group>"; };
+		31AEEFE82ABAF9E8007E2F9E /* InAppMessageActionDelegateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessageActionDelegateObject.swift; sourceTree = "<group>"; };
 		31B6B7742AB877CA00B8BD2C /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		31B6B7762AB8784F00B8BD2C /* PushNotificationManagerDelegateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManagerDelegateObject.swift; sourceTree = "<group>"; };
+		31FFB5BE2ABB2AFF00BDAD07 /* MockExponea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExponea.swift; sourceTree = "<group>"; };
 		3544A38AF78696F520523016 /* Pods_BloomreachSDKMauiIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BloomreachSDKMauiIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		550893652AB313CD00ABBEF5 /* BloomreachAsyncMethodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloomreachAsyncMethodType.swift; sourceTree = "<group>"; };
 		550893662AB313CD00ABBEF5 /* BloomreachMethodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloomreachMethodType.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				313DA6E22A9C9C1E00B49508 /* Extensions */,
 				312E76D12AA3312D00ECC118 /* Typealiases.swift */,
 				31B6B7762AB8784F00B8BD2C /* PushNotificationManagerDelegateObject.swift */,
+				31AEEFE82ABAF9E8007E2F9E /* InAppMessageActionDelegateObject.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			children = (
 				55CF71A32AB30B7C00549475 /* Jsons */,
 				315601AE2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.swift */,
+				31FFB5BE2ABB2AFF00BDAD07 /* MockExponea.swift */,
 			);
 			path = BloomreachSDKMauiIOSTests;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31FFB5BF2ABB2AFF00BDAD07 /* MockExponea.swift in Sources */,
 				315601AF2A9F315900CD8F22 /* BloomreachSDKMauiIOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +426,7 @@
 				313DA6EA2A9C9C6300B49508 /* BloomreachInvokable.swift in Sources */,
 				550917192A8A589600ACED6C /* MethodResult.swift in Sources */,
 				31B6B7772AB8784F00B8BD2C /* PushNotificationManagerDelegateObject.swift in Sources */,
+				31AEEFE92ABAF9E8007E2F9E /* InAppMessageActionDelegateObject.swift in Sources */,
 				313DA6EE2A9CA69300B49508 /* Bool.swift in Sources */,
 				550893672AB313CD00ABBEF5 /* BloomreachAsyncMethodType.swift in Sources */,
 				5508936A2AB313DA00ABBEF5 /* BloomreachDataError.swift in Sources */,

@@ -109,6 +109,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
         }
         
         it("session tracking") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
             let configData: [String: Any] = [
                 "appGroup": "appGroup",
                 "allowDefaultCustomerProperties": true,
@@ -155,6 +156,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
         }
         
         it("save mode") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
             let success = BloomreachSdkIOS.instance.setSafeMode(value: true).success
             expect(success).to(beTrue())
             expect(Exponea.shared.safeModeEnabled).to(beTrue())
@@ -174,6 +176,98 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             let exponea = Exponea.shared
             expect(exponea.trackSessionStart()).toNot( throwError() )
             expect(exponea.trackSessionEnd()).toNot( throwError() )
+        }
+
+        it("InAppMessageActionDelegateObject") {
+            var data: [String: Any] = [:]
+            data["id"] = "id"
+            data["isHtml"] = true
+            data["variantId"] = 1
+            data["filter"] = ["enabled": true]
+            let message: InAppMessage = .init(data: data)
+            expect(message.id).to(equal("id"))
+            expect(message.isHtml).to(beTrue())
+            expect(message.variantId).to(equal(1))
+            expect(message.dateFilter.enabled).to(beTrue())
+        }
+        
+        it("InAppMessageActionDelegateObject") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
+            let data: [String: Any] = [
+                "overrideDefaultBehavior": true,
+                "trackActions": false
+            ]
+            BloomreachSdkIOS.instance.setInAppMessageActionCallback(data: data) { result in }
+            expect(Exponea.shared.inAppMessagesDelegate.overrideDefaultBehavior).to(beTrue())
+            expect(Exponea.shared.inAppMessagesDelegate.trackActions).to(beFalse())
+        }
+
+        it("InApp click") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: MockExponea())
+            var message: [String: Any] = [:]
+            message["id"] = "id"
+            message["isHtml"] = true
+            message["variantId"] = 1
+            message["filter"] = ["enabled": true]
+            let data: [String: Any] = [
+                "message": message,
+                "buttonText": "Button text",
+                "buttonLink": "Button link"
+            ]
+            let _ = BloomreachSdkIOS.instance.trackInAppMessageClick(data: data)
+            let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
+            let found = exponea.calls.first(where: { $0.name == "trackInAppMessageClick" })
+            let msg = (found?.params[0] as! InAppMessage)
+            expect(msg.id).to(equal("id"))
+            expect(msg.isHtml).to(beTrue())
+            expect(msg.variantId).to(equal(1))
+            expect(msg.dateFilter.enabled).to(beTrue())
+            expect((found?.params[1] as! String)).to(equal("Button text"))
+            expect((found?.params[2] as! String)).to(equal("Button link"))
+        }
+        
+        it("InApp close") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: MockExponea())
+            var message: [String: Any] = [:]
+            message["id"] = "id"
+            message["isHtml"] = true
+            message["variantId"] = 1
+            message["filter"] = ["enabled": true]
+            let data: [String: Any] = [
+                "message": message,
+                "isUserInteraction": false
+            ]
+            let _ = BloomreachSdkIOS.instance.trackInAppMessageClose(data: data)
+            let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
+            let found = exponea.calls.first(where: { $0.name == "trackInAppMessageClose" })
+            let msg = (found?.params[0] as! InAppMessage)
+            expect(msg.id).to(equal("id"))
+            expect(msg.isHtml).to(beTrue())
+            expect(msg.variantId).to(equal(1))
+            expect(msg.dateFilter.enabled).to(beTrue())
+            expect((found?.params[1] as! Bool)).to(beFalse())
+        }
+        
+        it("InApp trackInAppMessageCloseWithoutTrackingConsent") {
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: MockExponea())
+            var message: [String: Any] = [:]
+            message["id"] = "id"
+            message["isHtml"] = true
+            message["variantId"] = 1
+            message["filter"] = ["enabled": true]
+            let data: [String: Any] = [
+                "message": message,
+                "isUserInteraction": true
+            ]
+            let _ = BloomreachSdkIOS.instance.trackInAppMessageCloseWithoutTrackingConsent(data: data)
+            let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
+            let found = exponea.calls.first(where: { $0.name == "trackInAppMessageCloseWithoutTrackingConsent" })
+            let msg = (found?.params[0] as! InAppMessage)
+            expect(msg.id).to(equal("id"))
+            expect(msg.isHtml).to(beTrue())
+            expect(msg.variantId).to(equal(1))
+            expect(msg.dateFilter.enabled).to(beTrue())
+            expect((found?.params[1] as! Bool)).to(beTrue())
         }
     }
 }
