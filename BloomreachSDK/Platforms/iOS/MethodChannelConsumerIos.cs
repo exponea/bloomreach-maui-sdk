@@ -72,19 +72,16 @@ namespace Bloomreach.Platforms.iOS
             Action<UNNotificationContent> handler
         )
         {
-            Console.WriteLine("APNS-BR Native Handle message consumer starts");
             var nativeResult = NativeSdk.HandleRemoteMessageWithAppGroup(
                 appGroup,
                 notificationRequest,
                 handler
             );
-            Console.WriteLine("APNS-BR Native handle message consumer done");
             var mauiResult = new MethodMauiResult(
                 nativeResult.Success,
                 nativeResult.Data,
                 nativeResult.Error
             );
-            Console.WriteLine("APNS-BR Native handle message consumer mapped");
             return mauiResult;
         }
 
@@ -94,19 +91,16 @@ namespace Bloomreach.Platforms.iOS
             UIViewController viewController
         )
         {
-            Console.WriteLine("APNS-BR Native HandleNotificationReceived starts");
             var nativeResult = NativeSdk.HandleRemoteMessageContentWithNotification(
                 notification,
                 context,
                 viewController
             );
-            Console.WriteLine("APNS-BR Native HandleNotificationReceived done");
             var mauiResult = new MethodMauiResult(
                 nativeResult.Success,
                 nativeResult.Data,
                 nativeResult.Error
             );
-            Console.WriteLine("APNS-BR Native HandleNotificationReceived mapped");
             return mauiResult;
         }
     }

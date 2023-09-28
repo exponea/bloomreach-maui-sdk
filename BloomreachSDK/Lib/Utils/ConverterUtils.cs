@@ -63,12 +63,10 @@ public static class ConverterUtils
     public static IDictionary<string, object> NormalizeDictionary(NSDictionary source)
     {
 #pragma warning disable CA1416
-        Console.WriteLine("APNS-BR Normalizing NSDictionary");
         var result = source.ToDictionary<KeyValuePair<NSObject, NSObject>, string, object>(
             item => item.Key as NSString,
             item => item.Value
         );
-        Console.WriteLine("APNS-BR Normalizing done");
         return result;
 #pragma warning restore CA1416
     }

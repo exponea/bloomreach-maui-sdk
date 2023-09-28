@@ -8,7 +8,7 @@
 import ExponeaSDK
 
 struct Configuration {
-    
+
     let appGroup: String
     let advancedAuthEnabled: Bool
     let allowDefaultCustomerProperties: Bool
@@ -21,7 +21,7 @@ struct Configuration {
     let sessionTimeout: Double
     let token: String
     var tokenTrackFrequency: TokenTrackFrequency = .onTokenChange
-    
+
     init(data: [String: Any]) {
         appGroup = .assertValueFromDict(data: data, key: "appGroup")
         advancedAuthEnabled = .assertValueFromDict(data: data, key: "advancedAuthEnabled")

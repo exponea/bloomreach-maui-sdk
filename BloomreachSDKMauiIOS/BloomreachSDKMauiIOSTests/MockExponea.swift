@@ -9,21 +9,41 @@ import ExponeaSDK
 import Foundation
 
 class MockExponea: ExponeaType {
-    
+
     var inAppContentBlocksManager: ExponeaSDK.InAppContentBlocksManagerType?
-    
-    func configure(_ projectSettings: ExponeaSDK.Exponea.ProjectSettings, pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking, automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking, defaultProperties: [String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [String]?, flushingSetup: ExponeaSDK.Exponea.FlushingSetup, allowDefaultCustomerProperties: Bool?, advancedAuthEnabled: Bool?) {
-        
-    }
-    
-    func configure(projectToken: String, authorization: ExponeaSDK.Authorization, baseUrl: String?, appGroup: String?, defaultProperties: [String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [String]?, allowDefaultCustomerProperties: Bool?, advancedAuthEnabled: Bool?) {
-        
-    }
-    
-    func configure(projectToken: String, projectMapping: [ExponeaSDK.EventType : [ExponeaSDK.ExponeaProject]], authorization: ExponeaSDK.Authorization, baseUrl: String?, appGroup: String?, defaultProperties: [String : ExponeaSDK.JSONConvertible]?, inAppContentBlocksPlaceholders: [String]?, allowDefaultCustomerProperties: Bool?, advancedAuthEnabled: Bool?) {
-        
-    }
-    
+
+    func configure(
+        _ projectSettings: ExponeaSDK.Exponea.ProjectSettings,
+        pushNotificationTracking: ExponeaSDK.Exponea.PushNotificationTracking,
+        automaticSessionTracking: ExponeaSDK.Exponea.AutomaticSessionTracking,
+        defaultProperties: [String: ExponeaSDK.JSONConvertible]?,
+        inAppContentBlocksPlaceholders: [String]?,
+        flushingSetup: ExponeaSDK.Exponea.FlushingSetup,
+        allowDefaultCustomerProperties: Bool?,
+        advancedAuthEnabled: Bool?
+    ) { }
+
+    func configure(
+        projectToken: String,
+        authorization: ExponeaSDK.Authorization,
+        baseUrl: String?, appGroup: String?,
+        defaultProperties: [String: ExponeaSDK.JSONConvertible]?,
+        inAppContentBlocksPlaceholders: [String]?,
+        allowDefaultCustomerProperties: Bool?,
+        advancedAuthEnabled: Bool?
+    ) { }
+
+    func configure(
+        projectToken: String,
+        projectMapping: [ExponeaSDK.EventType: [ExponeaSDK.ExponeaProject]],
+        authorization: ExponeaSDK.Authorization,
+        baseUrl: String?,
+        appGroup: String?,
+        defaultProperties: [String: ExponeaSDK.JSONConvertible]?,
+        inAppContentBlocksPlaceholders: [String]?,
+        allowDefaultCustomerProperties: Bool?,
+        advancedAuthEnabled: Bool?
+    ) { }
 
     var appInboxProvider: ExponeaSDK.AppInboxProvider = DefaultAppInboxProvider()
 

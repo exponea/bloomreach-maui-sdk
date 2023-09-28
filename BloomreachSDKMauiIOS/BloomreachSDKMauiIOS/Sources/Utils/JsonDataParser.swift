@@ -10,11 +10,11 @@ import Foundation
 import ExponeaSDK
 
 struct JsonDataParser {
-    
+
     static func parseBoolean(_ source: String?) -> Bool {
         return Bool(source?.lowercased() ?? "false") ?? false
     }
-    
+
     static func parse(dictionary: [String: Any]) -> [String: JSONConvertible] {
         var data: [String: JSONConvertible] = [:]
         dictionary.forEach { key, value in

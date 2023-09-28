@@ -27,3 +27,5 @@ custom_rules:
 
 excluded:
     - Pods
+    - frameworks
+    - build

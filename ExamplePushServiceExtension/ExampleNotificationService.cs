@@ -16,7 +16,6 @@ public class ExampleNotificationService : UNNotificationServiceExtension
     
     public override void DidReceiveNotificationRequest(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
     {
-        Console.WriteLine("APNS-BR Push notification received");
         if (!Bloomreach.BloomreachSDK.HandleRemoteMessage("group.com.exponea.ExponeaSDK-Example2", request, contentHandler))
         {
             Console.WriteLine("Remote Message received without Bloomreach content");
@@ -25,7 +24,6 @@ public class ExampleNotificationService : UNNotificationServiceExtension
 
     public override void TimeWillExpire()
     {
-        Console.WriteLine("APNS-BR Push notification time will expire");
         Bloomreach.BloomreachSDK.HandleRemoteMessageTimeWillExpire();
     }
 }

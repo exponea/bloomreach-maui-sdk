@@ -2,12 +2,15 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.Gms.Common;
+using Android.Gms.Extensions;
 using Android.OS;
 using Huawei.Agconnect.Config;
 using Huawei.Hms.Aaid;
 using Huawei.Hms.Push;
 using Android.Provider;
+using Firebase.Messaging;
 using Huawei.Hmf.Tasks;
+using IOnSuccessListener = Android.Gms.Tasks.IOnSuccessListener;
 using Task = System.Threading.Tasks.Task;
 
 namespace ExampleApp;
@@ -18,19 +21,23 @@ public class MainActivity : MauiAppCompatActivity
     protected override void AttachBaseContext(Context context)
     {
         base.AttachBaseContext(context);
-        Console.WriteLine("HMS-BR attaching base context");
-        if (!IsGooglePlayAvailable())
+        if (IsGooglePlayAvailable())
+        {
+            Task.Run(async () =>
+            {
+                var token = await FirebaseMessaging.Instance.GetToken();
+                Bloomreach.BloomreachSDK.TrackPushToken(token.ToString());
+            });
+        }
+        else
         {
             // so we have to use HMS
-            Console.WriteLine("HMS-BR using HMS");
             var config = AGConnectServicesConfig.FromContext(context);
             config.OverlayWith(new HmsLazyInputStream(context));
             HmsMessaging.GetInstance(this).AutoInitEnabled = true;
-            Console.WriteLine("HMS-BR Push turned on");
             Task.Run(() =>
             {
                 var token = HmsInstanceId.GetInstance(this).GetToken("104661225", "HCM");
-                Console.WriteLine("HMS-BR Push token: " + token);
                 Bloomreach.BloomreachSDK.TrackHmsPushToken(token);
             });
         }

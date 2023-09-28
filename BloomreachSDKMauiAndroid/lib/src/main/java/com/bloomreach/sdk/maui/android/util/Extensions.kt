@@ -9,6 +9,11 @@ import com.exponea.sdk.models.eventfilter.EventFilter
 import com.exponea.sdk.util.Logger
 import java.util.Date
 import kotlin.reflect.KClass
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 fun <T> Result<T>.returnOnException(mapThrowable: (e: Throwable) -> T): T {
     return this.getOrElse {
@@ -148,4 +153,43 @@ internal fun InAppMessage.toMap(): Map<String, Any> {
         target["consentCategoryTracking"] = it
     }
     return target
+}
+
+internal var mainThreadDispatcher = CoroutineScope(Dispatchers.Main)
+internal var backgroundThreadDispatcher = CoroutineScope(Dispatchers.Default)
+
+internal inline fun runOnMainThread(crossinline block: () -> Unit): Job {
+    return mainThreadDispatcher.launch {
+        block.invoke()
+    }
+}
+
+internal inline fun runOnMainThread(delayMillis: Long, crossinline block: () -> Unit): Job {
+    return mainThreadDispatcher.launch {
+        try {
+            delay(delayMillis)
+        } catch (e: Exception) {
+            Logger.w(this, "Delayed task has been cancelled: ${e.localizedMessage}")
+            return@launch
+        }
+        block.invoke()
+    }
+}
+
+internal inline fun runOnBackgroundThread(crossinline block: () -> Unit): Job {
+    return backgroundThreadDispatcher.launch {
+        block.invoke()
+    }
+}
+
+internal inline fun runOnBackgroundThread(delayMillis: Long, crossinline block: () -> Unit): Job {
+    return backgroundThreadDispatcher.launch {
+        try {
+            delay(delayMillis)
+        } catch (e: Exception) {
+            Logger.w(this, "Delayed task has been cancelled: ${e.localizedMessage}")
+            return@launch
+        }
+        block.invoke()
+    }
 }

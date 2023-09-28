@@ -27,7 +27,7 @@ public protocol AuthorizationProviderType {
 }
 
 @objc(MauiAuthorizationProvider)
-public class MauiAuthorizationProvider : NSObject, AuthorizationProviderType {
+public class MauiAuthorizationProvider: NSObject, AuthorizationProviderType {
     required public override init() { }
     public func getAuthorizationToken() -> String? {
         ""
@@ -36,11 +36,11 @@ public class MauiAuthorizationProvider : NSObject, AuthorizationProviderType {
 
 @objc(BloomreachSdkIOS)
 public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
-    
+
     @objc
     public static var instance = BloomreachSdkIOS()
-    
-    var notificationService: ExponeaNotificationService? = nil
+
+    var notificationService: ExponeaNotificationService?
 
     public var exponeaSDK: ExponeaType = Exponea.shared
 
@@ -50,58 +50,43 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
 
     @objc
     public func invokeMethod(method: String?, params: String?) -> MethodResult {
-        do {
-            return parse(method: method, params: params)
-        } catch let error {
-            return MethodResult.failure("Method \(method ?? "nil") failed: \(error)")
-        }
+        return parse(method: method, params: params)
     }
-    
+
     @objc
     public func invokeMethodAsync(
         method: String?,
         params: String?,
-        done: @escaping (MethodResult)->()
+        done: @escaping (MethodResult) -> Void
     ) {
-        do {
-            return parseAsync(method: method, params: params, done: done)
-        } catch let error {
-            return done(MethodResult.unsupportedMethod(method ?? "nil"))
-        }
+        return parseAsync(method: method, params: params, done: done)
     }
-    
+
     @objc
     public func invokeMethodForUI(method: String?, params: String?) -> MethodResultForUI {
-        do {
-            switch method {
-            case "getAppInboxButton":
-                return MethodResultForUI.success(Exponea.shared.getAppInboxButton())
-            default:
-                return MethodResultForUI.unsupportedMethod(method ?? "nil")
-            }
-        } catch let error {
-            return MethodResultForUI.failure("Method \(method ?? "nil") failed: \(error)")
+        switch method {
+        case "getAppInboxButton":
+            return MethodResultForUI.success(Exponea.shared.getAppInboxButton())
+        default:
+            return MethodResultForUI.unsupportedMethod(method ?? "nil")
         }
     }
-    
+
     @objc
     public func handleRemoteMessage(
         appGroup: String,
         notificationRequest: UNNotificationRequest,
         handler: @escaping (UNNotificationContent) -> Void
     ) -> MethodResult {
-        if (!ExponeaSDK.Exponea.isExponeaNotification(userInfo: notificationRequest.content.userInfo)) {
-            Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification is non-Bloomreach, skipping")
+        if !ExponeaSDK.Exponea.isExponeaNotification(userInfo: notificationRequest.content.userInfo) {
             return .failure("Notification is non-Bloomreach, skipping")
         }
         notificationService?.serviceExtensionTimeWillExpire()   // end previous if exists
         notificationService = ExponeaNotificationService(appGroup: appGroup)
-        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification is processing")
         notificationService?.process(request: notificationRequest, contentHandler: handler)
-        Exponea.logger.log(ExponeaSDK.LogLevel.error, message: "APNS-BR Notification was processed")
         return .success("true")
     }
-    
+
     @objc
     public func handleRemoteMessageContent(
         notification: UNNotification,
@@ -115,21 +100,21 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
 }
 
 class MauiInAppDelegate: InAppMessageActionDelegate {
-    
+
     public let overrideDefaultBehavior: Bool
     public let trackActions: Bool
-    private let handler: (InAppMessage, InAppMessageButton?, Bool) -> ()
-    
+    private let handler: (InAppMessage, InAppMessageButton?, Bool) -> Void
+
     init(
         overrideDefaultBehavior: Bool,
         trackActions: Bool,
-        handler: @escaping (InAppMessage, InAppMessageButton?, Bool) -> ()
+        handler: @escaping (InAppMessage, InAppMessageButton?, Bool) -> Void
     ) {
         self.overrideDefaultBehavior = overrideDefaultBehavior
         self.trackActions = trackActions
         self.handler = handler
     }
-    
+
     public func inAppMessageAction(with message: InAppMessage, button: InAppMessageButton?, interaction: Bool) {
         handler(message, button, interaction)
     }

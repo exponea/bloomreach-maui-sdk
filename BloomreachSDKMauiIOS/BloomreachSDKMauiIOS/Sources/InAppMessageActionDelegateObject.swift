@@ -8,17 +8,17 @@
 import ExponeaSDK
 
 final class InAppMessageActionDelegateObject: InAppMessageActionDelegate {
-    
+
     let overrideDefaultBehavior: Bool
     let trackActions: Bool
     let completion: TypeBlock<MethodResult>?
-    
+
     init(overrideDefaultBehavior: Bool, trackActions: Bool, completion: TypeBlock<MethodResult>?) {
         self.overrideDefaultBehavior = overrideDefaultBehavior
         self.trackActions = trackActions
         self.completion = completion
     }
-    
+
     func inAppMessageAction(with message: ExponeaSDK.InAppMessage, button: ExponeaSDK.InAppMessageButton?, interaction: Bool) {
         var data: [String: Any] = [:]
         var messageData: [String: Any] = [:]
@@ -42,7 +42,7 @@ final class InAppMessageActionDelegateObject: InAppMessageActionDelegate {
         data["buttonText"] = button?.text
         data["buttonLink"] = button?.url
         data["isUserInteraction"] = interaction
-        
+
         completion?(.success(data.jsonData))
     }
 }

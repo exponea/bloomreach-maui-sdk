@@ -3,6 +3,7 @@ package com.bloomreach.sdk.maui.android
 import InAppMessageAction
 import android.content.Context
 import anonymize
+import com.bloomreach.sdk.maui.android.MethodResult.Companion
 import com.bloomreach.sdk.maui.android.exception.BloomreachUnsupportedException
 import com.bloomreach.sdk.maui.android.util.SerializeUtils
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.deserializeData
@@ -120,7 +121,6 @@ class BloomreachSdkAndroid(
             "TrackDeliveredPush" -> this.trackDeliveredPush(parseAsMap(params))
             "TrackDeliveredPushWithoutTrackingConsent" -> this.trackDeliveredPushWithoutTrackingConsent(parseAsMap(params))
             "TrackHmsPushToken" -> this.trackHmsPushToken(params)
-            "RequestPushAuthorization" -> this.requestPushAuthorization(context)
             "TrackInAppMessageClick" ->
                 this.trackInAppMessageClick(deserializeData(params))
             "TrackInAppMessageClickWithoutTrackingConsent" ->
@@ -155,6 +155,13 @@ class BloomreachSdkAndroid(
                 runCatching {
                     val response = serializeData(it)
                     done(MethodResult.success(response))
+                }.logOnException()
+            }
+            "RequestPushAuthorization" -> {
+                runCatching {
+                    this.requestPushAuthorization(context) {
+                        done(MethodResult(it, it.toString(), ""))
+                    }
                 }.logOnException()
             }
             "SetInAppMessageActionCallback" ->

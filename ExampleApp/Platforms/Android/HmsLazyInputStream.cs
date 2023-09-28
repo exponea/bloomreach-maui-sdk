@@ -22,7 +22,6 @@ public class HmsLazyInputStream : LazyInputStream
             Log.Error(e.ToString(), $"Can't open agconnect file:" + e.Message);
             jsonStream = null;
         }
-        Console.WriteLine("HMS-BR agconnect found: " + (jsonStream != null));
         return jsonStream;
     }
 }

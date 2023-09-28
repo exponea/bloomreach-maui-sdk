@@ -13,7 +13,6 @@ public class AppDelegate : MauiUIApplicationDelegate, IUNUserNotificationCenterD
 	public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 	{
 		UNUserNotificationCenter.Current.Delegate = this;
-		Console.WriteLine("APNS-BR notif center set");
 		return base.FinishedLaunching(application, launchOptions);
 	}
 	
@@ -26,7 +25,6 @@ public class AppDelegate : MauiUIApplicationDelegate, IUNUserNotificationCenterD
 	[Export("application:didReceiveRemoteNotification:fetchCompletionHandler:")]
 	public void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
 	{
-		Console.WriteLine("APNS-BR Push notification action pure ");
 		BloomreachSDK.HandlePushNotificationOpened(NotificationAction.Parse(userInfo));
 		completionHandler(UIBackgroundFetchResult.NewData);
 	}
@@ -45,7 +43,6 @@ public class AppDelegate : MauiUIApplicationDelegate, IUNUserNotificationCenterD
 	[Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
 	public void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action completionHandler)
 	{
-		Console.WriteLine("APNS-BR Push notification action click");
 		BloomreachSDK.HandlePushNotificationOpened(NotificationAction.Parse(response));
 		completionHandler();
 	}

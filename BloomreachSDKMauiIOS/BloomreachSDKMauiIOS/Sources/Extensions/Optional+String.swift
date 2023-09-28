@@ -8,7 +8,7 @@
 import Foundation
 
 extension Optional where Wrapped == String {
-    var json: [String : Any] {
+    var json: [String: Any] {
         guard let confParams = self else {
             return [:]
         }

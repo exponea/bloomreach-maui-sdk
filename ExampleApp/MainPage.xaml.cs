@@ -28,7 +28,6 @@ public partial class MainPage : ContentPage
                                   $"Button name: {text}\n" +
                                   $"URL: {url}\n" +
                                   $"User interacts: {interaction}";
-                DisplayAlert("InApp action", infoMessage, "OK");
                 if (url == null)
                 {
                     Bloomreach.BloomreachSDK.TrackInAppMessageClose(message, interaction);
@@ -125,7 +124,6 @@ public partial class MainPage : ContentPage
 
     void Register_For_Push_Clicked(object sender, EventArgs e)
     {
-        Console.WriteLine("APNS-BR PushRequest clicked");
         Bloomreach.BloomreachSDK.RequestPushAuthorization();
     }
 

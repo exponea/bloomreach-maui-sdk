@@ -21,7 +21,6 @@ public class NotificationViewController : UIViewController, IUNNotificationConte
 
     public void DidReceiveNotification(UNNotification notification)
     {
-        Console.WriteLine("APNS-BR Push notification received");
         Bloomreach.BloomreachSDK.HandleNotificationReceived(notification, ExtensionContext, this);
     }
     

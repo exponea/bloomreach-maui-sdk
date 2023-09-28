@@ -135,7 +135,6 @@ namespace Bloomreach
 #elif IOS
             try
             {
-                Console.WriteLine("APNS-BR Invoking handle remote message");
                 var result = ((MethodChannelConsumerIos)_channelInternal!).HandleRemoteMessage(
                     (string)args[0],
                     (UNNotificationRequest)args[1],
@@ -147,12 +146,10 @@ namespace Bloomreach
                         new Exception($"Method HandleRemoteMessage return failure status, see logs: {result?.Error}")
                     );
                 }
-                Console.WriteLine("APNS-BR HandleRemoteMessage done");
                 return result?.Data;
             }
             catch (Exception e)
             {
-                Console.WriteLine("APNS-BR Handle remote message errored " + e);
                 BloomreachSDK.ThrowOrLog(e);
                 return null;
             }
@@ -168,7 +165,6 @@ namespace Bloomreach
 #elif IOS
             try
             {
-                Console.WriteLine("APNS-BR Invoking HandleNotificationReceived");
                 var result = ((MethodChannelConsumerIos)_channelInternal!).HandleNotificationReceived(
                     (UNNotification)args[0],
                     (NSExtensionContext?)args[1],
@@ -180,11 +176,9 @@ namespace Bloomreach
                         new Exception($"Method HandleNotificationReceived return failure status, see logs: {result?.Error}")
                     );
                 }
-                Console.WriteLine("APNS-BR HandleNotificationReceived done");
             }
             catch (Exception e)
             {
-                Console.WriteLine("APNS-BR HandleNotificationReceived errored " + e);
                 BloomreachSDK.ThrowOrLog(e);
             }
 #else

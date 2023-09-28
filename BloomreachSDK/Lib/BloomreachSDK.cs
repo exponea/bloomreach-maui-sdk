@@ -369,9 +369,7 @@ namespace Bloomreach
 
         public static void HandlePushNotificationOpened(NotificationAction action)
         {
-            Console.WriteLine("APNS-BR Calling HandlePushNotificationOpened");
             Instance.Channel.InvokeMethod("HandlePushNotificationOpened", ConverterUtils.SerializeInput(action));
-            Console.WriteLine("APNS-BR Calling HandlePushNotificationOpened is DONE");
         }
 
         public static void HandlePushNotificationOpenedWithoutTrackingConsent(NotificationAction action)
@@ -400,9 +398,6 @@ namespace Bloomreach
             var bytes = deviceToken.ToArray<byte>();
             var hexArray = bytes.Select(b => b.ToString("X2")).ToArray();
             var deviceTokenString = string.Join(string.Empty, hexArray);
-            Console.WriteLine("APNS-BR Push token received");
-            Console.WriteLine("APNS-BR Push token " + deviceTokenString);
-            Console.WriteLine("APNS-BR Push token printed");
             Instance.Channel.InvokeMethod("HandlePushToken", deviceTokenString);
         }
 #endif
@@ -458,12 +453,22 @@ namespace Bloomreach
             );
         }
 
-        public static void RequestPushAuthorization()
+        public static Task<bool> RequestPushAuthorization()
         {
-            Instance.Channel.InvokeMethodAsync("RequestPushAuthorization", null, (s, exception) =>
+            var permissionRequest = new TaskCompletionSource<bool>();
+            try
             {
-                Console.WriteLine("APNS-BR Requested permission with result " + s);
-            });
+                Instance.Channel.InvokeMethodAsync("RequestPushAuthorization", null, (result, exception) =>
+                {
+                    ApplyResultToTask(permissionRequest, ConverterUtils.ToBool(result), exception);
+                });
+            }
+            catch (Exception e)
+            {
+                ThrowOrLog(e);
+                permissionRequest.SetResult(false);
+            }
+            return permissionRequest.Task;
         }
 
         public static void SetReceivedPushCallback(Action<NotificationPayload> listener)

@@ -17,7 +17,7 @@ import ExponeaSDK_Notifications
 class BloomreachSDKMauiIOSTests: QuickSpec {
     enum JSONType {
         case configuration
-        
+
         var name: String {
             switch self {
             case .configuration:
@@ -27,16 +27,16 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
     }
 
     override  func spec() {
-        func getConfFrom(type: JSONType) -> [String : Any] {
+        func getConfFrom(type: JSONType) -> [String: Any] {
             return readTestFile(fileName: type.name)
         }
-        
-        func readTestFile(fileName: String) -> [String : Any] {
+
+        func readTestFile(fileName: String) -> [String: Any] {
             let mainBundle = Bundle(identifier: "com.bloomreach.maui.ios.BloomreachSDKMauiIOSTest.BloomreachSDKMauiIOSTests")
             guard let path = mainBundle?.path(forResource: "Jsons/\(fileName)", ofType: "json") else { return [:] }
             guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe) else { return [:] }
             guard let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary else { return [:] }
-            return jsonResult as! [String : Any]
+            return jsonResult as! [String: Any]
         }
 
         it("assert bool - true") {
@@ -77,7 +77,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
                 return
             }
         }
-        
+
         it("setDefaultProperties") {
             let exponea = Exponea.shared
             let configData: [String: Any] = [
@@ -104,14 +104,14 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             let savedProps = Exponea.shared.configuration?.defaultProperties ?? [:]
             expect(savedProps["prop1"] as? String).to(equal("value1"))
         }
-        
+
         it("flushing") {
             let success = BloomreachSdkIOS.instance.setFlushMode(value: "manual").success
             expect(success).to(beTrue())
             let flushValue = BloomreachSdkIOS.instance.getFlushMode().data
             expect(flushValue).to(equal("manual"))
         }
-        
+
         it("session tracking") {
             BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
             let configData: [String: Any] = [
@@ -127,13 +127,13 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
                 "token": "token",
                 "tokenTrackFrequency": "daily"
             ]
-            let _ = BloomreachSdkIOS.instance.configure(data: configData)
+            _ = BloomreachSdkIOS.instance.configure(data: configData)
             let successSet = BloomreachSdkIOS.instance.setAutomaticSessionTracking(value: true).success
             expect(successSet).to(beTrue())
             let isAutomatic = Exponea.shared.configuration?.automaticSessionTracking == true
             expect(isAutomatic).to(beTrue())
         }
-        
+
         it("log level") {
             let success = BloomreachSdkIOS.instance.setLogLevel(level: "error").success
             expect(success).to(beTrue())
@@ -153,29 +153,29 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
                 "token": "token",
                 "tokenTrackFrequency": "daily"
             ]
-            let _ = BloomreachSdkIOS.instance.configure(data: configData)
+            _ = BloomreachSdkIOS.instance.configure(data: configData)
             if let value = Exponea.shared.configuration?.sessionTimeout {
                 expect(value).to(equal(10))
             }
         }
-        
+
         it("save mode") {
             BloomreachSdkIOS.instance.setupExponeaSDK(type: Exponea.shared)
             let success = BloomreachSdkIOS.instance.setSafeMode(value: true).success
             expect(success).to(beTrue())
             expect(Exponea.shared.safeModeEnabled).to(beTrue())
         }
-        
+
         it("Should not crash tracking payment") {
             let exponea = Exponea.shared
             expect { exponea.trackPayment(properties: [:], timestamp: nil) }.toNot( throwError() )
         }
-        
+
         it("Should not crash tracking event") {
             let exponea = Exponea.shared
             expect { exponea.trackEvent(properties: [:], timestamp: nil, eventType: nil) }.toNot( throwError() )
         }
-        
+
         it("Should not crash tracking session") {
             let exponea = Exponea.shared
             expect(exponea.trackSessionStart()).toNot( throwError() )
@@ -192,7 +192,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect(message.isHtml).to(beTrue())
             expect(message.variantId).to(equal(1))
         }
-        
+
         it("InAppMessageActionDelegateObject") {
             var exponeaMock = MockExponea()
             BloomreachSdkIOS.instance.setupExponeaSDK(type: exponeaMock)
@@ -200,11 +200,9 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
                 "overrideDefaultBehavior": true,
                 "trackActions": false
             ]
-            BloomreachSdkIOS.instance.setInAppMessageActionCallback(data: data) { result in }
+            BloomreachSdkIOS.instance.setInAppMessageActionCallback(data: data) { _ in }
             expect(exponeaMock.inAppMessagesDelegate.overrideDefaultBehavior).to(beTrue())
             expect(exponeaMock.inAppMessagesDelegate.trackActions).to(beFalse())
-            // TODO: call InAppDelegate and compare with 'SetInAppMessageActionCallback_Output'
-            // for now not douable, InAppMessagePayload and InAppMessageButton constructors are not visible here
         }
 
         it("InApp click") {
@@ -214,11 +212,11 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["isHtml"] = true
             message["variantId"] = 1
             let data: [String: Any] = [
-                "message": message.jsonData,
+                "message": message.jsonData as Any,
                 "buttonText": "Button text",
                 "buttonLink": "Button link"
             ]
-            let _ = BloomreachSdkIOS.instance.trackInAppMessageClick(data: data)
+            _ = BloomreachSdkIOS.instance.trackInAppMessageClick(data: data)
             let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
             let found = exponea.calls.first(where: { $0.name == "trackInAppMessageClick" })
             let msg = (found?.params[0] as! InAppMessage)
@@ -228,7 +226,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect((found?.params[1] as! String)).to(equal("Button text"))
             expect((found?.params[2] as! String)).to(equal("Button link"))
         }
-        
+
         it("InApp close") {
             BloomreachSdkIOS.instance.setupExponeaSDK(type: MockExponea())
             var message: [String: Any] = [:]
@@ -236,10 +234,10 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["isHtml"] = true
             message["variantId"] = 1
             let data: [String: Any] = [
-                "message": message.jsonData,
+                "message": message.jsonData as Any,
                 "isUserInteraction": false
             ]
-            let _ = BloomreachSdkIOS.instance.trackInAppMessageClose(data: data)
+            _ = BloomreachSdkIOS.instance.trackInAppMessageClose(data: data)
             let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
             let found = exponea.calls.first(where: { $0.name == "trackInAppMessageClose" })
             let msg = (found?.params[0] as! InAppMessage)
@@ -248,7 +246,7 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             expect(msg.variantId).to(equal(1))
             expect((found?.params[1] as! Bool)).to(beFalse())
         }
-        
+
         it("InApp trackInAppMessageCloseWithoutTrackingConsent") {
             BloomreachSdkIOS.instance.setupExponeaSDK(type: MockExponea())
             var message: [String: Any] = [:]
@@ -256,10 +254,10 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
             message["isHtml"] = true
             message["variantId"] = 1
             let data: [String: Any] = [
-                "message": message.jsonData,
+                "message": message.jsonData as Any,
                 "isUserInteraction": true
             ]
-            let _ = BloomreachSdkIOS.instance.trackInAppMessageCloseWithoutTrackingConsent(data: data)
+            _ = BloomreachSdkIOS.instance.trackInAppMessageCloseWithoutTrackingConsent(data: data)
             let exponea = (BloomreachSdkIOS.instance.exponeaSDK as! MockExponea)
             let found = exponea.calls.first(where: { $0.name == "trackInAppMessageCloseWithoutTrackingConsent" })
             let msg = (found?.params[0] as! InAppMessage)
@@ -270,4 +268,3 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
         }
     }
 }
-

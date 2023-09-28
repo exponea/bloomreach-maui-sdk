@@ -6,11 +6,13 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.content.ContextCompat
 import com.bloomreach.sdk.maui.android.notifications.NotificationsPermissionActivity
+import com.bloomreach.sdk.maui.android.notifications.NotificationsPermissionReceiver
 import com.bloomreach.sdk.maui.android.util.SerializeUtils
 import com.bloomreach.sdk.maui.android.util.filterValueIsInstance
 import com.exponea.sdk.Exponea
@@ -117,21 +119,8 @@ internal fun BloomreachSdkAndroid.trackHmsPushToken(token: String?) {
     Exponea.trackHmsPushToken(token)
 }
 
-internal fun BloomreachSdkAndroid.requestPushAuthorization(context: Context) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-        Logger.i(this, "Push notifications permission is not needed")
-        return
-    }
-    val permissionState: Int = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-    if (permissionState == PackageManager.PERMISSION_GRANTED) {
-        Logger.i(this, "Push notifications permission already granted")
-        return
-    }
-    val intent = Intent(context, NotificationsPermissionActivity::class.java)
-    if (context !is Activity) {
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-    }
-    context.startActivity(intent)
+internal fun BloomreachSdkAndroid.requestPushAuthorization(context: Context, listener: (Boolean) -> Unit) {
+    NotificationsPermissionReceiver.requestPushAuthorization(context, listener)
 }
 
 internal fun BloomreachSdkAndroid.setReceivedPushCallback(listener: (Map<String, Any>) -> Unit) {

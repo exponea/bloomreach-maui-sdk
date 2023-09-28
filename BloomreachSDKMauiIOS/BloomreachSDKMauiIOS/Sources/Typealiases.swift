@@ -6,4 +6,4 @@
 //
 
 public typealias Block = () -> Void
-public typealias TypeBlock<T> = (T) -> ()
+public typealias TypeBlock<T> = (T) -> Void
