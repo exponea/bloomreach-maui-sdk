@@ -16,7 +16,7 @@ protocol IsBloomreachMauiSDK {
 public class BloomreachMauiVersion: NSObject, ExponeaVersionProvider {
     required public override init() { }
     public func getVersion() -> String {
-        "0.0.1"
+        "0.2.0"
     }
 }
 
