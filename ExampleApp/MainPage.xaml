@@ -25,6 +25,7 @@
                 <Button BackgroundColor="#fed500" Text="Anonymize" Clicked="Anonymize" />
                 <Button BackgroundColor="#fed500" Text="Flush" Clicked="Flush" />
                 <Button Text="Identify Customer" Clicked="IdentifyCustomer" />
+                <StackLayout x:Name="AppInboxTargetLayout"/>
             </StackLayout>
         </ScrollView>
         <Button Text="Switch Project" BackgroundColor="#fed500" Clicked="Switch_Project_ClickedAsync" Margin="12, 0"/>

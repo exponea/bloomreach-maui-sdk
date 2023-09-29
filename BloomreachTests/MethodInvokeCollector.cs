@@ -210,6 +210,27 @@ public class MethodInvokeCollector : IMethodChannelConsumerPlatformSpecific
         );
     }
 
+    public void RegisterSuccessUiMethodResult(string methodName, object? response)
+    {
+        _uiMethodResults[methodName] = new MethodMauiResultForView(
+            true, response, ""
+        );
+    }
+
+    public void RegisterFailureUiMethodResult(string methodName, string error)
+    {
+        _uiMethodResults[methodName] = new MethodMauiResultForView(
+            false, null, error
+        );
+    }
+
+    public void RegisterFailureUiMethodResult(string methodName, Exception error)
+    {
+        _uiMethodResults[methodName] = new MethodMauiResultForViewWithError(
+            false, null, error
+        );
+    }
+
     public void RegisterDefaultMethodResult(MethodMauiResult defaultResult)
     {
         this.DefaultMethodResult = defaultResult;

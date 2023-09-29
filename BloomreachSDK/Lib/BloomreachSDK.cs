@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Versioning;
-using System.Threading.Tasks;
+﻿using System.Runtime.Versioning;
 using Bloomreach.Utils;
+using Bloomreach.View;
 #if IOS
 using UIKit;
 using UserNotifications;
@@ -534,37 +532,77 @@ namespace Bloomreach
             });
         }
 
-        internal static void ThrowOrLog(Exception exception)
+        public static AppInboxButton? GetAppInboxButton()
         {
-            Log(exception);
-            if (!IsSafeMode())
-            {
-                throw exception;
-            }
+            return GetAppInboxNativeButton() == null ? null : new AppInboxButton();
+        }
+        
+        internal static object? GetAppInboxNativeButton()
+        {
+            return Instance.Channel.InvokeUiMethod("GetAppInboxButton", null);
         }
 
-        private static void Log(string message)
+        public static void SetAppInboxProvider(AppInboxStyle style)
         {
-            // TODO: log
-            Console.WriteLine(message);
+            Instance.Channel.InvokeMethod("SetAppInboxProvider", ConverterUtils.SerializeInput(style));
         }
 
-        private static void Log(Exception exception)
+        public static Task<List<AppInboxMessage>> FetchAppInbox()
         {
-            // TODO: log
-            Console.WriteLine(exception);
+            return InvokeFetchMethod<List<AppInboxMessage>>("FetchAppInbox", null, new List<AppInboxMessage>());
         }
 
-        private static void ApplyResultToTask<T>(TaskCompletionSource<T> task, T resultOrDefault, Exception? exception)
+        public static Task<AppInboxMessage?> FetchAppInboxItem(string messageId)
         {
-            if (exception == null || IsSafeMode())
+            return InvokeFetchMethod<AppInboxMessage?>("FetchAppInboxItem", messageId, null);
+        }
+
+        public static Task<bool> MarkAppInboxAsRead(string messageId)
+        {
+            var request = new TaskCompletionSource<bool>();
+            try
             {
-                task.TrySetResult(resultOrDefault);
+                Instance.Channel.InvokeMethodAsync("MarkAppInboxAsRead", messageId, (result, exception) =>
+                {
+                    ApplyResultToTask(request, ConverterUtils.ToBool(result), exception);
+                });
             }
-            else
+            catch (Exception e)
             {
-                task.TrySetException(exception);
+                ThrowOrLog(e);
+                request.SetResult(false);
             }
+            return request.Task;
+        }
+
+        public static void TrackAppInboxClick(AppInboxAction action, AppInboxMessage message)
+        {
+            var trackData = new Dictionary<string, object>()
+            {
+                { "action", action },
+                { "message", message },
+            };
+            Instance.Channel.InvokeMethod("TrackAppInboxClick", ConverterUtils.SerializeInput(trackData));
+        }
+
+        public static void TrackAppInboxClickWithoutTrackingConsent(AppInboxAction action, AppInboxMessage message)
+        {
+            var trackData = new Dictionary<string, object>()
+            {
+                { "action", action },
+                { "message", message },
+            };
+            Instance.Channel.InvokeMethod("TrackAppInboxClickWithoutTrackingConsent", ConverterUtils.SerializeInput(trackData));
+        }
+
+        public static void TrackAppInboxOpened(AppInboxMessage message)
+        {
+            Instance.Channel.InvokeMethod("TrackAppInboxOpened", ConverterUtils.SerializeInput(message));
+        }
+
+        public static void TrackAppInboxOpenedWithoutTrackingConsent(AppInboxMessage message)
+        {
+            Instance.Channel.InvokeMethod("TrackAppInboxOpenedWithoutTrackingConsent", ConverterUtils.SerializeInput(message));
         }
 
         public static void TrackInAppMessageClick(InAppMessage message, string buttonText, string buttonLink)
@@ -670,6 +708,61 @@ namespace Bloomreach
                     }
                 }
             );
+        }
+
+        internal static void ThrowOrLog(Exception exception)
+        {
+            Log(exception);
+            if (!IsSafeMode())
+            {
+                throw exception;
+            }
+        }
+
+        private static void Log(string message)
+        {
+            // TODO: log
+            Console.WriteLine(message);
+        }
+
+        private static void Log(Exception exception)
+        {
+            // TODO: log
+            Console.WriteLine(exception);
+        }
+
+        private static void ApplyResultToTask<T>(TaskCompletionSource<T> task, T resultOrDefault, Exception? exception)
+        {
+            if (exception == null || IsSafeMode())
+            {
+                task.TrySetResult(resultOrDefault);
+            }
+            else
+            {
+                task.TrySetException(exception);
+            }
+        }
+        
+        private static Task<T> InvokeFetchMethod<T>(string methodName, string? data, T defaultResult)
+        {
+            var fetch = new TaskCompletionSource<T>();
+            try
+            {
+                Instance.Channel.InvokeMethodAsync(methodName, data, (result, exception) =>
+                {
+                    ApplyResultToTask(
+                        fetch,
+                        ConverterUtils.DeserializeOutput<T>(result) ?? defaultResult,
+                        exception
+                    );
+                });
+            }
+            catch (Exception e)
+            {
+                ThrowOrLog(e);
+                fetch.SetResult(defaultResult);
+            }
+            return fetch.Task;
         }
     }
 }

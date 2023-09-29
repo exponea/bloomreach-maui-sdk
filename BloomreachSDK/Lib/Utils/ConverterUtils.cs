@@ -36,8 +36,12 @@ public static class ConverterUtils
         return JsonConvert.SerializeObject(data, JsonSerializerSettings);
     }
 
-    public static T? DeserializeOutput<T>(string data)
+    public static T? DeserializeOutput<T>(string? data)
     {
+        if (data == null)
+        {
+            return (T?)(null as object);
+        }
         return JsonConvert.DeserializeObject<T>(data, JsonSerializerSettings);
     }
 

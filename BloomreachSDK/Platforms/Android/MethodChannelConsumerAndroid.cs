@@ -1,5 +1,7 @@
 ﻿
 using Com.Bloomreach.Sdk.Maui.Android;
+using Kotlin.Jvm.Functions;
+using Object = Java.Lang.Object;
 
 namespace Bloomreach.Platforms.Android
 {
@@ -55,12 +57,17 @@ namespace Bloomreach.Platforms.Android
 
         MethodMauiResultForView IMethodChannelConsumerPlatformSpecific.InvokeUiMethod(string method, string? data)
         {
-            throw new NotImplementedException();
+            var nativeResult = NativeSdk.InvokeMethodForUI(method, data);
+            return new MethodMauiResultForView(
+                nativeResult.Success,
+                nativeResult.Data,
+                nativeResult.Error
+            );
         }
     }
     
-    internal class KotlinCallback<TArg> : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
-        where TArg: Java.Lang.Object?
+    internal class KotlinCallback<TArg> : Object, IFunction1
+        where TArg: Object?
     {
         private readonly Action<TArg> _callback;
 
@@ -69,7 +76,7 @@ namespace Bloomreach.Platforms.Android
             _callback = callback;
         }
 
-        public Java.Lang.Object? Invoke(Java.Lang.Object? p0)
+        public Object? Invoke(Object? p0)
         {
             if (p0 is TArg result)
             {

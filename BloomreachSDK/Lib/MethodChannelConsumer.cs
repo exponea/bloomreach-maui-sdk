@@ -9,7 +9,7 @@ namespace Bloomreach
 {
     public class MethodMauiResultForView
     {
-        public MethodMauiResultForView(bool success, IView? data, string error)
+        public MethodMauiResultForView(bool success, object? data, string error)
         {
             this.Success = success;
             this.Data = data;
@@ -18,7 +18,7 @@ namespace Bloomreach
 
         public string Error { get; set; }
 
-        public IView? Data { get; set; }
+        public object? Data { get; set; }
 
         public bool Success { get; set; }
     }
@@ -64,19 +64,6 @@ namespace Bloomreach
             _channelInternal = platformChannel;
         }
 
-        internal virtual MethodMauiResult? InvokeMethodWithMethod(string method, string? data)
-        {
-            try
-            {
-                return _channelInternal?.InvokeMethod(method, data);
-            }
-            catch (Exception e)
-            {
-                BloomreachSDK.ThrowOrLog(e);
-                return null;
-            }
-        }
-
         internal virtual string? InvokeMethod(string method, string? data)
         {
             try
@@ -110,7 +97,7 @@ namespace Bloomreach
             });
         }
 
-        internal virtual IView? InvokeUiMethod(string method, string? data)
+        internal virtual object? InvokeUiMethod(string method, string? data)
         {
             try
             {

@@ -62,9 +62,6 @@
 	  <None Remove="Lib\" />
 	  <None Remove="Lib\Models\" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
-		<Folder Include="Platforms\Android\" />
-	</ItemGroup>
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) != true">
 		<Compile Remove="**\Android\**\*.cs" />
 		<None Include="**\Android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />

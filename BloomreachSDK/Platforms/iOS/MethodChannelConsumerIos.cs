@@ -59,8 +59,7 @@ namespace Bloomreach.Platforms.iOS
             var nativeResult = NativeSdk.InvokeMethodForUIWithMethod(method, data);
             var mauiResult = new MethodMauiResultForView(
                 nativeResult.Success,
-                null,
-                // nativeResult.Data,
+                nativeResult.Data,
                 nativeResult.Error
             );
             return mauiResult;

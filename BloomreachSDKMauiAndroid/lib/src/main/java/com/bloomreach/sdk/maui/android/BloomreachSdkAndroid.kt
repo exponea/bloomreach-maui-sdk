@@ -1,11 +1,9 @@
 package com.bloomreach.sdk.maui.android
 
-import InAppMessageAction
 import android.content.Context
+import android.view.View
 import anonymize
-import com.bloomreach.sdk.maui.android.MethodResult.Companion
 import com.bloomreach.sdk.maui.android.exception.BloomreachUnsupportedException
-import com.bloomreach.sdk.maui.android.util.SerializeUtils
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.deserializeData
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseAsMap
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.parseBoolean
@@ -16,6 +14,7 @@ import com.bloomreach.sdk.maui.android.util.returnOnException
 import com.exponea.sdk.util.logOnException
 import configure
 import flushData
+import getAppInboxButton
 import getCheckPushSetup
 import getCustomerCookie
 import getDefaultProperties
@@ -171,5 +170,17 @@ class BloomreachSdkAndroid(
             }
         }
     }.logOnException()
+
+    fun invokeMethodForUI(method: String?, params: String?): MethodResultForView = runCatching {
+        val methodResult: View? = when (method) {
+            "GetAppInboxButton" -> this.getAppInboxButton(context)
+            else -> {
+                throw BloomreachUnsupportedException("Method $method is currently unsupported")
+            }
+        }
+        return@runCatching MethodResultForView.success(methodResult)
+    }.returnOnException { t ->
+        MethodResultForView.failure("Method $method failed: ${t.localizedMessage ?: t.javaClass.name}")
+    }
 
 }

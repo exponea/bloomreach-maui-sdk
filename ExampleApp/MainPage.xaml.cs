@@ -1,4 +1,9 @@
 ﻿using Bloomreach;
+using Bloomreach.View;
+using Microsoft.Maui.Embedding;
+using Microsoft.Maui.Platform;
+using Button = Android.Widget.Button;
+using Color = Android.Graphics.Color;
 #if IOS
 using Foundation;
 using UIKit;
@@ -16,6 +21,13 @@ public partial class MainPage : ContentPage
         CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
         SessionStartButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
         SessionEndButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
+        var appInbox = Bloomreach.BloomreachSDK.GetAppInboxButton();
+        if (appInbox != null)
+        {
+            appInbox.Text = "Hello";
+            appInbox.BackgroundColor = Colors.Azure;
+            AppInboxTargetLayout.Add(appInbox);
+        }
         RegisterCustomizedInAppHandler();
     }
 
