@@ -1,7 +1,6 @@
 package com.bloomreach.sdk.maui.android
 
 import android.content.Context
-import android.view.View
 import anonymize
 import com.bloomreach.sdk.maui.android.exception.BloomreachUnsupportedException
 import com.bloomreach.sdk.maui.android.util.SerializeUtils.deserializeData
@@ -13,6 +12,8 @@ import com.bloomreach.sdk.maui.android.util.SerializeUtils.serializeData
 import com.bloomreach.sdk.maui.android.util.returnOnException
 import com.exponea.sdk.util.logOnException
 import configure
+import fetchAppInbox
+import fetchAppInboxItem
 import flushData
 import getAppInboxButton
 import getCheckPushSetup
@@ -27,6 +28,8 @@ import identifyCustomer
 import isAutoPushNotification
 import isAutomaticSessionTracking
 import isConfigured
+import markAppInboxAsRead
+import setAppInboxProvider
 import setAutomaticSessionTracking
 import setCheckPushSetup
 import setDefaultProperties
@@ -35,6 +38,10 @@ import setFlushPeriod
 import setInAppMessageActionCallback
 import setLogLevel
 import setSessionTimeout
+import trackAppInboxClick
+import trackAppInboxClickWithoutTrackingConsent
+import trackAppInboxOpened
+import trackAppInboxOpenedWithoutTrackingConsent
 import trackEvent
 import trackInAppMessageClick
 import trackInAppMessageClickWithoutTrackingConsent
@@ -127,6 +134,16 @@ class BloomreachSdkAndroid(
             "TrackInAppMessageClose" -> this.trackInAppMessageClose(deserializeData(params))
             "TrackInAppMessageCloseWithoutTrackingConsent" ->
                 this.trackInAppMessageCloseWithoutTrackingConsent(deserializeData(params))
+            "SetAppInboxProvider" ->
+                this.setAppInboxProvider(parseAsMap(params))
+            "TrackAppInboxClick" ->
+                this.trackAppInboxClick(parseAsMap(params))
+            "TrackAppInboxClickWithoutTrackingConsent" ->
+                this.trackAppInboxClickWithoutTrackingConsent(parseAsMap(params))
+            "TrackAppInboxOpened" ->
+                this.trackAppInboxOpened(parseAsMap(params))
+            "TrackAppInboxOpenedWithoutTrackingConsent" ->
+                this.trackAppInboxOpenedWithoutTrackingConsent(parseAsMap(params))
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
@@ -165,20 +182,27 @@ class BloomreachSdkAndroid(
             }
             "SetInAppMessageActionCallback" ->
                 this.setInAppMessageActionCallback(parseAsMap(params)) { done(it) }
+            "FetchAppInbox" ->
+                this.fetchAppInbox { done(it) }
+            "FetchAppInboxItem" ->
+                this.fetchAppInboxItem(params) { done(it) }
+            "MarkAppInboxAsRead" ->
+                this.markAppInboxAsRead(params) { done(it) }
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
         }
     }.logOnException()
 
+    @Suppress("unused")
     fun invokeMethodForUI(method: String?, params: String?): MethodResultForView = runCatching {
-        val methodResult: View? = when (method) {
+        val methodResult = when (method) {
             "GetAppInboxButton" -> this.getAppInboxButton(context)
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
         }
-        return@runCatching MethodResultForView.success(methodResult)
+        return@runCatching methodResult
     }.returnOnException { t ->
         MethodResultForView.failure("Method $method failed: ${t.localizedMessage ?: t.javaClass.name}")
     }

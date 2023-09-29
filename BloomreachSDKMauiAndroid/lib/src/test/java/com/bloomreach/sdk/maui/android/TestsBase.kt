@@ -1,5 +1,6 @@
 package com.bloomreach.sdk.maui.android
 
+import android.widget.Button
 import androidx.test.core.app.ApplicationProvider
 import com.exponea.sdk.Exponea
 import com.exponea.sdk.models.ExponeaConfiguration
@@ -52,6 +53,15 @@ abstract class TestsBase {
         every { Exponea.trackHmsPushToken(any()) } just Runs
         every { Exponea.trackDeliveredPush(any(), any()) } just Runs
         every { Exponea.trackDeliveredPushWithoutTrackingConsent(any(), any()) } just Runs
+        every { Exponea.getAppInboxButton(any()) } returns Button(
+            ApplicationProvider.getApplicationContext()
+        )
+        every { Exponea.trackAppInboxClick(any(), any()) } just Runs
+        every { Exponea.trackAppInboxClickWithoutTrackingConsent(any(), any()) } just Runs
+        every { Exponea.trackAppInboxOpened(any()) } just Runs
+        every { Exponea.fetchAppInbox(any()) } just Runs
+        every { Exponea.fetchAppInboxItem(any(), any()) } just Runs
+        every { Exponea.markAppInboxAsRead(any(), any()) } just Runs
         instance = BloomreachSdkAndroid(ApplicationProvider.getApplicationContext())
     }
 
