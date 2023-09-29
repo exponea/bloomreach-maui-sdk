@@ -7,6 +7,7 @@
 
 import ExponeaSDK
 import Foundation
+import Nimble
 
 class MockExponea: ExponeaType {
 
@@ -55,6 +56,7 @@ class MockExponea: ExponeaType {
     }
 
     var calls: [Call] = []
+    var responses: [String: Any] = [:]
 
     var isConfiguredValue: Bool = false
     var isConfigured: Bool {
@@ -320,30 +322,32 @@ class MockExponea: ExponeaType {
     }
 
     func trackAppInboxOpened(message: ExponeaSDK.MessageItem) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "trackAppInboxOpened", params: [message]))
     }
 
     func trackAppInboxOpenedWithoutTrackingConsent(message: ExponeaSDK.MessageItem) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "trackAppInboxOpenedWithoutTrackingConsent", params: [message]))
     }
 
     func trackAppInboxClick(action: ExponeaSDK.MessageItemAction, message: ExponeaSDK.MessageItem) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "trackAppInboxClick", params: [action, message]))
     }
 
     func trackAppInboxClickWithoutTrackingConsent(
         action: ExponeaSDK.MessageItemAction,
         message: ExponeaSDK.MessageItem
     ) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "trackAppInboxClickWithoutTrackingConsent", params: [action, message]))
     }
 
     func markAppInboxAsRead(_ message: ExponeaSDK.MessageItem, completition: ((Bool) -> Void)?) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "markAppInboxAsRead", params: [message]))
+        completition?(responses["markAppInboxAsRead"] as! Bool)
     }
 
     func getAppInboxButton() -> UIButton {
-        fatalError("Not implemented")
+        calls.append(Call(name: "getAppInboxButton", params: []))
+        return responses["getAppInboxButton"] as! UIButton
     }
 
     func getAppInboxListViewController() -> UIViewController {
@@ -355,14 +359,18 @@ class MockExponea: ExponeaType {
     }
 
     func fetchAppInbox(completion: @escaping (ExponeaSDK.Result<[ExponeaSDK.MessageItem]>) -> Void) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "fetchAppInbox", params: []))
+        let response = responses["fetchAppInbox"] as! ExponeaSDK.Result<[ExponeaSDK.MessageItem]>
+        completion(response)
     }
 
     func fetchAppInboxItem(
         _ messageId: String,
         completion: @escaping (ExponeaSDK.Result<ExponeaSDK.MessageItem>) -> Void
     ) {
-        fatalError("Not implemented")
+        calls.append(Call(name: "fetchAppInboxItem", params: [messageId]))
+        let response = responses["fetchAppInboxItem"] as! ExponeaSDK.Result<ExponeaSDK.MessageItem>
+        completion(response)
     }
 
     func handlePushNotificationToken(token: String) {
@@ -391,6 +399,18 @@ class MockExponea: ExponeaType {
 
     func trackInAppMessageClose(message: ExponeaSDK.InAppMessage, isUserInteraction: Bool?) {
         calls.append(Call(name: "trackInAppMessageClose", params: [message, isUserInteraction]))
+    }
+
+    func verifyMethodCalled(_ methodName: String) {
+        expect(self.calls.first(where: { $0.name == methodName })).toNot(beNil())
+    }
+
+    func registerResponse(_ methodName: String, _ response: Any) {
+        responses[methodName] = response
+    }
+
+    func getCapturedParams(_ methodName: String) -> [Any?] {
+        return calls.first(where: { $0.name == methodName })?.params ?? []
     }
 }
 

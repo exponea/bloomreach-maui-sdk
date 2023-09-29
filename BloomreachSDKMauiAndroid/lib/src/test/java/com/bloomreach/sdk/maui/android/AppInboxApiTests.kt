@@ -46,6 +46,11 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClick_App_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(APP)
         val result =
@@ -53,7 +58,7 @@ class AppInboxApiTests : TestsBase() {
         verify {
             Exponea.trackAppInboxClick(
                 capture(actionSlot),
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -64,13 +69,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClick_Browser_Push() {
+        val expectedMessage = buildAppInboxMessage("push")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(BROWSER)
         val result = instance.invokeMethod("TrackAppInboxClick", readTestFile("TrackAppInboxClick_Browser_Push"))
         verify {
             Exponea.trackAppInboxClick(
                 capture(actionSlot),
-                buildAppInboxMessage("push")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -81,13 +91,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClick_Deeplink_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(DEEPLINK)
         val result = instance.invokeMethod("TrackAppInboxClick", readTestFile("TrackAppInboxClick_Deeplink_Html"))
         verify {
             Exponea.trackAppInboxClick(
                 capture(actionSlot),
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -98,13 +113,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClick_NoAction_Unknown() {
+        val expectedMessage = buildAppInboxMessage("unknown")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(NO_ACTION)
         val result = instance.invokeMethod("TrackAppInboxClick", readTestFile("TrackAppInboxClick_NoAction_Unknown"))
         verify {
             Exponea.trackAppInboxClick(
                 capture(actionSlot),
-                buildAppInboxMessage("unknown")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -115,6 +135,11 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClickWithoutTrackingConsent_App_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(APP)
         val result =
@@ -122,7 +147,7 @@ class AppInboxApiTests : TestsBase() {
         verify {
             Exponea.trackAppInboxClickWithoutTrackingConsent(
                 capture(actionSlot),
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -133,13 +158,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClickWithoutTrackingConsent_Browser_Push() {
+        val expectedMessage = buildAppInboxMessage("push")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(BROWSER)
         val result = instance.invokeMethod("TrackAppInboxClickWithoutTrackingConsent", readTestFile("TrackAppInboxClickWithoutTrackingConsent_Browser_Push"))
         verify {
             Exponea.trackAppInboxClickWithoutTrackingConsent(
                 capture(actionSlot),
-                buildAppInboxMessage("push")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -150,13 +180,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClickWithoutTrackingConsent_Deeplink_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(DEEPLINK)
         val result = instance.invokeMethod("TrackAppInboxClickWithoutTrackingConsent", readTestFile("TrackAppInboxClickWithoutTrackingConsent_Deeplink_Html"))
         verify {
             Exponea.trackAppInboxClickWithoutTrackingConsent(
                 capture(actionSlot),
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -167,13 +202,18 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxClickWithoutTrackingConsent_NoAction_Unknown() {
+        val expectedMessage = buildAppInboxMessage("unknown")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val actionSlot = slot<MessageItemAction>()
         val expectedAction = buildAppInboxAction(NO_ACTION)
         val result = instance.invokeMethod("TrackAppInboxClickWithoutTrackingConsent", readTestFile("TrackAppInboxClickWithoutTrackingConsent_NoAction_Unknown"))
         verify {
             Exponea.trackAppInboxClickWithoutTrackingConsent(
                 capture(actionSlot),
-                buildAppInboxMessage("unknown")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -184,10 +224,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpened_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpened", readTestFile("TrackAppInboxOpened_Html"))
         verify {
             Exponea.trackAppInboxOpened(
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -195,10 +240,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpened_Push() {
+        val expectedMessage = buildAppInboxMessage("push")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpened", readTestFile("TrackAppInboxOpened_Push"))
         verify {
             Exponea.trackAppInboxOpened(
-                buildAppInboxMessage("push")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -206,10 +256,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpened_Unknown() {
+        val expectedMessage = buildAppInboxMessage("unknown")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpened", readTestFile("TrackAppInboxOpened_Unknown"))
         verify {
             Exponea.trackAppInboxOpened(
-                buildAppInboxMessage("unknown")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -217,10 +272,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpenedWithoutTrackingConsent_Html() {
+        val expectedMessage = buildAppInboxMessage("html")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpenedWithoutTrackingConsent", readTestFile("TrackAppInboxOpenedWithoutTrackingConsent_Html"))
         verify {
             Exponea.trackAppInboxOpenedWithoutTrackingConsent(
-                buildAppInboxMessage("html")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -228,10 +288,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpenedWithoutTrackingConsent_Push() {
+        val expectedMessage = buildAppInboxMessage("push")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpenedWithoutTrackingConsent", readTestFile("TrackAppInboxOpenedWithoutTrackingConsent_Push"))
         verify {
             Exponea.trackAppInboxOpenedWithoutTrackingConsent(
-                buildAppInboxMessage("push")
+                expectedMessage
             )
         }
         assertTrue(result.success)
@@ -239,10 +304,15 @@ class AppInboxApiTests : TestsBase() {
 
     @Test
     fun TrackAppInboxOpenedWithoutTrackingConsent_Unknown() {
+        val expectedMessage = buildAppInboxMessage("unknown")
+        every { Exponea.fetchAppInboxItem(any(), any()) } answers {
+            // message fetch is done as middle step
+            secondArg<(MessageItem?) -> Unit>().invoke(expectedMessage)
+        }
         val result = instance.invokeMethod("TrackAppInboxOpenedWithoutTrackingConsent", readTestFile("TrackAppInboxOpenedWithoutTrackingConsent_Unknown"))
         verify {
             Exponea.trackAppInboxOpenedWithoutTrackingConsent(
-                buildAppInboxMessage("unknown")
+                expectedMessage
             )
         }
         assertTrue(result.success)

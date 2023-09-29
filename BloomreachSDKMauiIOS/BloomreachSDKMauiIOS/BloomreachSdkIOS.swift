@@ -65,8 +65,8 @@ public class BloomreachSdkIOS: NSObject, BloomreachInvokable {
     @objc
     public func invokeMethodForUI(method: String?, params: String?) -> MethodResultForUI {
         switch method {
-        case "getAppInboxButton":
-            return MethodResultForUI.success(Exponea.shared.getAppInboxButton())
+        case "GetAppInboxButton":
+            return MethodResultForUI.success(self.exponeaSDK.getAppInboxButton())
         default:
             return MethodResultForUI.unsupportedMethod(method ?? "nil")
         }

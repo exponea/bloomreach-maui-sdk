@@ -13,6 +13,9 @@ public enum BloomreachAsyncMethodType {
     case setOpenedPushCallback(data: TypeBlock<MethodResult>?)
     case requestPushAuthorization(completion: TypeBlock<MethodResult>?)
     case setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?)
+    case fetchAppInbox(completion: TypeBlock<MethodResult>?)
+    case fetchAppInboxItem(data: String?, completion: TypeBlock<MethodResult>?)
+    case markAppInboxAsRead(data: String?, completion: TypeBlock<MethodResult>?)
     case unsupported
 
     init(method: String?, params: String?, asyncBlock: TypeBlock<MethodResult>? = nil) {
@@ -30,7 +33,13 @@ public enum BloomreachAsyncMethodType {
         case "requestpushauthorization":
             self = .requestPushAuthorization(completion: asyncBlock)
         case "setinappmessageactioncallback":
-            self = .setInAppMessageActionCallback(data: method.json, completion: asyncBlock)
+            self = .setInAppMessageActionCallback(data: params.json, completion: asyncBlock)
+        case "fetchappinbox":
+            self = .fetchAppInbox(completion: asyncBlock)
+        case "fetchappinboxitem":
+            self = .fetchAppInboxItem(data: params, completion: asyncBlock)
+        case "markappinboxasread":
+            self = .markAppInboxAsRead(data: params, completion: asyncBlock)
         default:
             self = .unsupported
         }

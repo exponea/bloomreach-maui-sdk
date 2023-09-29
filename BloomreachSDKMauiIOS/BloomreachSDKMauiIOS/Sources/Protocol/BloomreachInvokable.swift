@@ -62,12 +62,22 @@ public protocol BloomreachInvokable {
     func setOpenedPushCallback(completion: TypeBlock<MethodResult>?)
     func requestPushAuthorization(completion: TypeBlock<MethodResult>?)
 
-    // MAKR: - InApp
+    // MARK: - InApp
     func setInAppMessageActionCallback(data: [String: Any], completion: TypeBlock<MethodResult>?)
     func trackInAppMessageClick(data: [String: Any]) -> MethodResult
     func trackInAppMessageClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult
     func trackInAppMessageClose(data: [String: Any]) -> MethodResult
     func trackInAppMessageCloseWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+
+    // MARK: - AppInbox
+    func fetchAppInbox(completion: TypeBlock<MethodResult>?)
+    func fetchAppInboxItem(messageId: String?, completion: TypeBlock<MethodResult>?)
+    func markAppInboxAsRead(messageId: String?, completion: TypeBlock<MethodResult>?)
+    func setAppInboxProvider(data: [String: Any]) -> MethodResult
+    func trackAppInboxClick(data: [String: Any]) -> MethodResult
+    func trackAppInboxClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+    func trackAppInboxOpened(data: [String: Any]) -> MethodResult
+    func trackAppInboxOpenedWithoutTrackingConsent(data: [String: Any]) -> MethodResult
 }
 
 public extension BloomreachInvokable {
@@ -85,6 +95,12 @@ public extension BloomreachInvokable {
             requestPushAuthorization(completion: data)
         case let .setInAppMessageActionCallback(data, completion):
             setInAppMessageActionCallback(data: data, completion: completion)
+        case .fetchAppInbox(completion: let completion):
+            fetchAppInbox(completion: completion)
+        case .fetchAppInboxItem(data: let data, completion: let completion):
+            fetchAppInboxItem(messageId: data, completion: completion)
+        case .markAppInboxAsRead(data: let data, completion: let completion):
+            markAppInboxAsRead(messageId: data, completion: completion)
         }
     }
 
@@ -180,8 +196,16 @@ public extension BloomreachInvokable {
             return trackInAppMessageClose(data: data)
         case let .trackInAppMessageCloseWithoutTrackingConsent(data):
             return trackInAppMessageCloseWithoutTrackingConsent(data: data)
-        default:
-            return .unsupportedMethod(method ?? "Uknown method")
+        case let .setAppInboxProvider(data):
+            return setAppInboxProvider(data: data)
+        case let .trackAppInboxClick(data):
+            return trackAppInboxClick(data: data)
+        case let .trackAppInboxClickWithoutTrackingConsent(data):
+            return trackAppInboxClickWithoutTrackingConsent(data: data)
+        case let .trackAppInboxOpened(data):
+            return trackAppInboxOpened(data: data)
+        case let .trackAppInboxOpenedWithoutTrackingConsent(data):
+            return trackAppInboxOpenedWithoutTrackingConsent(data: data)
         }
     }
 }

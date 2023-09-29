@@ -10,7 +10,6 @@ import ExponeaSDK
 public enum BloomreachMethodType {
     case anonymize(data: [String: Any])
     case configure(data: [String: Any])
-    case flushData
     case getConfiguration
     case getCustomerCookie
     case getCheckPushSetup
@@ -53,6 +52,11 @@ public enum BloomreachMethodType {
     case trackInAppMessageClickWithoutTrackingConsent(data: [String: Any])
     case trackInAppMessageClose(data: [String: Any])
     case trackInAppMessageCloseWithoutTrackingConsent(data: [String: Any])
+    case setAppInboxProvider(data: [String: Any])
+    case trackAppInboxClick(data: [String: Any])
+    case trackAppInboxClickWithoutTrackingConsent(data: [String: Any])
+    case trackAppInboxOpened(data: [String: Any])
+    case trackAppInboxOpenedWithoutTrackingConsent(data: [String: Any])
     case unsupported
 
     init(method: String?, params: String?) {
@@ -73,8 +77,6 @@ public enum BloomreachMethodType {
             self = .anonymize(data: params.json)
         case "configure":
             self = .configure(data: params.json)
-        case "flushdata":
-            self = .flushData
         case "getconfiguration":
             self = .getConfiguration
         case "getcustomercookie":
@@ -151,6 +153,16 @@ public enum BloomreachMethodType {
             self = .trackInAppMessageClose(data: params.json)
         case "trackinappmessageclosewithouttrackingconsent":
             self = .trackInAppMessageCloseWithoutTrackingConsent(data: params.json)
+        case "setappinboxprovider":
+            self = .setAppInboxProvider(data: params.json)
+        case "trackappinboxclick":
+            self = .trackAppInboxClick(data: params.json)
+        case "trackappinboxclickwithouttrackingconsent":
+            self = .trackAppInboxClickWithoutTrackingConsent(data: params.json)
+        case "trackappinboxopened":
+            self = .trackAppInboxOpened(data: params.json)
+        case "trackappinboxopenedwithouttrackingconsent":
+            self = .trackAppInboxOpenedWithoutTrackingConsent(data: params.json)
         default:
             self = .unsupported
         }

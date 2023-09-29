@@ -15,29 +15,8 @@ import ExponeaSDK_Notifications
 @testable import BloomreachSDKMauiIOS
 
 class BloomreachSDKMauiIOSTests: QuickSpec {
-    enum JSONType {
-        case configuration
-
-        var name: String {
-            switch self {
-            case .configuration:
-                return "Configure_Configuration_Variant_1"
-            }
-        }
-    }
 
     override  func spec() {
-        func getConfFrom(type: JSONType) -> [String: Any] {
-            return readTestFile(fileName: type.name)
-        }
-
-        func readTestFile(fileName: String) -> [String: Any] {
-            let mainBundle = Bundle(identifier: "com.bloomreach.maui.ios.BloomreachSDKMauiIOSTest.BloomreachSDKMauiIOSTests")
-            guard let path = mainBundle?.path(forResource: "Jsons/\(fileName)", ofType: "json") else { return [:] }
-            guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe) else { return [:] }
-            guard let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary else { return [:] }
-            return jsonResult as! [String: Any]
-        }
 
         it("assert bool - true") {
             let data: [String: Any] = ["isOk": true]
@@ -64,7 +43,8 @@ class BloomreachSDKMauiIOSTests: QuickSpec {
 
         it("should setup simplest configuration") {
             let exponea = Exponea.shared
-            let configData: [String: Any] = getConfFrom(type: .configuration)
+            let configData: [String: Any] = TestUtils.readTestFileConf("Configure_Configuration_Variant_1")
+            BloomreachSdkIOS.instance.setupExponeaSDK(type: exponea)
             let success = BloomreachSdkIOS.instance.configure(data: configData).success
             expect(success).to(beTrue())
             expect(exponea.configuration!.projectToken).to(equal("projToken"))

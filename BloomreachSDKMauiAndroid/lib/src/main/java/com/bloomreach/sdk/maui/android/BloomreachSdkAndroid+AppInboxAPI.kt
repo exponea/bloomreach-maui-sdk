@@ -18,6 +18,7 @@ import com.exponea.sdk.models.MessageItem
 import com.exponea.sdk.models.MessageItemAction
 import com.exponea.sdk.models.MessageItemAction.Type
 import com.exponea.sdk.style.appinbox.StyledAppInboxProvider
+import com.exponea.sdk.util.Logger
 import com.exponea.sdk.util.logOnException
 import com.exponea.style.AppInboxStyleParser
 
@@ -37,24 +38,60 @@ internal fun BloomreachSdkAndroid.setAppInboxProvider(styleMap: Map<String, Any?
 
 internal fun BloomreachSdkAndroid.trackAppInboxClick(dataMap: Map<String, Any?>) {
     val (action, message) = parseAppInboxActionAndMessage(dataMap)
-    Exponea.trackAppInboxClick(action, message)
+    // we need load message to ensure fresh assignments
+    Exponea.fetchAppInboxItem(message.id) { appInboxMessage ->
+        runCatching {
+            if (appInboxMessage == null) {
+                Logger.e(this, "AppInbox message not found, see logs")
+                return@runCatching
+            }
+            Exponea.trackAppInboxClick(action, message)
+        }.logOnException()
+    }
 }
 
 internal fun BloomreachSdkAndroid.trackAppInboxClickWithoutTrackingConsent(
     dataMap: Map<String, Any?>
 ) {
     val (action, message) = parseAppInboxActionAndMessage(dataMap)
-    Exponea.trackAppInboxClickWithoutTrackingConsent(action, message)
+    // we need load message to ensure fresh assignments
+    Exponea.fetchAppInboxItem(message.id) { appInboxMessage ->
+        runCatching {
+            if (appInboxMessage == null) {
+                Logger.e(this, "AppInbox message not found, see logs")
+                return@runCatching
+            }
+            Exponea.trackAppInboxClickWithoutTrackingConsent(action, message)
+        }.logOnException()
+    }
 }
 
 internal fun BloomreachSdkAndroid.trackAppInboxOpened(dataMap: Map<String, Any?>) {
     val message = parseAppInboxMessage(dataMap)
-    Exponea.trackAppInboxOpened(message)
+    // we need load message to ensure fresh assignments
+    Exponea.fetchAppInboxItem(message.id) { appInboxMessage ->
+        runCatching {
+            if (appInboxMessage == null) {
+                Logger.e(this, "AppInbox message not found, see logs")
+                return@runCatching
+            }
+            Exponea.trackAppInboxOpened(message)
+        }.logOnException()
+    }
 }
 
 internal fun BloomreachSdkAndroid.trackAppInboxOpenedWithoutTrackingConsent(dataMap: Map<String, Any?>) {
     val message = parseAppInboxMessage(dataMap)
-    Exponea.trackAppInboxOpenedWithoutTrackingConsent(message)
+    // we need load message to ensure fresh assignments
+    Exponea.fetchAppInboxItem(message.id) { appInboxMessage ->
+        runCatching {
+            if (appInboxMessage == null) {
+                Logger.e(this, "AppInbox message not found, see logs")
+                return@runCatching
+            }
+            Exponea.trackAppInboxOpenedWithoutTrackingConsent(message)
+        }.logOnException()
+    }
 }
 
 internal fun BloomreachSdkAndroid.fetchAppInbox(done: (MethodResult) -> Unit) {
@@ -95,7 +132,11 @@ internal fun BloomreachSdkAndroid.markAppInboxAsRead(messageId: String?, done: (
             }
             Exponea.markAppInboxAsRead(appInboxMessage) { marked ->
                 runCatching {
-                    done(MethodResult.success(marked.toString()))
+                    done(if (marked) {
+                        MethodResult.success("true")
+                    } else {
+                        MethodResult.failure("AppInbox message was not marked as read")
+                    })
                 }.logOnException()
             }
         }.logOnException()
