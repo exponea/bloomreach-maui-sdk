@@ -26,6 +26,8 @@
                 <Button BackgroundColor="#fed500" Text="Flush" Clicked="Flush" />
                 <Button Text="Identify Customer" Clicked="IdentifyCustomer" />
                 <StackLayout x:Name="AppInboxTargetLayout"/>
+                <Button Text="Fetch AppInbox" Clicked="Fetch_AppInbox_ClickedAsync"/>
+                <Button Text="Fetch AppInbox item" Clicked="Fetch_AppInboxItem_ClickedAsync"/>
             </StackLayout>
         </ScrollView>
         <Button Text="Switch Project" BackgroundColor="#fed500" Clicked="Switch_Project_ClickedAsync" Margin="12, 0"/>

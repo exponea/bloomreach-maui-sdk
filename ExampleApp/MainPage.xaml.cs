@@ -1,9 +1,11 @@
-﻿using Bloomreach;
+﻿using System;
+using System.Collections.Generic;
+using Bloomreach;
 using Bloomreach.View;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Embedding;
 using Microsoft.Maui.Platform;
-using Button = Android.Widget.Button;
-using Color = Android.Graphics.Color;
+using Microsoft.Maui.Storage;
 #if IOS
 using Foundation;
 using UIKit;
@@ -21,14 +23,36 @@ public partial class MainPage : ContentPage
         CustomerCookie.Text = "Customer cookie: \n" + Bloomreach.BloomreachSDK.GetCustomerCookie();
         SessionStartButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
         SessionEndButton.IsVisible = !Bloomreach.BloomreachSDK.IsAutomaticSessionTracking();
+        CustomizeAppInboxStyle();
         var appInbox = Bloomreach.BloomreachSDK.GetAppInboxButton();
         if (appInbox != null)
         {
-            appInbox.Text = "Hello";
-            appInbox.BackgroundColor = Colors.Azure;
             AppInboxTargetLayout.Add(appInbox);
         }
         RegisterCustomizedInAppHandler();
+    }
+
+    private static void CustomizeAppInboxStyle()
+    {
+        Bloomreach.BloomreachSDK.SetAppInboxProvider(new AppInboxStyle()
+        {
+            AppInboxButton = new ButtonStyle()
+            {
+                BackgroundColor = "#191970",
+                BorderRadius = "10dp",
+            },
+            DetailView = new DetailViewStyle()
+            {
+                Title = new TextViewStyle()
+                {
+                    TextColor = "rbga(11, 156, 49, 0.6)"
+                },
+                Content = new TextViewStyle()
+                {
+                    TextColor = "darkmagenta"
+                }
+            }
+        });
     }
 
     private void RegisterCustomizedInAppHandler()
@@ -156,5 +180,32 @@ public partial class MainPage : ContentPage
             "https://bloomreach.com"
         ).WithAttribute("campaign_id", "id");
         Bloomreach.BloomreachSDK.TrackClickedPush(action);
+    }
+    
+    async void Fetch_AppInbox_ClickedAsync(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            var res = await Bloomreach.BloomreachSDK.FetchAppInbox();
+            await DisplayAlert("AppInbox fetched", "Got messages: " + res.Count, "OK");
+        }
+        catch (Exception exception)
+        {
+            await DisplayAlert("AppInbox fetch failed", exception.Message, "OK");
+        }
+    }
+
+    async void Fetch_AppInboxItem_ClickedAsync(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            var all = await Bloomreach.BloomreachSDK.FetchAppInbox();
+            var res = await Bloomreach.BloomreachSDK.FetchAppInboxItem(all[0].Id);
+            await DisplayAlert("AppInbox fetched", "Got message", "OK");
+        }
+        catch (Exception exception)
+        {
+            await DisplayAlert("Recommendations fetch failed", exception.Message, "OK");
+        }
     }
 }
