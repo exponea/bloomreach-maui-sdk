@@ -16,6 +16,8 @@ public enum BloomreachAsyncMethodType {
     case fetchAppInbox(completion: TypeBlock<MethodResult>?)
     case fetchAppInboxItem(data: String?, completion: TypeBlock<MethodResult>?)
     case markAppInboxAsRead(data: String?, completion: TypeBlock<MethodResult>?)
+    case fetchConsents(completion: TypeBlock<MethodResult>?)
+    case fetchRecommendation(data: [String: Any], completion: TypeBlock<MethodResult>?)
     case unsupported
 
     init(method: String?, params: String?, asyncBlock: TypeBlock<MethodResult>? = nil) {
@@ -40,6 +42,10 @@ public enum BloomreachAsyncMethodType {
             self = .fetchAppInboxItem(data: params, completion: asyncBlock)
         case "markappinboxasread":
             self = .markAppInboxAsRead(data: params, completion: asyncBlock)
+        case "fetchconsents":
+            self = .fetchConsents(completion: asyncBlock)
+        case "fetchrecommendation":
+            self = .fetchRecommendation(data: params.json, completion: asyncBlock)
         default:
             self = .unsupported
         }

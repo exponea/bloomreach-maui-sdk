@@ -78,6 +78,10 @@ public protocol BloomreachInvokable {
     func trackAppInboxClickWithoutTrackingConsent(data: [String: Any]) -> MethodResult
     func trackAppInboxOpened(data: [String: Any]) -> MethodResult
     func trackAppInboxOpenedWithoutTrackingConsent(data: [String: Any]) -> MethodResult
+
+    // MARK: - FetchAPI
+    func fetchConsents(completion: TypeBlock<MethodResult>?)
+    func fetchRecommendation(optionsData: [String: Any], completion: TypeBlock<MethodResult>?)
 }
 
 public extension BloomreachInvokable {
@@ -101,6 +105,10 @@ public extension BloomreachInvokable {
             fetchAppInboxItem(messageId: data, completion: completion)
         case .markAppInboxAsRead(data: let data, completion: let completion):
             markAppInboxAsRead(messageId: data, completion: completion)
+        case .fetchConsents(completion: let completion):
+            fetchConsents(completion: completion)
+        case .fetchRecommendation(data: let data, completion: let completion):
+            fetchRecommendation(optionsData: data, completion: completion)
         }
     }
 

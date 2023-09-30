@@ -1,4 +1,5 @@
 PODS:
+  - AnyCodable-FlightSchool (0.6.0)
   - ExponeaSDK (2.18.0):
     - SwiftSoup (= 2.6.1)
   - ExponeaSDK-Notifications (2.18.0)
@@ -7,6 +8,7 @@ PODS:
   - SwiftSoup (2.6.1)
 
 DEPENDENCIES:
+  - AnyCodable-FlightSchool (= 0.6.0)
   - ExponeaSDK (= 2.18.0)
   - ExponeaSDK-Notifications (= 2.18.0)
   - Nimble
@@ -14,6 +16,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AnyCodable-FlightSchool
     - ExponeaSDK
     - ExponeaSDK-Notifications
     - Nimble
@@ -21,12 +24,13 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  AnyCodable-FlightSchool: 7f109e39278ee0c6d02506530e930e7cff1aa07c
   ExponeaSDK: 9dd54f7d073beddc7d5ab191e8737fb56fc48ba1
   ExponeaSDK-Notifications: 60c9ec6c9f0766e7d962aae0127cabf803545295
   Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
   Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
   SwiftSoup: 5dd2c1b06afc964f30d99894af6ede22ede627aa
 
-PODFILE CHECKSUM: 67890d59ca6220ae5446382d442631ca4f3cde2a
+PODFILE CHECKSUM: 764442533afbc49732988448fbb7aa89cb16b0f2
 
 COCOAPODS: 1.11.3
