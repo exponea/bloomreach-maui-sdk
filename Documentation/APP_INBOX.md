@@ -4,7 +4,23 @@ Bloomreach SDK feature App Inbox allows you to use message list in your app. You
 
 ### Using App Inbox
 
-Only required step to use App Inbox in your application is to add a button into your screen. Messages are then displayed by clicking on a button:
+First step is register App Inbox button to be handled correctly by Maui UI architecture. To enable AppInboxButton handling correctly, please register Bloomreach UI handlers while initializing Maui application:
+
+```csharp
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder.UseMauiApp<App>()
+            /// your configurations
+            .RegisterBloomreachUi();
+        return builder.Build();
+    }
+}
+```
+
+Last required step to use App Inbox in your application is to add a button into your screen. Messages are then displayed by clicking on a button:
 
 ```xaml
 <!-- Somewhere in your layout -->

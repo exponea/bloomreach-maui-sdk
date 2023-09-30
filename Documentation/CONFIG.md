@@ -55,6 +55,9 @@ automatically send `session_start` and `session_end` events to Bloomreach API
 #### AllowDefaultCustomerProperties
 * If true, default properties are applied also for 'identifyCustomer' event.
 
+#### AdvancedAuthEnabled
+* If true, Customer Token authentication is used for communication with BE for API listed in [Authorization](./AUTHORIZATION.md) document.
+
 #### AutomaticPushNotification (Working on Android)
 
 * Controls if the SDK will handle push notifications automatically.
@@ -93,7 +96,6 @@ If true, push notification registration and push token tracking are only done if
 
 #### AppGroup (Working on iOS)
  App group used for communication between the main app and notification extensions. AppGroup is a required field for Rich push notification setup.
-
 
 #### Example
 ``` csharp
