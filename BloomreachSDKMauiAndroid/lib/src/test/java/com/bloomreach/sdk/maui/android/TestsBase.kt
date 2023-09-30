@@ -62,6 +62,8 @@ abstract class TestsBase {
         every { Exponea.fetchAppInbox(any()) } just Runs
         every { Exponea.fetchAppInboxItem(any(), any()) } just Runs
         every { Exponea.markAppInboxAsRead(any(), any()) } just Runs
+        every { Exponea.getConsents(any(), any()) } just Runs
+        every { Exponea.fetchRecommendation(any(), any(), any()) } just Runs
         instance = BloomreachSdkAndroid(ApplicationProvider.getApplicationContext())
     }
 

@@ -14,6 +14,8 @@ import com.exponea.sdk.util.logOnException
 import configure
 import fetchAppInbox
 import fetchAppInboxItem
+import fetchConsents
+import fetchRecommendation
 import flushData
 import getAppInboxButton
 import getCheckPushSetup
@@ -188,6 +190,10 @@ class BloomreachSdkAndroid(
                 this.fetchAppInboxItem(params) { done(it) }
             "MarkAppInboxAsRead" ->
                 this.markAppInboxAsRead(params) { done(it) }
+            "FetchConsents" ->
+                this.fetchConsents { done(it) }
+            "FetchRecommendation" ->
+                this.fetchRecommendation(parseAsMap(params)) { done(it) }
             else -> {
                 throw BloomreachUnsupportedException("Method $method is currently unsupported")
             }
