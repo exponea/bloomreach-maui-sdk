@@ -710,6 +710,20 @@ namespace Bloomreach
             );
         }
 
+        public static Task<List<Consent>> FetchConsents()
+        {
+            return InvokeFetchMethod("FetchConsents", null, new List<Consent>());
+        }
+
+        public static Task<List<CustomerRecommendation>> FetchRecommendation(CustomerRecommendationOptions options)
+        {
+            return InvokeFetchMethod(
+                "FetchRecommendation",
+                ConverterUtils.SerializeInput(options),
+                new List<CustomerRecommendation>()
+            );
+        }
+
         internal static void ThrowOrLog(Exception exception)
         {
             Log(exception);
