@@ -2,8 +2,13 @@ namespace Bloomreach;
 
 public class CustomerRecommendationOptions
 {
-    public CustomerRecommendationOptions(string id, bool? fillWithRandom, int size, Dictionary<string, string>? items,
-        bool? noTrack, List<string>? catalogAttributesWhitelist)
+    public CustomerRecommendationOptions(
+        string id,
+        bool? fillWithRandom = null,
+        int size = 10,
+        Dictionary<string, string>? items = null,
+        bool? noTrack = null,
+        List<string>? catalogAttributesWhitelist = null)
     {
         Id = id;
         FillWithRandom = fillWithRandom;

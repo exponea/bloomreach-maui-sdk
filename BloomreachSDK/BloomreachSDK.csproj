@@ -140,6 +140,12 @@
 			<ForceLoad>True</ForceLoad>
 			<SmartLink>False</SmartLink>
 		</NativeReference>
+		<NativeReference Include="..\BloomreachSDKMauiIOS\frameworks\AnyCodable.framework">
+			<Kind>Framework</Kind>
+			<Frameworks>Foundation</Frameworks>
+			<ForceLoad>True</ForceLoad>
+			<SmartLink>False</SmartLink>
+		</NativeReference>
 	</ItemGroup>
 	<ItemGroup>
 		<InternalsVisibleTo Include="BloomreachTests" />

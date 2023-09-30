@@ -208,4 +208,34 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Recommendations fetch failed", exception.Message, "OK");
         }
     }
+    
+    async void Fetch_Consents_Clicked(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            var consents = await Bloomreach.BloomreachSDK.FetchConsents();
+            await DisplayAlert("Consents fetched", $"Count: {consents.Count}", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Consent fetch failed", ex.Message, "OK");
+        }
+    }
+
+    async void Fetch_Recomendations_Clicked(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            var recommendations = await Bloomreach.BloomreachSDK.FetchRecommendation(
+                new CustomerRecommendationOptions(
+                    id: recommendationId.Text,
+                    fillWithRandom: true)
+            );
+            await DisplayAlert("Recommendations fetched", $"Count: {recommendations.Count}", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Recommendations fetch failed", ex.Message, "OK");
+        }
+    }
 }

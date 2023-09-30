@@ -28,6 +28,11 @@
                 <StackLayout x:Name="AppInboxTargetLayout"/>
                 <Button Text="Fetch AppInbox" Clicked="Fetch_AppInbox_ClickedAsync"/>
                 <Button Text="Fetch AppInbox item" Clicked="Fetch_AppInboxItem_ClickedAsync"/>
+                <Button Text="Fetch Consents" Clicked="Fetch_Consents_Clicked"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="recommendationId" Placeholder="Recommendation ID"></Entry>
+                    <Button Text="Fetch Recommendations" Clicked="Fetch_Recomendations_Clicked" FontSize="Small"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
         <Button Text="Switch Project" BackgroundColor="#fed500" Clicked="Switch_Project_ClickedAsync" Margin="12, 0"/>
