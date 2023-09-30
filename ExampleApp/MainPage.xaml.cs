@@ -38,8 +38,8 @@ public partial class MainPage : ContentPage
         {
             AppInboxButton = new ButtonStyle()
             {
-                BackgroundColor = "#191970",
-                BorderRadius = "10dp",
+                BackgroundColor = "#FF3F06CA",
+                BorderRadius = "8dp",
             },
             DetailView = new DetailViewStyle()
             {

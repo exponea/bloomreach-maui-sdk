@@ -18,6 +18,8 @@ namespace Bloomreach
 
         protected internal MethodChannelConsumer Channel;
 
+        internal ButtonStyle AppInboxButtonStyle = BuildDefaultAppInboxButtonStyle();
+
         protected internal BloomreachSDK()
         {
             Channel = new MethodChannelConsumer();
@@ -544,6 +546,7 @@ namespace Bloomreach
 
         public static void SetAppInboxProvider(AppInboxStyle style)
         {
+            Instance.MergeAppInboxStyle(style.AppInboxButton);
             Instance.Channel.InvokeMethod("SetAppInboxProvider", ConverterUtils.SerializeInput(style));
         }
 
@@ -777,6 +780,38 @@ namespace Bloomreach
                 fetch.SetResult(defaultResult);
             }
             return fetch.Task;
+        }
+        
+        private static ButtonStyle BuildDefaultAppInboxButtonStyle()
+        {
+            return new ButtonStyle()
+            {
+                BackgroundColor = "#FF3F06CA",
+                BorderRadius = "8",
+                Enabled = true,
+                ShowIcon = true,
+                TextColor = "#FFFFFF",
+                TextOverride = "Inbox",
+                TextSize = "14",
+                TextWeight = "normal"
+            };
+        }
+
+        private void MergeAppInboxStyle(ButtonStyle? source)
+        {
+            if (source == null)
+            {
+                return;
+            }
+            var target = this.AppInboxButtonStyle;
+            target.TextOverride = source.TextOverride ?? target.TextOverride;
+            target.TextColor = source.TextColor ?? target.TextColor;
+            target.BackgroundColor = source.BackgroundColor ?? target.BackgroundColor;
+            target.ShowIcon = source.ShowIcon ?? target.ShowIcon;
+            target.TextSize = source.TextSize ?? target.TextSize;
+            target.Enabled = source.Enabled ?? target.Enabled;
+            target.BorderRadius = source.BorderRadius ?? target.BorderRadius;
+            target.TextWeight = source.TextWeight ?? target.TextWeight;
         }
     }
 }
