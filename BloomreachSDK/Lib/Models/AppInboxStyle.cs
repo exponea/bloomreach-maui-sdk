@@ -70,7 +70,7 @@ public class ButtonStyle
     public string? TextOverride { get; set; }
     public string? TextColor { get; set; }
     public string? BackgroundColor { get; set; }
-    public string? ShowIcon { get; set; }
+    public bool? ShowIcon { get; set; }
     public string? TextSize { get; set; }
     public bool? Enabled { get; set; }
     public string? BorderRadius { get; set; }
