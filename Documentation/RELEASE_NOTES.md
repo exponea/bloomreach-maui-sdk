@@ -1,5 +1,11 @@
 ## Release Notes
 
+## Release Notes for 1.0.0
+#### October 2, 2023 
+* Features
+  * App Inbox support added 
+  * Fetch Consents and Recommendations support added
+
 ## Release Notes for 0.2.0
 #### September 28, 2023
 * Features

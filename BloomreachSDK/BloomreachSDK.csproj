@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<PackageId>BloomreachSDK</PackageId>
-		<PackageVersion>0.2.0</PackageVersion>
-		<ReleaseVersion>0.2.0</ReleaseVersion>
+		<PackageVersion>1.0.0</PackageVersion>
+		<ReleaseVersion>1.0.0</ReleaseVersion>
 		<Authors>Bloomreach</Authors>
 		<Title>BloomreachSDK</Title>
 		<Description>Bloomreach SDK allows your application to interact with the Bloomreach Customer Data &amp; Experience Platform. Bloomreach empowers B2C marketers to raise conversion rates, improve acquisition ROI, and maximize customer lifetime value.</Description>
@@ -17,11 +17,11 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>maui .net tracking analytics sdk bloomreach</PackageTags>
 		<PackageReleaseNotes>
-			## Release Notes for 0.2.0 
-			#### September 28, 2023 
+			## Release Notes for 1.0.0 
+			#### October 2, 2023 
 			* Features 
-				* In-app messages support added 
-				* PUSH notifications support added
+				* App Inbox support added 
+				* Fetch Consents and Recommendations support added
 		</PackageReleaseNotes>
 	</PropertyGroup>
 	
